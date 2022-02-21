@@ -14,17 +14,10 @@ module.exports = {
       price: {
         type: Sequelize.DECIMAL(4,2)
       },
-      url_image: {
-        type: Sequelize.STRING(200)
+      urlImage: {
+        type: Sequelize.STRING(200),
+        field: 'url_image'
       },
-      createdAt: {
-        allowNull: true,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: true,
-        type: Sequelize.DATE
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {
