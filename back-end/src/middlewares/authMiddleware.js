@@ -1,17 +1,16 @@
-const { verifyToken } = require("../services/authService");
+const { verifyToken } = require('../auth/authService');
 const {
   jwtMalformed,
   missingAuth,
-} = require("../utils/dictionary/messagesDefault");
-const { unauthorized } = require("../utils/dictionary/statusCode");
+} = require('../utils/dictionaries/messagesDefault');
+const { unauthorized } = require('../utils/dictionaries/statusCode');
 const { errorConstructor } = require('../utils/functions');
 
 module.exports = async (req, _res, next) => {
   try {
     const { authorization } = req.headers;
 
-    if (!authorization)
-      throw errorConstructor(unauthorized, missingAuth);
+    if (!authorization) { throw errorConstructor(unauthorized, missingAuth); }
 
     const user = verifyToken(authorization);
 
@@ -19,7 +18,7 @@ module.exports = async (req, _res, next) => {
     req.user = user;
     next();
   } catch (error) {
-    console.log("FALHA AUTH");
+    console.log('FALHA AUTH');
     next(error);
   }
 };

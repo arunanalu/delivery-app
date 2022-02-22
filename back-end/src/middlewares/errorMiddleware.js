@@ -4,5 +4,5 @@ module.exports = (err, req, res, _next) => {
     return res.status(status).json({ message });
   }
   console.log(err);
-  res.status(500).json({ message: "Internal error" });
+  res.status(500).json({ message: 'Internal error' });
 };

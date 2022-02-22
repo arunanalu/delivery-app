@@ -14,5 +14,4 @@ module.exports = (sequelize, DataTypes) => {
   return user;
 }
 
-//se der problema trocar para varchar
 
