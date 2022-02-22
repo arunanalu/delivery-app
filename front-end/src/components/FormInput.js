@@ -25,7 +25,6 @@ export default function FormInput(props) {
         autoComplete="none"
         onChange={ (e) => {
           changeHandler(e.target.value);
-          console.log(e.target.value);
         } }
         className={ `input-${page}` }
         required
