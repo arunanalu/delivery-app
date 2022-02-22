@@ -18,19 +18,19 @@ const verifyUserExists = async (userRequest) => {
 
 const registerUserService = async (bodyRequest) => {
   await verifyUserExists(bodyRequest);
-  const { name, email, password, role } = bodyRequest;
+  const { name, email, password } = bodyRequest;
   const passwordEncrypted = cryptHashMd5(password);
   const userCreate = {
     name,
     email,
     password: passwordEncrypted,
-    role,
+    role: 'customer',
   };
   await user.create({ ...userCreate });
   return {
     name,
     email,
-    role,
+    role: 'customer',
   };
 };
 
