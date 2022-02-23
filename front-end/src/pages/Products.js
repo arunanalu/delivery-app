@@ -38,7 +38,7 @@ export default function Products() {
           <button
             type="button"
           >
-            Produtos
+            Produtoss
           </button>
           <button type="button">Pedidos</button>
         </nav>
