@@ -34,9 +34,10 @@ const updateSaleStatusService = async (id, newStatus) => {
 
 const getSalesByUserIdService = async (id) => {
   const sales = await sale.findAll({ where: { userId: id } });
-  return sales.dataValues;
+  const salesToReturn = sales.map((element) => element.dataValues);
+  return salesToReturn;
 };
 
-// fazer uma rota para pegar os detalhes de um pedido. precisa retornar pro front todos os produtos comprados naquele pedido
+// fazer uma rota para pegar os detalhes de um pedido. precisa retornar pro front todos os produtos comprados naquele pedido e suas quantidades
 
 module.exports = { registerSalesService, updateSaleStatusService, getSalesByUserIdService };
