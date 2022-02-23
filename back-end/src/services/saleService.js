@@ -1,11 +1,15 @@
 const Sequelize = require('sequelize');
-const { sale, salesProduct, user } = require('../database/models');
+const { sale, salesProduct, user, product } = require('../database/models');
 const config = require('../database/config/config');
-const { createdWithSuccsess, invalidId } = require('../utils/dictionaries/messagesDefault');
-const { 
-  registerSaleValidation, 
-  updateSaleValidation, 
-  getSalesByUserIdValdiation, 
+const {
+  createdWithSuccsess,
+  invalidId,
+  invalidEntry,
+} = require('../utils/dictionaries/messagesDefault');
+const {
+  registerSaleValidation,
+  updateSaleValidation,
+  getSalesByUserIdValdiation,
 } = require('../validations/salesValidations');
 const { errorConstructor } = require('../utils/functions');
 const { badRequest } = require('../utils/dictionaries/statusCode');
@@ -17,16 +21,12 @@ const registerSalesService = async (incomingSale, arrayProducts) => {
   const t = await sequelize.transaction();
   try {
     const saleCreated = await sale.create({ ...incomingSale }, { transaction: t });
-  
     const newArrayProducts = arrayProducts.map((element) => ({
-        saleId: saleCreated.dataValues.id,
-        ...element,
-      }));
-  
+      saleId: saleCreated.dataValues.id,
+      ...element,
+    }));
     await salesProduct.bulkCreate([...newArrayProducts], { transaction: t });
-  
     await t.commit();
-  
     return {
       message: createdWithSuccsess,
       saleId: saleCreated.dataValues.id,
@@ -61,6 +61,21 @@ const getSalesByUserIdService = async (id) => {
   return salesToReturn;
 };
 
-// fazer uma rota para pegar os detalhes de um pedido. precisa retornar pro front todos os produtos comprados naquele pedido e suas quantidades
+const getSaleDetailsService = async (id) => {
+  if (!id) {
+    throw errorConstructor(badRequest, invalidEntry);
+  }
+  await verifySaleId(id);
+  const salesAndProducts = await sale.findOne({
+    where: { id },
+    include: [{ model: product, as: 'products', through: { attributes: [] } }],
+  });
+  return salesAndProducts.dataValues;
+};
 
-module.exports = { registerSalesService, updateSaleStatusService, getSalesByUserIdService };
+module.exports = {
+  registerSalesService,
+  updateSaleStatusService,
+  getSalesByUserIdService,
+  getSaleDetailsService,
+};

@@ -1,5 +1,9 @@
 const { registerSalesService, 
-  updateSaleStatusService, getSalesByUserIdService } = require('../services/saleService');
+  updateSaleStatusService,
+  getSalesByUserIdService,
+  getSaleDetailsService,
+} = require('../services/saleService');
+
 const { successUpdate } = require('../utils/dictionaries/messagesDefault');
 const { created, success } = require('../utils/dictionaries/statusCode');
 
@@ -8,6 +12,16 @@ const registerSalesController = async (req, res, next) => {
     const { sale, products } = req.body;
     const result = await registerSalesService(sale, products);
     res.status(created).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getSaleDetailsController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const sale = await getSaleDetailsService(id);
+    return res.status(success).json(sale);
   } catch (error) {
     next(error);
   }
@@ -37,4 +51,6 @@ const getSalesByUserIdController = async (req, res, next) => {
 module.exports = { 
   registerSalesController, 
   updateSaleStatusController, 
-  getSalesByUserIdController };
+  getSalesByUserIdController,
+  getSaleDetailsController,
+};
