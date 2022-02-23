@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import FormInput from '../components/FormInput';
 import { registerUser } from '../services/calls';
 import { validForm } from '../utils/validations/schemas';
-import { setUser } from '../app/slices/userSlice';
 
 export default function Register() {
   const [name, setUserInput] = useState('');
@@ -13,13 +11,12 @@ export default function Register() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-  const dispatch = useDispatch();
 
   const handleButtonClick = async () => {
     try {
       const response = await registerUser({ email, password, name });
-      dispatch(setUser(...response.data));
-      history.push('/products');
+      await localStorage.setItem('user', JSON.stringify({ ...response.data }));
+      history.push(`${response.data.role}/products`);
     } catch (error) {
       setErrorMessage(error);
       setShowErrorMessage(true);
