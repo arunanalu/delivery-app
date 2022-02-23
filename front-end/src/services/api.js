@@ -1,19 +1,7 @@
-import axios from 'axios';
+const axios = require('axios');
 
-export const registerUser = async (user) => {
-  try {
-    const response = await axios({
-      method: 'POST',
-      url: 'http://localhost:3001/register',
-      data: { ...user },
-    });
-    return response;
-  } catch (error) {
-    throw error.response
-      ? error.response.data.message
-      : 'Connection Failed!';
-  }
-};
-export const login = () => {
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_URL || 'http://localhost:3010',
+});
 
-};
+module.exports = api;
