@@ -6,8 +6,8 @@ import '../styles/nav-bar.css';
 export default function Header() {
   const history = useHistory();
 
-  const handleLogout = async () => {
-    await localStorage.removeItem('authentication');
+  const handleLogout = () => {
+    localStorage.removeItem('authentication');
     history.push('/'); // verificar
   };
 
@@ -40,14 +40,11 @@ export default function Header() {
         <button
           type="button"
           className="nav-bar-logout"
-          onClick={ async () => handleLogout() }
+          onClick={ handleLogout }
         >
           Sair
-
         </button>
-
       </div>
-
     </nav>
   );
 }
