@@ -18,8 +18,9 @@ export default function Register() {
   const handleButtonClick = async () => {
     try {
       const response = await registerUser({ email, password, name });
-      dispatch(setUser(...response.data));
-      history.push('/products');
+      const { role, ...userWithoutRole } = response.data;
+      await dispatch(setUser({ ...userWithoutRole }));
+      history.push(`${role}/products`);
     } catch (error) {
       setErrorMessage(error);
       setShowErrorMessage(true);

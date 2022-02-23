@@ -5,12 +5,14 @@ export const user = createSlice({
   initialState: {
     id: null,
     name: null,
-    role: null,
     token: null,
   },
   reducers: {
     setUser: (state, action) => {
-      state = { ...action.payload };
+      const { id, name, token } = action.payload;
+      state.id = id;
+      state.name = name;
+      state.token = token;
     },
   },
 });
