@@ -1,5 +1,5 @@
 const { registerSalesService } = require('../services/saleService');
-const { created } = require('../utils/dictionaries/statusCode');
+const { created, success } = require('../utils/dictionaries/statusCode');
 
 const registerSalesController = async (req, res, next) => {
   try {
@@ -11,4 +11,14 @@ const registerSalesController = async (req, res, next) => {
   }
 };
 
-module.exports = { registerSalesController };
+const getSaleDetailsController = async (req, res, next) => {
+  try {
+    const { id } = req.param;
+    const sale = await getSaleDetailsService(id);
+    return res.status(success).json(sale);
+  } catch (error) {
+    next(error);
+  }
+}
+
+module.exports = { registerSalesController, getSaleDetailsController };
