@@ -16,6 +16,11 @@ const arrayProductsSchema = Joi.object({
   quantity: Joi.number().required(),
 });
 
+const updateSaleSchema = Joi.object({
+  id: Joi.string().required(),
+  status: Joi.string().required(),
+});
+
 const incomingSaleValidation = (incomingSale) => {
   const { error } = incomingSaleSchema.validate({ ...incomingSale });
   if (error) throw errorConstructor(badRequest, error.message);
@@ -36,4 +41,13 @@ const registerSaleValidation = (incomingSale, arrayProducts) => {
   arrayProductsValidation(arrayProducts);
 };
 
-module.exports = { registerSaleValidation };
+const updateSaleValidation = (id, status) => {
+  const { error } = updateSaleSchema.validate({ id, status });
+  if (error) throw errorConstructor(badRequest, error.message);
+};
+
+const getSalesByUserIdValdiation = (id) => {
+  if (!id) throw errorConstructor(badRequest, invalidEntry);
+};
+
+module.exports = { registerSaleValidation, updateSaleValidation, getSalesByUserIdValdiation };

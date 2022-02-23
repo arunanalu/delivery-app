@@ -9,5 +9,7 @@ module.exports = {
   missingAuth: 'Token not found',
   onlyAdmins: 'Only admins can register new admins',
   unauthorizedUser: 'Unauthorized user',
+  successUpdate: 'Succesfuly updated',
   createdWithSuccsess: 'Sucessfully created',
+  invalidId: 'ID is invalid',
 };

@@ -1,4 +1,10 @@
-const { registerSalesService } = require('../services/saleService');
+const { registerSalesService, 
+  updateSaleStatusService,
+  getSalesByUserIdService,
+  getSaleDetailsService,
+} = require('../services/saleService');
+
+const { successUpdate } = require('../utils/dictionaries/messagesDefault');
 const { created, success } = require('../utils/dictionaries/statusCode');
 
 const registerSalesController = async (req, res, next) => {
@@ -13,12 +19,38 @@ const registerSalesController = async (req, res, next) => {
 
 const getSaleDetailsController = async (req, res, next) => {
   try {
-    const { id } = req.param;
+    const { id } = req.params;
     const sale = await getSaleDetailsService(id);
     return res.status(success).json(sale);
   } catch (error) {
     next(error);
   }
-}
+};
 
-module.exports = { registerSalesController, getSaleDetailsController };
+const updateSaleStatusController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const { status } = req.body;
+    await updateSaleStatusService(id, status);
+    res.status(success).json(successUpdate);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const getSalesByUserIdController = async (req, res, next) => {
+  try {
+    const { userId } = req.params;
+    const result = await getSalesByUserIdService(userId);
+    res.status(success).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { 
+  registerSalesController, 
+  updateSaleStatusController, 
+  getSalesByUserIdController,
+  getSaleDetailsController,
+};
