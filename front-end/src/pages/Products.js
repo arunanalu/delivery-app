@@ -58,6 +58,7 @@ export default function Products() {
         <button
           type="button"
           onClick={ () => history.push('checkout') }
+          id="card-button"
         >
           {`Ver carrinho: ${cartTotal}`}
         </button>
