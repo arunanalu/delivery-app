@@ -17,14 +17,14 @@ export default function Header() {
         <Link
           data-testid="customer_products__element-navbar-link-products"
           className="nav-bar-products"
-          to="/products" // verificar
+          to={ `/${user.role}/products` } // verificar
         >
           PRODUTOS
         </Link>
         <Link
           data-testid="customer_products__element-navbar-link-orders"
           className="nav-bar-orders"
-          to="/orderders" // verificar
+          to={ `/${user.role}/orders` } // verificar
         >
           MEUS PEDIDOS
 
@@ -33,12 +33,14 @@ export default function Header() {
       <div className="container-nav-bar">
         <h1
           className="nav-bar-user"
+          data-testid="customer_products__element-navbar-user-full-name"
         >
           {user.name}
 
         </h1>
         <button
           type="button"
+          data-testid="customer_products__element-navbar-link-logout"
           className="nav-bar-logout"
           onClick={ handleLogout }
         >
