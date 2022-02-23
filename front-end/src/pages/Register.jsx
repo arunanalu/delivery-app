@@ -70,7 +70,7 @@ export default function Register() {
               !isFormValid() ? 'disable' : 'enable'
             }` }
           >
-            Registrar
+            Registrarr
           </button>
         </section>
       </form>
