@@ -1,8 +1,10 @@
 const express = require('express');
-const { registerSalesController } = require('../controllers/saleController');
+const { registerSalesController, 
+  updateSaleStatusController } = require('../controllers/saleController');
 
 const salesRoute = express.Router();
 
 salesRoute.post('/', registerSalesController);
+salesRoute.put('/:id', updateSaleStatusController);
 
 module.exports = salesRoute;

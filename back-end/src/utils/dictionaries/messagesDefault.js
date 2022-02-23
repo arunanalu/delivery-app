@@ -13,4 +13,5 @@ module.exports = {
   categoryIdsNotFound: '"categoryIds" not found',
   postNotExist: 'Post does not exist',
   unauthorizedUser: 'Unauthorized user',
+  successUpdate: 'Succesfuly updated',
 };

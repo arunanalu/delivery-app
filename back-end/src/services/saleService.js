@@ -4,10 +4,6 @@ const config = require('../database/config/config');
 
 const sequelize = new Sequelize(config.development);
 
-// const registerSalesProducts = () => {
-  
-// };
-
 const registerSalesService = async (incomingSale, arrayProducts) => {
   const t = await sequelize.transaction();
   try {
@@ -32,4 +28,15 @@ const registerSalesService = async (incomingSale, arrayProducts) => {
   }
 };
 
-module.exports = { registerSalesService };
+const updateSaleStatusService = async (id, newStatus) => {
+  await sale.update({ status: newStatus }, { where: { id } });
+};
+
+const getSalesByUserIdService = async (id) => {
+  const sales = await sale.findAll({ where: { userId: id } });
+  return sales.dataValues;
+};
+
+// fazer uma rota para pegar os detalhes de um pedido. precisa retornar pro front todos os produtos comprados naquele pedido
+
+module.exports = { registerSalesService, updateSaleStatusService, getSalesByUserIdService };
