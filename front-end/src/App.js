@@ -8,8 +8,11 @@ import queryClient from './react-query/queryClient';
 
 function App() {
   return (
+
     <Switch>
       <QueryClientProvider client={ queryClient }>
+    <div>
+      <Switch>
         <Route exact path={ ['/', '/home'] } />
         <Route path="/register">
           <Register />
