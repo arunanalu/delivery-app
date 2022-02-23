@@ -3,9 +3,9 @@ const { badRequest } = require('../utils/dictionaries/statusCode');
 const { errorConstructor } = require('../utils/functions');
 
 const userSchema = Joi.object({
-  name: Joi.string().required(),
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  name: Joi.string().max(255).required(),
+  email: Joi.string().max(255).email().required(),
+  password: Joi.string().max(255).required(),
 });
 
 const userValidation = (name, email, password) => {

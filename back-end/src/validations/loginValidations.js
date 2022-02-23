@@ -3,8 +3,8 @@ const { badRequest } = require('../utils/dictionaries/statusCode');
 const { errorConstructor } = require('../utils/functions');
 
 const loginSchema = Joi.object({
-  email: Joi.string().email().required(),
-  password: Joi.string().required(),
+  email: Joi.string().max(255).email().required(),
+  password: Joi.string().max(255).required(),
 });
 
 const loginValidation = (user) => {
