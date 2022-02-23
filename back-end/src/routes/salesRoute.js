@@ -5,12 +5,13 @@ const {
   getSalesByUserIdController,
   updateSaleStatusController,
 } = require('../controllers/saleController');
+const authMiddleware = require('../middlewares/authMiddleware');
 
 const salesRoute = express.Router();
 
-salesRoute.get('/details/:id', getSaleDetailsController);
-salesRoute.get('/:userId', getSalesByUserIdController);
-salesRoute.post('/', registerSalesController);
-salesRoute.put('/:id', updateSaleStatusController);
+salesRoute.get('/details/:id', authMiddleware, getSaleDetailsController);
+salesRoute.get('/:userId', authMiddleware, getSalesByUserIdController);
+salesRoute.post('/', authMiddleware, registerSalesController);
+salesRoute.put('/:id', authMiddleware, updateSaleStatusController);
 
 module.exports = salesRoute;
