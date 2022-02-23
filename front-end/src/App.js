@@ -5,8 +5,7 @@ import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <h1>Welcome to Trybe!</h1>
+    <div>
       <Switch>
         <Route exact path={ ['/', '/home'] } />
         <Route path="/register">
