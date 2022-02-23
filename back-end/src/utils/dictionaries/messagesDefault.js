@@ -8,10 +8,8 @@ module.exports = {
   userNotFound: 'User does not exist',
   missingAuth: 'Token not found',
   onlyAdmins: 'Only admins can register new admins',
-  categoryAlreadyExists: 'Category already exists',
-  categoriesNotFound: 'Categories not found',
-  categoryIdsNotFound: '"categoryIds" not found',
-  postNotExist: 'Post does not exist',
   unauthorizedUser: 'Unauthorized user',
   successUpdate: 'Succesfuly updated',
+  createdWithSuccsess: 'Sucessfully created',
+  invalidId: 'ID is invalid',
 };
