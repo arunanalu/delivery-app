@@ -1,7 +1,8 @@
 import React from 'react';
 import './styles/products.scss';
 import { useQuery } from 'react-query';
-import { Redirect } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { getAllProducts } from '../services/calls';
 import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -15,6 +16,8 @@ const fetchProducts = async (user) => {
 
 export default function Products() {
   const [user] = useLocalStorage('user', {});
+  const history = useHistory();
+  const cartTotal = useSelector((state) => state.cart.total);
 
   const {
     data: productList,
@@ -52,6 +55,12 @@ export default function Products() {
             price={ product.price }
           />
         ))}
+        <button
+          type="button"
+          onClick={ () => history.push('checkout') }
+        >
+          {`Ver carrinho: ${cartTotal}`}
+        </button>
       </main>
     </>
   );

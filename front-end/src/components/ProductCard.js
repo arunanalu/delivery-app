@@ -2,24 +2,26 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import './styles/productCard.scss';
-import { addToCart, removeFromCart } from '../app/slices/cartSlice';
+import { addToCart, removeFromCart, updateTotal } from '../app/slices/cartSlice';
 
 export default function ProductCard({ name, imagePath, price, id }) {
   const dispatch = useDispatch();
   const quantity = useSelector((state) => {
-    const { cart } = state;
-    const productInCart = cart.find((product) => product.id === id);
+    const { items } = state.cart;
+    const productInCart = items.find((product) => product.id === id);
     if (!productInCart) return 0;
-    const productIndex = cart.indexOf(productInCart);
-    return cart[productIndex].quantity;
+    const productIndex = items.indexOf(productInCart);
+    return items[productIndex].quantity;
   });
 
   const handleAddProduct = () => {
     dispatch(addToCart({ id, name, price }));
+    dispatch(updateTotal());
   };
 
   const handleRemoveProduct = () => {
     dispatch(removeFromCart({ id }));
+    dispatch(updateTotal());
   };
 
   return (
