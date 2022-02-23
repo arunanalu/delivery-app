@@ -1,6 +1,8 @@
 const Sequelize = require('sequelize');
 const { sale, salesProduct } = require('../database/models');
 const config = require('../database/config/config');
+const { createdWithSuccsess } = require('../utils/dictionaries/messagesDefault');
+const { registerSaleValidation } = require('../validations/salesValidations');
 
 const sequelize = new Sequelize(config.development);
 
@@ -9,6 +11,7 @@ const sequelize = new Sequelize(config.development);
 // };
 
 const registerSalesService = async (incomingSale, arrayProducts) => {
+  registerSaleValidation(incomingSale, arrayProducts);
   const t = await sequelize.transaction();
   try {
     const saleCreated = await sale.create({ ...incomingSale }, { transaction: t });
@@ -23,7 +26,7 @@ const registerSalesService = async (incomingSale, arrayProducts) => {
     await t.commit();
   
     return {
-      message: 'Sucessfully created',
+      message: createdWithSuccsess,
       saleId: saleCreated.dataValues.id,
     };
   } catch (error) {
