@@ -27,10 +27,12 @@ module.exports = {
         type: Sequelize.DATE,
         field: "sale_date",
         allowNull: false,
+        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       status: {
         type: Sequelize.STRING,
         allowNull: false,
+        defaultValue: 'pendente'
       },
       userId: {
         type: Sequelize.INTEGER,

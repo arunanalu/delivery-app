@@ -13,7 +13,7 @@ const loginService = async (requestUser) => {
   if (!foundUser || encryptedPassword !== foundUser.dataValues.password) {
     throw errorConstructor(notFound, incorrectData);
   }
-  const { dataValues: { password, email, ...dataWithoutPasswordAndEmail } } = foundUser;
+  const { dataValues: { password, email, id, ...dataWithoutPasswordAndEmail } } = foundUser;
   const token = generateToken(dataWithoutPasswordAndEmail);
   return { token };
 };
