@@ -5,7 +5,6 @@ const { conflict } = require('../utils/dictionaries/statusCode');
 const { userValidation } = require('../validations/registerUserValidations');
 const { generateToken } = require('../auth/authService');
 
-
 const registerUserService = async (bodyRequest) => {
   const { name, email, password } = bodyRequest;
   userValidation(name, email, password);
