@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import FormInput from '../components/FormInput';
-import { registerUser } from '../services/api';
+import { registerUser } from '../services/calls';
+import { validForm } from '../utils/validations/schemas';
 import { setUser } from '../app/slices/userSlice';
 
 export default function Register() {
@@ -17,7 +18,6 @@ export default function Register() {
   const handleButtonClick = async () => {
     try {
       const response = await registerUser({ email, password, name });
-      // checar o formato da resposta
       dispatch(setUser(...response.data));
       history.push('/products');
     } catch (error) {
@@ -26,13 +26,12 @@ export default function Register() {
     }
   };
   const isFormValid = () => {
-    const emailValid = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/.test(email);
-    const minimumLength = 6;
-    const userLength = 6;
-    const passwordValid = password.length > minimumLength;
-    const userValid = name.length > userLength;
-
-    return emailValid && passwordValid && userValid;
+    const { error } = validForm.validate({
+      email,
+      password,
+      name,
+    });
+    return !error;
   };
 
   return (
