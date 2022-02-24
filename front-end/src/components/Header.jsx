@@ -4,7 +4,8 @@ import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Header() {
   const history = useHistory();
-  const [user] = useLocalStorage('user', {});
+  const user = useLocalStorage('user', {});
+
   const handleLogout = () => {
     localStorage.removeItem('authentication');
     history.push('/'); // verificar
