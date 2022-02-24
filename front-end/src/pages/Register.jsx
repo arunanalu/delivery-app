@@ -11,6 +11,8 @@ export default function Register() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
+  
+  console.log(errorMessage);
 
   const handleButtonClick = async () => {
     try {
@@ -75,7 +77,7 @@ export default function Register() {
         </section>
       </form>
       {showErrorMessage && (
-        <span data-testid="common-register__element-invalid-register">
+        <span data-testid="common_register__element-invalid_register">
           {errorMessage}
         </span>
       )}
