@@ -5,7 +5,7 @@ import '../styles/nav-bar.css';
 
 export default function Header() {
   const history = useHistory();
-  const [user, setUser] = useLocalStorage('user', {});
+  const [user] = useLocalStorage('user', {});
   const handleLogout = () => {
     localStorage.removeItem('authentication');
     history.push('/'); // verificar
