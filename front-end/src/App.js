@@ -9,7 +9,6 @@ import Checkout from './pages/Checkout';
 
 function App() {
   return (
-
     <Switch>
       <QueryClientProvider client={ queryClient }>
         <Route exact path={ ['/', '/home'] } />
@@ -20,5 +19,4 @@ function App() {
     </Switch>
   );
 }
-
 export default App;

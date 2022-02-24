@@ -15,9 +15,15 @@ export const registerUser = async (user) => {
 
 export const getAllProducts = async (token) => {
   try {
-    const response = await api.get('/product', {}, { headers: {
-      authorization: token,
-    } });
+    const response = await api.get(
+      '/product',
+      {
+        headers: {
+          authorization: token,
+        },
+      },
+      {},
+    );
     return response;
   } catch (error) {
     throw error.response

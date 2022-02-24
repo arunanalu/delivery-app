@@ -54,10 +54,10 @@ export default function Checkout() {
           columns={ columns }
           items={ cart.items }
           onClick={ () => removeItem(product.id) }
-          testIdNumber={ `customer_checkout__element-order-table-item-number-${index}` }
+          /* testIdNumber={ `customer_checkout__element-order-table-item-number-${index}` }
           testIdName={ `customer_checkout__element-order-table-name-${index}` }
           testIdQuantity={ `customer_checkout__element-order-table-quantity-${index}` }
-          testIdUnitPrice={ `customer_checkout__element-order-table-unit-price-${index}` }
+          testIdUnitPrice={ `customer_checkout__element-order-table-unit-price-${index}` } */
         />
         <p
           data-testid="customer_checkout__element-order-total-price"

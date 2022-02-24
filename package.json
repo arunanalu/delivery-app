@@ -53,8 +53,5 @@
       "__TESTDESC__": true,
       "__TESTFILE__": true
     }
-  },
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.7.2"
   }
 }
