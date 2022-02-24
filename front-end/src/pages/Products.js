@@ -1,5 +1,4 @@
 import React from 'react';
-import './styles/products.scss';
 import { useQuery } from 'react-query';
 import { Redirect, useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
