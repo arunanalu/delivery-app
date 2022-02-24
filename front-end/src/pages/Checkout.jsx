@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { addToCart, removeFromCart } from '../app/slices/cartSlice';
+import { removeFromCart } from '../app/slices/cartSlice';
 import Button from '../components/Button';
 import Header from '../components/Header';
 import Input from '../components/Input';
