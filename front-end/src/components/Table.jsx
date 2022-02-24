@@ -69,6 +69,10 @@ Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
   onClick: PropTypes.func.isRequired,
+  testIdNumber: PropTypes.string.isRequired,
+  testIdName: PropTypes.string.isRequired,
+  testIdQuantity: PropTypes.string.isRequired,
+  testIdUnitPrice: PropTypes.string.isRequired,
 };
 
 export default Table;
