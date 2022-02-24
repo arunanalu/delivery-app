@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import Register from './pages/Register';
 import './App.css';
@@ -12,7 +12,10 @@ function App() {
   return (
     <Switch>
       <QueryClientProvider client={ queryClient }>
-        <Route exact path={ ['/', '/login'] } component={ Login } />
+        <Route exact path="/">
+          <Redirect to="/login" />
+        </Route>
+        <Route exact path='/login' component={ Login } />
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ Products } />
         <Route exact path="/checkout" component={ Checkout } />

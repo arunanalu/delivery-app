@@ -82,7 +82,7 @@ export default function Login() {
         </button>
         <Link to="/register">
           <button
-            datatest-id="common_login__button-register"
+            data-testid="common_login__button-register"
             type="button"
           >
             Ainda não tenho conta
@@ -90,7 +90,7 @@ export default function Login() {
         </Link>
       </div>
       {showErrorMessage && (
-        <span data-testid="common-register__element-invalid-register">
+        <span data-testid="common_login__element-invalid-email">
           {errorMessage}
         </span>
       )}
