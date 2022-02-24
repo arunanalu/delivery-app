@@ -3,7 +3,15 @@ import PropTypes from 'prop-types';
 import Button from './Button';
 
 function Table({
-  columns, items, onClick, testIdNumber, testIdName, testIdQuantity, testIdUnitPrice,
+  columns,
+  items,
+  onClick,
+  testIdNumber,
+  testIdName,
+  testIdQuantity,
+  testIdUnitPrice,
+  testIdSubTotal,
+  testIdRemove,
 }) {
   return (
     <table className="items">
@@ -19,33 +27,31 @@ function Table({
           : items.map((product, index) => (
             <tr key={ product.id }>
               <td
-                data-testid={ testIdNumber }
+                data-testid={ `${testIdNumber}${index}` }
               >
                 {index + 1}
 
               </td>
               <td
-                data-testid={ testIdName }
+                data-testid={ `${testIdName}${index}` }
               >
                 {product.name}
 
               </td>
               <td
-                data-testid={ testIdQuantity }
+                data-testid={ `${testIdQuantity}${index}` }
               >
                 {product.quantity}
 
               </td>
               <td
-                data-testid={ testIdUnitPrice }
+                data-testid={ `${testIdUnitPrice}${index}` }
               >
                 {product.price}
 
               </td>
               <td
-                data-testid={
-                  `customer_checkout__element-order-table-sub-total-${index}`
-                }
+                data-testid={ `${testIdSubTotal}${index}` }
               >
                 {product.quantity * product.price}
 
@@ -53,9 +59,7 @@ function Table({
               <Button
                 label="Remover"
                 onClick={ onClick }
-                testid={
-                  `customer_checkout__element-order-table-remove-${index}`
-                }
+                testid={ `${testIdRemove}${index}` }
               />
 
             </tr>
@@ -73,6 +77,8 @@ Table.propTypes = {
   testIdName: PropTypes.string.isRequired,
   testIdQuantity: PropTypes.string.isRequired,
   testIdUnitPrice: PropTypes.string.isRequired,
+  testIdSubTotal: PropTypes.string.isRequired,
+  testIdRemove: PropTypes.string.isRequired,
 };
 
 export default Table;
