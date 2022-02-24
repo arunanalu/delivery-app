@@ -6,6 +6,7 @@ import { getAllProducts } from '../services/calls';
 import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
+import Header from '../components/Header';
 
 // coloquei aqui por causa do linter
 const fetchProducts = async (user) => {
@@ -32,25 +33,14 @@ export default function Products() {
   return (
     <>
       {/* trocar pelo header componentizado */}
-      <header>
-        <nav>
-          <button
-            type="button"
-          >
-            Produtoss
-          </button>
-          <button type="button">Pedidos</button>
-        </nav>
-        <h1>{user.name}</h1>
-        <button type="button">Sair</button>
-      </header>
+      <Header />
       <main>
         {productList.map((product) => (
           <ProductCard
             key={ product.id }
             id={ product.id }
             name={ product.name }
-            imagePath={ product.image }
+            imagePath={ product.url_image }
             price={ product.price }
           />
         ))}

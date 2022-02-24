@@ -11,7 +11,7 @@ export default function Register() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
-  
+
   console.log(errorMessage);
 
   const handleButtonClick = async () => {
