@@ -8,10 +8,15 @@ export const validEmail = Joi.string()
 
 export const validPassword = Joi.string().min(minPasswordLength).required();
 
-export const validName = Joi.string().min(minUserLength).required();
+export const validName = Joi.string().min(minUserLength);
 
-export const validForm = Joi.object({
+export const validRegisterForm = Joi.object({
   email: validEmail,
   password: validPassword,
   name: validName,
+});
+
+export const validLoginForm = Joi.object({
+  email: validEmail,
+  password: validPassword,
 });
