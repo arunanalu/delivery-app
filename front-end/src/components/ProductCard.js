@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import './styles/productCard.scss';
 import { addToCart, removeFromCart, updateTotal } from '../app/slices/cartSlice';
 
 export default function ProductCard({ name, imagePath, price, id }) {

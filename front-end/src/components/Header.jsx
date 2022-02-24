@@ -1,11 +1,10 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { user } from '../app/slices/userSlice';
-import '../styles/nav-bar.css';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function Header() {
   const history = useHistory();
-
+  const [user] = useLocalStorage('user', {});
   const handleLogout = () => {
     localStorage.removeItem('authentication');
     history.push('/'); // verificar
