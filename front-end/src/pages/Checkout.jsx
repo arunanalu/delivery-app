@@ -15,7 +15,6 @@ export default function Checkout() {
   const dispatch = useDispatch();
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover Item'];
-  /* dispatch(addToCart({ id: 1, name: 'teste', quantity: 1, price: 2.99 })); */ // test. Pedir pra adicionar o preço unitário
   const cart = useSelector((state) => state.cart); // o useSelector renderiza sozinho quando algo muda
   const [address, setAddress] = useState('');
   const [number, setNumber] = useState('');
@@ -58,6 +57,8 @@ export default function Checkout() {
           testIdName="customer_checkout__element-order-table-name-"
           testIdQuantity="customer_checkout__element-order-table-quantity-"
           testIdUnitPrice="customer_checkout__element-order-table-unit-price-"
+          testIdSubTotal="customer_checkout__element-order-table-sub-total-"
+          testIdRemove="customer_checkout__element-order-table-remove-"
         />
         <p
           data-testid="customer_checkout__element-order-total-price"
