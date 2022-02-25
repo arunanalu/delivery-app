@@ -7,6 +7,7 @@ import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
 import Header from '../components/Header';
+import './styles/products.css';
 
 // coloquei aqui por causa do linter
 const fetchProducts = async (user) => {

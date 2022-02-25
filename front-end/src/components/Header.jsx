@@ -5,10 +5,12 @@ import '../styles/header.css';
 
 export default function Header() {
   const history = useHistory();
-  const user = useLocalStorage('user', {});
+  const [user] = useLocalStorage('user', {});
+
+  console.log(user.token);
 
   const handleLogout = () => {
-    localStorage.removeItem('authentication');
+    localStorage.removeItem('user');
     history.push('/'); // verificar
   };
 
