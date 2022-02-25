@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeFromCart } from '../app/slices/cartSlice';
+import { removeFromCart, updateTotal } from '../app/slices/cartSlice';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Select from '../components/Select';
@@ -19,28 +19,37 @@ export default function Checkout() {
   const [number, setNumber] = useState('');
   const [seller, setSeller] = useState('');
   const sellers = ['Fulana Pereira'];
-  const user = useLocalStorage('user', {});
+  const [user] = useLocalStorage('user', {});
   const history = useHistory();
 
   const removeItem = (id) => {
-    dispatch(removeFromCart({ id })); // na verdae tem que fazer uma função pra remover mesmo
+    dispatch(removeFromCart({ id }));
+    dispatch(updateTotal());
   };
 
   const handleFinishOrder = async () => {
-    const products = cart.items.map((item) => (
-      { productId: item.id, quantity: item.quantity }));
-    const req = {
-      sale: {
-        userId: user.id,
-        sellerId: 2,
-        totalPrice: cart.total,
-        deliveryAddress: address,
-        deliveryNumber: number,
-      },
-      products,
-    };
-    const response = await sale(req, user.token); // ver como o token ta sendo salvo
-    history.push(`/customer/orders/${response.saleId}`);
+    try {
+      const products = cart.items.map((item) => (
+        { productId: item.id, quantity: item.quantity }));
+
+      const idDoUsuario = user.id; // o erro tá em não conseguir pegar do localstorage
+      const req = {
+        sale: {
+          userId: idDoUsuario || 'não veio nada',
+          sellerId: 2,
+          totalPrice: cart.total,
+          deliveryAddress: address,
+          deliveryNumber: number,
+        },
+        products,
+      };
+
+      const response = await sale(req, user.token);
+
+      history.push(`/customer/orders/${response.data.saleId}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -50,7 +59,7 @@ export default function Checkout() {
         <Table
           columns={ columns }
           items={ cart.items }
-          onClick={ () => removeItem(product.id) }
+          handleClick={ removeItem }
           testIdNumber="customer_checkout__element-order-table-item-number-"
           testIdName="customer_checkout__element-order-table-name-"
           testIdQuantity="customer_checkout__element-order-table-quantity-"
@@ -61,7 +70,7 @@ export default function Checkout() {
         <p
           data-testid="customer_checkout__element-order-total-price"
         >
-          {`Total: ${cart.total}`}
+          {cart.total.toString().replace('.', ',')}
         </p>
       </div>
       <div className="delivery-checkout">
@@ -93,11 +102,14 @@ export default function Checkout() {
           />
         </div>
       </div>
-      <Button
+      <button
         onClick={ handleFinishOrder }
-        testid="customer_checkout__button-submit-order"
-        label="Finalizar Pedido"
-      />
+        data-testid="customer_checkout__button-submit-order"
+        type="button"
+      >
+        Finalizar Pedido
+
+      </button>
     </div>
   );
 }
