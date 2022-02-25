@@ -21,10 +21,14 @@ const userValidation = (name, email, password) => {
   if (error) throw errorConstructor(badRequest, error.message);
 };
 
-const adminRoleValidation = (userWithRole, role) => {
+const adminValidation = (role) => {
+  if (role !== 'administrator') throw errorConstructor(unauthorized, unauthorizedUser);
+};
+ 
+const registerUserWithRoleValidation = (userWithRole, role) => {
   const { error } = userWithRoleSchema.validate({ ...userWithRole });
   if (error) throw errorConstructor(badRequest, error.message);
-  if (role !== 'admin') throw errorConstructor(unauthorized, unauthorizedUser);
+  adminValidation(role);
 };
 
-module.exports = { userValidation, adminRoleValidation };
+module.exports = { userValidation, registerUserWithRoleValidation, adminValidation };

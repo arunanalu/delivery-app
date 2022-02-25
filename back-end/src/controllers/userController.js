@@ -1,5 +1,6 @@
 const { registerUserService, 
-  registerUserWithRoleService, getAllUsersService } = require('../services/userService');
+  registerUserWithRoleService, 
+  getAllUsersService, deleteUserService } = require('../services/userService');
 const { created, success } = require('../utils/dictionaries/statusCode');
 
 const registerUserController = async (req, res, next) => {
@@ -29,4 +30,19 @@ const getAllUsersController = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUserController, registerUserWithRoleController, getAllUsersController };
+const deleteUserController = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    await deleteUserService(id, req.user);
+    return res.status(200).json({});
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { 
+  registerUserController,
+  registerUserWithRoleController,
+  getAllUsersController, 
+  deleteUserController,
+};

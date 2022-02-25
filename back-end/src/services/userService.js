@@ -1,8 +1,11 @@
 const { cryptHashMd5, errorConstructor } = require('../utils/functions');
 const { user } = require('../database/models');
-const { userAlreadyRegistered } = require('../utils/dictionaries/messagesDefault');
-const { conflict } = require('../utils/dictionaries/statusCode');
-const { userValidation, adminRoleValidation } = require('../validations/registerUserValidations');
+const { userAlreadyRegistered, 
+  invalidId } = require('../utils/dictionaries/messagesDefault');
+const { conflict, badRequest } = require('../utils/dictionaries/statusCode');
+const { userValidation, 
+  registerUserWithRoleValidation, 
+  adminValidation } = require('../validations/registerUserValidations');
 const { generateToken } = require('../auth/authService');
 
 const registerUserService = async (bodyRequest) => {
@@ -15,7 +18,7 @@ const registerUserService = async (bodyRequest) => {
   });
   if (!created) throw errorConstructor(conflict, userAlreadyRegistered);
   const { dataValues: { id } } = userRegister;
-  const token = generateToken({ id, name });
+  const token = generateToken({ id, name, role: 'customer' });
   return {
     id: userRegister.id,
     name: userRegister.name,
@@ -25,7 +28,7 @@ const registerUserService = async (bodyRequest) => {
 };
 
 const registerUserWithRoleService = async (bodyRequest, loggedUser) => {
-  adminRoleValidation(bodyRequest, loggedUser.role);
+  registerUserWithRoleValidation(bodyRequest, loggedUser.role);
   const { name, email, password, role } = bodyRequest;
   userValidation(name, email, password);
   const passwordEncrypted = cryptHashMd5(password);
@@ -41,13 +44,26 @@ const registerUserWithRoleService = async (bodyRequest, loggedUser) => {
   };
 };
 
-  const getAllUsersService = async () => {
-    const users = await user.findAll({});
-    return users;
-  };
+const getAllUsersService = async () => {
+  const users = await user.findAll({});
+  return users;
+};
+
+const verifyUserId = async (id) => {
+  const shouldExist = await user.findAll({ where: { id } });
+  if (!shouldExist) throw errorConstructor(badRequest, invalidId);
+};
+
+const deleteUserService = async (id, loggedUser) => {
+  await verifyUserId(id);
+  console.log(loggedUser);
+  await adminValidation(loggedUser.role);
+  await user.destroy({ where: { id } });
+};
 
 module.exports = {
   registerUserService,
   registerUserWithRoleService,
   getAllUsersService,
+  deleteUserService,
 };
