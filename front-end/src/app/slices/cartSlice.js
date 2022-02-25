@@ -7,28 +7,28 @@ export const cart = createSlice({
     total: 0,
   },
   reducers: {
-    addToCart: (state, action) => {
+    addOneToCart: (state, action) => {
       const { items } = state;
       const { id, name, price } = action.payload;
       const productInCart = items.find((product) => product.id === id);
-      if (productInCart) {
-        const productIndex = items.indexOf(productInCart);
-        items[productIndex].quantity += 1;
-      } else {
+      if (!productInCart) {
         const newProduct = {
           name,
           price,
           id,
           quantity: 1,
         };
-
         items.push(newProduct);
+      } else {
+        const productIndex = items.indexOf(productInCart);
+        items[productIndex].quantity += 1;
       }
     },
-    removeFromCart: (state, action) => {
+    decreaseOneFromCart: (state, action) => {
       const { id } = action.payload;
       const { items } = state;
       const productInCart = items.find((product) => product.id === id);
+
       if (productInCart) {
         const productIndex = items.indexOf(productInCart);
         if (items[productIndex].quantity === 1) {
@@ -37,6 +37,36 @@ export const cart = createSlice({
           items[productIndex].quantity -= 1;
         }
       }
+    },
+    setItemQuantity: (state, action) => {
+      const { items } = state;
+      const { id, name, price, quantity } = action.payload;
+      const productInCart = items.find((product) => product.id === id);
+      if (!productInCart) {
+        const newProduct = {
+          name,
+          price,
+          id,
+          quantity,
+        };
+        items.push(newProduct);
+      } else {
+        const productIndex = items.indexOf(productInCart);
+        if (quantity === 0) {
+          items.splice(productIndex, 1);
+        } else {
+          items[productIndex].quantity = quantity;
+        }
+      }
+    },
+    removeFromCart: (state, action) => {
+      const { id } = action.payload;
+      const { items } = state;
+      const productInCart = items.find((product) => product.id === id);
+      if (!productInCart) return;
+
+      const productIndex = items.indexOf(productInCart);
+      items.splice(productIndex, 1);
     },
     updateTotal: (state) => {
       const { items } = state;
@@ -51,6 +81,12 @@ export const cart = createSlice({
   },
 });
 
-export const { addToCart, removeFromCart, updateTotal } = cart.actions;
+export const {
+  addOneToCart,
+  removeFromCart,
+  decreaseOneFromCart,
+  updateTotal,
+  setItemQuantity,
+} = cart.actions;
 
 export default cart.reducer;

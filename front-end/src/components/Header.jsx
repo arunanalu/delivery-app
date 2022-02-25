@@ -7,8 +7,6 @@ export default function Header() {
   const history = useHistory();
   const [user] = useLocalStorage('user', {});
 
-  console.log(user.token);
-
   const handleLogout = () => {
     localStorage.removeItem('user');
     history.push('/'); // verificar
