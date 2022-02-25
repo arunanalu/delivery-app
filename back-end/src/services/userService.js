@@ -34,13 +34,10 @@ const registerUserWithRoleService = async (bodyRequest, loggedUser) => {
     defaults: { name, email, password: passwordEncrypted, role },
   });
   if (!created) throw errorConstructor(conflict, userAlreadyRegistered);
-  const { dataValues: { id } } = userRegister;
-  const token = generateToken({ id, name });
   return {
     id: userRegister.id,
     name: userRegister.name,
     role,
-    token,
   };
 };
 
