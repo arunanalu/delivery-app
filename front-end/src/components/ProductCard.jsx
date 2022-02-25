@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart, updateTotal } from '../app/slices/cartSlice';
-import './styles/productCard.css'
+import './styles/productCard.css';
 
 export default function ProductCard({ name, imagePath, price, id }) {
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ export default function ProductCard({ name, imagePath, price, id }) {
       </button>
       <input
         type="text"
-        value={quantity}
+        value={ quantity }
         data-testid={ `customer_products__input-card-quantity-${id}` }
       />
       <button
