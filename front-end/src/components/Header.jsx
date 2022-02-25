@@ -7,8 +7,6 @@ export default function Header() {
   const history = useHistory();
   const [user] = useLocalStorage('user', {});
 
-  console.log(user.token);
-
   const handleLogout = () => {
     localStorage.removeItem('user');
     history.push('/'); // verificar
@@ -20,14 +18,14 @@ export default function Header() {
         <Link
           data-testid="customer_products__element-navbar-link-products"
           className="nav-bar-products"
-          to={ `/${user.role}/products` } // verificar
+          to={ `/${user.role}/products` }
         >
           PRODUTOS
         </Link>
         <Link
           data-testid="customer_products__element-navbar-link-orders"
           className="nav-bar-orders"
-          to={ `/${user.role}/orders` } // verificar
+          to={ `/${user.role}/orders` }
         >
           MEUS PEDIDOS
 

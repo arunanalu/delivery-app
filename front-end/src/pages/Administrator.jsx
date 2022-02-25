@@ -19,6 +19,7 @@ export default function Administrator() {
     });
     return !error;
   };
+
   return (
     <div style={ { display: 'flex' } }>
       <Input
