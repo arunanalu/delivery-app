@@ -1,7 +1,6 @@
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
-
-const API_SECRET = fs.readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' }).trim();
+const API_SECRET = fs.readFileSync('./jwt.evaluation.key', { encoding: "utf-8" }).trim();
 
 const JWT_CONFIG = {
   expiresIn: 3600,
