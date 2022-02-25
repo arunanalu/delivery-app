@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       totalPrice: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.DECIMAL(9, 2),
         field: "total_price",
         allowNull: false,
       },
@@ -32,7 +32,7 @@ module.exports = {
       status: {
         type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 'pendente'
+        defaultValue: 'Pendente'
       },
       userId: {
         type: Sequelize.INTEGER,

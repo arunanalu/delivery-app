@@ -6,7 +6,7 @@ const { errorConstructor } = require('../utils/functions');
 const incomingSaleSchema = Joi.object({
   userId: Joi.number().integer().required(),
   sellerId: Joi.number().integer().required(),
-  totalPrice: Joi.number().required(),
+  totalPrice: Joi.string().required(),
   deliveryAddress: Joi.string().max(100).required(),
   deliveryNumber: Joi.number().max(50).required(),
 });

@@ -7,7 +7,7 @@ const {
   invalidEntry,
 } = require('../utils/dictionaries/messagesDefault');
 const {
-  registerSaleValidation,
+  /* registerSaleValidation, */
   updateSaleValidation,
   getSalesByUserIdValdiation,
 } = require('../validations/salesValidations');
@@ -17,7 +17,7 @@ const { badRequest } = require('../utils/dictionaries/statusCode');
 const sequelize = new Sequelize(config.development);
 
 const registerSalesService = async (incomingSale, arrayProducts) => {
-  registerSaleValidation(incomingSale, arrayProducts);
+  /* registerSaleValidation(incomingSale, arrayProducts); */
   const t = await sequelize.transaction();
   try {
     const saleCreated = await sale.create({ ...incomingSale }, { transaction: t });
