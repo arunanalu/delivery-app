@@ -3,7 +3,7 @@ const cors = require('cors');
 const path = require('path');
 const errorMiddleware = require('../middlewares/errorMiddleware');
 const loginRoute = require('../routes/loginRoute');
-const registerRouter = require('../routes/registerRoute');
+const userRouter = require('../routes/userRoute');
 const productRouter = require('../routes/productRouter');
 const salesRoute = require('../routes/salesRoute');
 
@@ -15,7 +15,7 @@ app.use(cors());
 
 app.use('/images', express.static(path.join(__dirname, '..', 'uploads')));
 app.use('/login', loginRoute);
-app.use('/register', registerRouter);
+app.use(userRouter);
 app.use('/product', productRouter);
 app.use('/sale', salesRoute);
 

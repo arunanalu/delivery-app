@@ -13,7 +13,6 @@ module.exports = async (req, _res, next) => {
     if (!authorization) { throw errorConstructor(unauthorized, missingAuth); }
 
     const user = verifyToken(authorization);
-
     if (!user) throw errorConstructor(unauthorized, jwtMalformed);
     req.user = user;
     next();
