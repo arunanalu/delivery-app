@@ -7,6 +7,7 @@ import Products from './pages/Products';
 import queryClient from './react-query/queryClient';
 import Login from './pages/Login';
 import Checkout from './pages/Checkout';
+import Header from './components/Header';
 
 function App() {
   return (
@@ -17,8 +18,13 @@ function App() {
         </Route>
         <Route exact path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
-        <Route path="/customer/products" component={ Products } />
-        <Route exact path="/checkout" component={ Checkout } />
+        <Route path="/customer">
+          <Header />
+          <Switch>
+            <Route path="/customer/products" component={ Products } />
+            <Route path="/customer/checkout" component={ Checkout } />
+          </Switch>
+        </Route>
       </QueryClientProvider>
     </Switch>
   );

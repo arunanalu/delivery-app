@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { removeFromCart } from '../app/slices/cartSlice';
 import Button from '../components/Button';
-import Header from '../components/Header';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import '../styles/checkout.css';
@@ -46,7 +45,6 @@ export default function Checkout() {
 
   return (
     <div className="container-checkout">
-      <Header />
       <div className="finish-order">
         <h1>Finalizar Pedido</h1>
         <Table

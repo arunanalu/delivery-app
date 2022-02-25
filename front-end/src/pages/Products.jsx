@@ -6,7 +6,6 @@ import { getAllProducts } from '../services/calls';
 import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
-import Header from '../components/Header';
 import './styles/products.css';
 
 // coloquei aqui fora por causa do linter
@@ -32,33 +31,30 @@ export default function Products() {
     return <Redirect to="/" />;
   }
   return (
-    <>
-      <Header />
-      <main>
-        {productList.map((product) => (
-          <ProductCard
-            key={ product.id }
-            id={ product.id }
-            name={ product.name }
-            imagePath={ product.url_image }
-            price={ product.price }
-          />
-        ))}
-        <button
-          type="button"
-          onClick={ () => history.push('checkout') }
-          disabled={ cartTotal === 0 }
-          id="card-button"
-          data-testid="customer_products__button-cart"
+    <main>
+      {productList.map((product) => (
+        <ProductCard
+          key={ product.id }
+          id={ product.id }
+          name={ product.name }
+          imagePath={ product.url_image }
+          price={ product.price }
+        />
+      ))}
+      <button
+        type="button"
+        onClick={ () => history.push('checkout') }
+        disabled={ cartTotal === 0 }
+        id="card-button"
+        data-testid="customer_products__button-cart"
+      >
+        Ver carrinho:
+        <span
+          data-testid="customer_products__checkout-bottom-value"
         >
-          Ver carrinho:
-          <span
-            data-testid="customer_products__checkout-bottom-value"
-          >
-            { cartTotal.toFixed(2).toString().replace('.', ',') }
-          </span>
-        </button>
-      </main>
-    </>
+          { cartTotal.toFixed(2).toString().replace('.', ',') }
+        </span>
+      </button>
+    </main>
   );
 }
