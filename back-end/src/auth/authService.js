@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
-require('dotenv').config();
+const fs = require('fs');
 
-const API_SECRET = process.env.JWT_SECRET;
+const API_SECRET = fs.readFileSync('./jwt.evaluation.key', { encoding: 'utf-8' }).trim();
 
 const JWT_CONFIG = {
   expiresIn: 3600,

@@ -10,7 +10,7 @@ const registerUserService = async (bodyRequest) => {
   userValidation(name, email, password);
   const passwordEncrypted = cryptHashMd5(password);
   const [userRegister, created] = await user.findOrCreate({
-    where: { email, name },
+    where: { email },
     defaults: { name, email, password: passwordEncrypted, role: 'customer' },
   });
   if (!created) throw errorConstructor(conflict, userAlreadyRegistered);

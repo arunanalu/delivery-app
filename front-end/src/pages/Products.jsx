@@ -1,13 +1,14 @@
 import React from 'react';
 import { useQuery } from 'react-query';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getAllProducts } from '../services/calls';
 import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
+import './styles/products.css';
 
-// coloquei aqui por causa do linter
+// coloquei aqui fora por causa do linter
 const fetchProducts = async (user) => {
   const response = await getAllProducts(user.token);
   return response.data;
@@ -15,8 +16,8 @@ const fetchProducts = async (user) => {
 
 export default function Products() {
   const [user] = useLocalStorage('user', {});
-  const history = useHistory();
   const cartTotal = useSelector((state) => state.cart.total);
+  const history = useHistory();
 
   const {
     data: productList,
@@ -30,38 +31,30 @@ export default function Products() {
     return <Redirect to="/" />;
   }
   return (
-    <>
-      {/* trocar pelo header componentizado */}
-      <header>
-        <nav>
-          <button
-            type="button"
-          >
-            Produtoss
-          </button>
-          <button type="button">Pedidos</button>
-        </nav>
-        <h1>{user.name}</h1>
-        <button type="button">Sair</button>
-      </header>
-      <main>
-        {productList.map((product) => (
-          <ProductCard
-            key={ product.id }
-            id={ product.id }
-            name={ product.name }
-            imagePath={ product.image }
-            price={ product.price }
-          />
-        ))}
-        <button
-          type="button"
-          onClick={ () => history.push('checkout') }
-          id="card-button"
+    <main>
+      {productList.map((product) => (
+        <ProductCard
+          key={ product.id }
+          id={ product.id }
+          name={ product.name }
+          imagePath={ product.url_image }
+          price={ product.price }
+        />
+      ))}
+      <button
+        type="button"
+        onClick={ () => history.push('checkout') }
+        disabled={ cartTotal === 0 }
+        id="card-button"
+        data-testid="customer_products__button-cart"
+      >
+        Ver carrinho:
+        <span
+          data-testid="customer_products__checkout-bottom-value"
         >
-          {`Ver carrinho: ${cartTotal}`}
-        </button>
-      </main>
-    </>
+          { cartTotal.toFixed(2).toString().replace('.', ',') }
+        </span>
+      </button>
+    </main>
   );
 }

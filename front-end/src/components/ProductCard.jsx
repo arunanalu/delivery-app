@@ -1,25 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, removeFromCart, updateTotal } from '../app/slices/cartSlice';
+import { addOneToCart,
+  decreaseOneFromCart,
+  updateTotal,
+  setItemQuantity,
+} from '../app/slices/cartSlice';
+import './styles/productCard.css';
 
 export default function ProductCard({ name, imagePath, price, id }) {
   const dispatch = useDispatch();
-  const quantity = useSelector((state) => {
-    const { items } = state.cart;
-    const productInCart = items.find((product) => product.id === id);
-    if (!productInCart) return 0;
-    const productIndex = items.indexOf(productInCart);
-    return items[productIndex].quantity;
+  const cartQuantity = useSelector(({ cart }) => {
+    const product = cart.items.find((item) => item.id === id);
+    if (!product) return 0;
+    return product.quantity;
   });
 
   const handleAddProduct = () => {
-    dispatch(addToCart({ id, name, price }));
+    dispatch(addOneToCart({ id, name, price }));
+    dispatch(updateTotal());
+  };
+
+  const handleChange = (e) => {
+    dispatch(setItemQuantity({ id, name, price, quantity: Number(e.target.value) }));
     dispatch(updateTotal());
   };
 
   const handleRemoveProduct = () => {
-    dispatch(removeFromCart({ id }));
+    dispatch(decreaseOneFromCart({ id }));
     dispatch(updateTotal());
   };
 
@@ -31,44 +39,40 @@ export default function ProductCard({ name, imagePath, price, id }) {
         className="product-card__price"
         data-testid={ `customer_products__element-card-price-${id}` }
       >
-        {price}
+        {price.replace('.', ',')}
       </span>
       <img
         src={ imagePath }
         alt={ `A cold ${name}` }
         data-testid={ `customer_products__img-card-bg-image-${id}` }
       />
-      <section
-        className="product-card__bottom-section"
+      <h1
+        className="product-card__name"
+        data-testid={ `customer_products__element-card-title-${id}` }
       >
-        <h1
-          className="product-card__name"
-          data-testid={ `customer_products__element-card-title-${id}` }
-        >
-          {name}
-        </h1>
-        <div className="product-card__cart-controllers">
-          <button
-            type="button"
-            onClick={ handleRemoveProduct }
-            data-testid={ `customer_products__button-card-rm-item-${id}` }
-          >
-            -
-          </button>
-          <h2
-            data-testid={ `customer_products__input-card-quantity-${id}` }
-          >
-            {quantity}
-          </h2>
-          <button
-            type="button"
-            onClick={ handleAddProduct }
-            data-testid={ `customer_products__button-card-add-item-${id}` }
-          >
-            +
-          </button>
-        </div>
-      </section>
+        {name}
+      </h1>
+      <button
+        type="button"
+        onClick={ handleRemoveProduct }
+        data-testid={ `customer_products__button-card-rm-item-${id}` }
+      >
+        -
+      </button>
+      <input
+        type="number"
+        placeholder="0"
+        value={ cartQuantity }
+        onChange={ handleChange }
+        data-testid={ `customer_products__input-card-quantity-${id}` }
+      />
+      <button
+        type="button"
+        onClick={ handleAddProduct }
+        data-testid={ `customer_products__button-card-add-item-${id}` }
+      >
+        +
+      </button>
     </div>
   );
 }
