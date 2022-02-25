@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import { registerUser } from '../services/calls';
-import { validForm } from '../utils/validations/schemas';
+import { validRegisterForm } from '../utils/validations/schemas';
 
 export default function Register() {
   const [name, setUserInput] = useState('');
@@ -12,18 +12,20 @@ export default function Register() {
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
 
+  console.log(errorMessage);
+
   const handleButtonClick = async () => {
     try {
       const response = await registerUser({ email, password, name });
       await localStorage.setItem('user', JSON.stringify({ ...response.data }));
-      history.push(`${response.data.role}/products`);
+      history.push('customer/products');
     } catch (error) {
       setErrorMessage(error);
       setShowErrorMessage(true);
     }
   };
   const isFormValid = () => {
-    const { error } = validForm.validate({
+    const { error } = validRegisterForm.validate({
       email,
       password,
       name,
@@ -75,7 +77,7 @@ export default function Register() {
         </section>
       </form>
       {showErrorMessage && (
-        <span data-testid="common-register__element-invalid-register">
+        <span data-testid="common_register__element-invalid_register">
           {errorMessage}
         </span>
       )}

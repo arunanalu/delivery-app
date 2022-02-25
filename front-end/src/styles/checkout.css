@@ -1,0 +1,10 @@
+.container-checkout {
+  display: flex;
+  flex-direction: column;
+}
+
+.finish-order {
+  display: flex;
+  flex-direction: column;
+  margin-top: 105px;
+}
