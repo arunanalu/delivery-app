@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
+import { validRegisterForm } from '../utils/validations/schemas';
 
 export default function Administrator() {
   const roles = ['Vendedor', 'Comprador'];
@@ -9,6 +10,15 @@ export default function Administrator() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('');
+
+  const isFormValid = () => {
+    const { error } = validRegisterForm.validate({
+      email,
+      password,
+      name,
+    });
+    return !error;
+  };
   return (
     <div style={ { display: 'flex' } }>
       <Input
@@ -44,6 +54,7 @@ export default function Administrator() {
       <Button
         testid="admin_manage__button-register"
         label="Cadastrar"
+        disabled={ !isFormValid() }
       />
     </div>
   );
