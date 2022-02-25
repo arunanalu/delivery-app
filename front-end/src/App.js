@@ -7,6 +7,7 @@ import Products from './pages/Products';
 import queryClient from './react-query/queryClient';
 import Login from './pages/Login';
 import Checkout from './pages/Checkout';
+import Administrator from './pages/Administrator';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/register" component={ Register } />
         <Route path="/customer/products" component={ Products } />
         <Route exact path="/checkout" component={ Checkout } />
+        <Route exact path="/admin/manage" component={ Administrator } />
       </QueryClientProvider>
     </Switch>
   );
