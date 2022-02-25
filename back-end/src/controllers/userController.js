@@ -1,5 +1,6 @@
-const { registerUserService, registerUserWithRoleService } = require('../services/userService');
-const { created } = require('../utils/dictionaries/statusCode');
+const { registerUserService, 
+  registerUserWithRoleService, getAllUsersService } = require('../services/userService');
+const { created, success } = require('../utils/dictionaries/statusCode');
 
 const registerUserController = async (req, res, next) => {
   try {
@@ -19,4 +20,13 @@ const registerUserWithRoleController = async (req, res, next) => {
   }
 };
 
-module.exports = { registerUserController, registerUserWithRoleController };
+const getAllUsersController = async (req, res, next) => {
+  try {
+    const users = await getAllUsersService();
+    return res.status(success).json(users);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { registerUserController, registerUserWithRoleController, getAllUsersController };

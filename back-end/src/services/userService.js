@@ -44,7 +44,13 @@ const registerUserWithRoleService = async (bodyRequest, loggedUser) => {
   };
 };
 
+  const getAllUsersService = async () => {
+    const users = await user.findAll({});
+    return users;
+  };
+
 module.exports = {
   registerUserService,
   registerUserWithRoleService,
+  getAllUsersService,
 };
