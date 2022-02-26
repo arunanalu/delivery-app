@@ -53,7 +53,8 @@ function Table({
               <td
                 data-testid={ `${testIdSubTotal}${index}` }
               >
-                {(product.quantity * product.price).toFixed(2).toString().replace('.', ',')}
+                {(product.quantity * product.price).toFixed(2).toString()
+                  .replace('.', ',')}
 
               </td>
               <Button
