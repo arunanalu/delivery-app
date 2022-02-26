@@ -6,6 +6,7 @@ import Button from '../components/Button';
 import { validRegisterForm } from '../utils/validations/schemas';
 import { addUser, getAllUsersOnLoad } from '../app/slices/userSlice';
 import { getAllUsers, postUserAdm } from '../services/calls';
+import AdministratorCards from '../components/AdministratorCards';
 
 export default function Administrator() {
   const roles = ['seller', 'customer'];
@@ -47,7 +48,6 @@ export default function Administrator() {
         email,
         password,
       };
-      console.log(tokenInit);
       await postUserAdm(tokenInit, user);
       dispatch(addUser(user));
     } catch (error) {
@@ -57,7 +57,7 @@ export default function Administrator() {
   };
 
   return (
-    <div style={ { display: 'flex' } }>
+    <div style={ { display: 'flex', flexDirection: 'column' } }>
       <Input
         type="text"
         label="Namee"
@@ -99,6 +99,8 @@ export default function Administrator() {
           {errorMessage}
         </span>
       )}
+      <br />
+      <AdministratorCards />
     </div>
   );
 }

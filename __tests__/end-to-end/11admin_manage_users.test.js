@@ -112,7 +112,7 @@ describe(requirement(40), () => {
 describe(requirement(41), () => {
   const people = createUserForAdm(lengthRules);
 
-  test.only(`O avaliador tentará realizar o fluxo de cadastro com ${people.length} pessoas usuárias, validando-os no banco`, async () => {
+  test(`O avaliador tentará realizar o fluxo de cadastro com ${people.length} pessoas usuárias, validando-os no banco`, async () => {
     showPeopleList(people, global.__TESTDESC__);
     
     expect(
