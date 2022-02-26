@@ -60,7 +60,7 @@ export default function Administrator() {
     <div style={ { display: 'flex', flexDirection: 'column' } }>
       <Input
         type="text"
-        label="Namee"
+        label="Name"
         onChange={ ({ target }) => setName(target.value) }
         value={ name }
         testid="admin_manage__input-name"
