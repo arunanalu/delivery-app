@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import Button from '../components/Button';
 import { validRegisterForm } from '../utils/validations/schemas';
+import { addUser, getAllUsersOnLoad } from '../app/slices/userSlice';
+import { getAllUsers, postUserAdm } from '../services/calls';
 
 export default function Administrator() {
-  const roles = ['Vendedor', 'Comprador'];
+  const roles = ['seller', 'customer'];
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('');
+  const [role, setRole] = useState('seller');
+  const [tokenInit, setTokenInit] = useState('');
+  const dispatch = useDispatch();
+
+  const fetchAndSetToken = useCallback(async () => {
+    const user = localStorage.getItem('user');
+    const { token } = JSON.parse(user);
+    setTokenInit(token);
+    const { data } = await getAllUsers(tokenInit);
+    dispatch(getAllUsersOnLoad(data));
+  }, [dispatch, tokenInit]);
+
+  useEffect(() => {
+    fetchAndSetToken();
+  }, [fetchAndSetToken]);
 
   const isFormValid = () => {
     const { error } = validRegisterForm.validate({
@@ -18,6 +35,19 @@ export default function Administrator() {
       name,
     });
     return !error;
+  };
+
+  const onClicAddUser = async () => {
+    const user = {
+      role,
+      name,
+      email,
+      password,
+    };
+    console.log(tokenInit);
+    const teste = await postUserAdm(tokenInit, user);
+    console.log('🚀 ~ file: Administrator.jsx ~ line 48 ~ onClicAddUser ~ teste', teste);
+    dispatch(addUser(user));
   };
 
   return (
@@ -56,6 +86,7 @@ export default function Administrator() {
         testid="admin_manage__button-register"
         label="Cadastrar"
         disabled={ !isFormValid() }
+        onClick={ onClicAddUser }
       />
     </div>
   );
