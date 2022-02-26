@@ -14,6 +14,8 @@ export default function Administrator() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [tokenInit, setTokenInit] = useState('');
+  const [showErrorMessage, setShowErrorMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const dispatch = useDispatch();
 
   const fetchAndSetToken = useCallback(async () => {
@@ -38,16 +40,20 @@ export default function Administrator() {
   };
 
   const onClicAddUser = async () => {
-    const user = {
-      role,
-      name,
-      email,
-      password,
-    };
-    console.log(tokenInit);
-    const teste = await postUserAdm(tokenInit, user);
-    console.log('🚀 ~ file: Administrator.jsx ~ line 48 ~ onClicAddUser ~ teste', teste);
-    dispatch(addUser(user));
+    try {
+      const user = {
+        role,
+        name,
+        email,
+        password,
+      };
+      console.log(tokenInit);
+      await postUserAdm(tokenInit, user);
+      dispatch(addUser(user));
+    } catch (error) {
+      setErrorMessage(error);
+      setShowErrorMessage(true);
+    }
   };
 
   return (
@@ -88,6 +94,11 @@ export default function Administrator() {
         disabled={ !isFormValid() }
         onClick={ onClicAddUser }
       />
+      {showErrorMessage && (
+        <span data-testid="admin_manage__element-invalid-register">
+          {errorMessage}
+        </span>
+      )}
     </div>
   );
 }
