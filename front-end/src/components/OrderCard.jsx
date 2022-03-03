@@ -17,7 +17,9 @@ export default function OrderCard({ id, status, saleDate, totalPrice }) {
         {status}
       </h3>
       <h3 data-testid={ `customer_orders__element-order-date-${id}` }>
-        {`${saleDate.toLocaleDateString('pt-br', { year: 'numeric', month: '2-digit', day: '2-digit' })}`}
+        {`${saleDate.toLocaleDateString('pt-br',
+          { year: 'numeric', month: '2-digit', day: '2-digit' })
+        }`}
       </h3>
       <p data-testid={ `customer_orders__element-card-price-${id}` }>
         {totalPrice.replace('.', ',')}
