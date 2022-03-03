@@ -54,3 +54,33 @@ export const sale = async (saleObj, token) => {
       : connectionFailed;
   }
 };
+
+export const getAllUsers = async (token) => {
+  try {
+    const response = await api.get('/user', {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response
+      ? error.response.data.message
+      : connectionFailed;
+  }
+};
+
+export const postUserAdm = async (token, user) => {
+  try {
+    const response = await api.post('/register/admin', { ...user }, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response
+      ? error.response.data.message
+      : connectionFailed;
+  }
+};

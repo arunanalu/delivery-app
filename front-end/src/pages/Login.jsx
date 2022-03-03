@@ -29,7 +29,7 @@ export default function Login() {
         history.push(`${response.data.role}/products`);
         break;
       case 'administrator':
-        history.push(`${response.data.role}/manage`);
+        history.push('admin/manage');
         break;
       default:
         break;

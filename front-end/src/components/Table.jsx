@@ -5,7 +5,7 @@ import Button from './Button';
 function Table({
   columns,
   items,
-  onClick,
+  handleClick,
   testIdNumber,
   testIdName,
   testIdQuantity,
@@ -47,18 +47,19 @@ function Table({
               <td
                 data-testid={ `${testIdUnitPrice}${index}` }
               >
-                {product.price}
+                {product.price.toString().replace('.', ',')}
 
               </td>
               <td
                 data-testid={ `${testIdSubTotal}${index}` }
               >
-                {product.quantity * product.price}
+                {(product.quantity * product.price).toFixed(2).toString()
+                  .replace('.', ',')}
 
               </td>
               <Button
                 label="Remover"
-                onClick={ onClick }
+                onClick={ () => handleClick(product.id) }
                 testid={ `${testIdRemove}${index}` }
               />
 
@@ -72,7 +73,7 @@ function Table({
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  onClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
   testIdNumber: PropTypes.string.isRequired,
   testIdName: PropTypes.string.isRequired,
   testIdQuantity: PropTypes.string.isRequired,

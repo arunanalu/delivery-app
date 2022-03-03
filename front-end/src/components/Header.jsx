@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
-import '../styles/header.css';
+/* import '../styles/header.css'; */
 
 export default function Header() {
   const history = useHistory();
@@ -18,14 +18,14 @@ export default function Header() {
         <Link
           data-testid="customer_products__element-navbar-link-products"
           className="nav-bar-products"
-          to={ `/${user.role}/products` } // verificar
+          to={ `/${user.role}/products` }
         >
           PRODUTOS
         </Link>
         <Link
           data-testid="customer_products__element-navbar-link-orders"
           className="nav-bar-orders"
-          to={ `/${user.role}/orders` } // verificar
+          to={ `/${user.role}/orders` }
         >
           MEUS PEDIDOS
 
