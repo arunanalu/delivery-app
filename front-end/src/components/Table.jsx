@@ -42,7 +42,7 @@ function Table({
               <td
                 data-testid={ `${testIdQuantity}${index}` }
               >
-                {product.quantity}
+                {product.quantity ? product.quantity : product.salesProduct.quantity}
 
               </td>
               <td
@@ -54,7 +54,7 @@ function Table({
               <td
                 data-testid={ `${testIdSubTotal}${index}` }
               >
-                {(product.quantity * product.price).toFixed(2).toString()
+                {(product.quantity ? product.quantity * product.price : product.salesProduct.quantity * product.price).toFixed(2).toString()
                   .replace('.', ',')}
 
               </td>
@@ -81,12 +81,13 @@ Table.propTypes = {
   testIdUnitPrice: PropTypes.string.isRequired,
   testIdSubTotal: PropTypes.string.isRequired,
   testIdRemove: PropTypes.string,
-  thereIsButton: PropTypes.bool.isRequired,
+  thereIsButton: PropTypes.bool,
 };
 
 Table.defaultProps = {
   testIdRemove: undefined,
   handleClick: undefined,
+  thereIsButton: undefined,
 };
 
 export default Table;
