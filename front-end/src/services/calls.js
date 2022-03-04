@@ -21,7 +21,6 @@ export const getAllProducts = async (token) => {
           authorization: token,
         },
       },
-      {},
     );
     return response;
   } catch (error) {
@@ -58,6 +57,21 @@ export const sale = async (saleObj, token) => {
 export const getAllUsers = async (token) => {
   try {
     const response = await api.get('/user', {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response
+      ? error.response.data.message
+      : connectionFailed;
+  }
+};
+
+export const getUserOrders = async (token, userId) => {
+  try {
+    const response = await api.get(`/sale/${userId}`, {
       headers: {
         authorization: token,
       },

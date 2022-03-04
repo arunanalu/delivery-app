@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { login } from '../services/calls';
 import { validLoginForm } from '../utils/validations/schemas';
 // import "./style/Login.scss";
@@ -10,6 +11,7 @@ export default function Login() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
+  const [user] = useLocalStorage('user', false);
 
   const isFormInvalid = () => {
     const { error } = validLoginForm.validate({ email, password });
@@ -39,6 +41,8 @@ export default function Login() {
       setShowErrorMessage(true);
     }
   };
+
+  if (user) return <Redirect to="customer/products" />;
 
   return (
     <main>

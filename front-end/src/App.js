@@ -4,6 +4,7 @@ import { QueryClientProvider } from 'react-query';
 import Register from './pages/Register';
 import './App.css';
 import Products from './pages/Products';
+import Orders from './pages/Orders';
 import queryClient from './react-query/queryClient';
 import Login from './pages/Login';
 import Checkout from './pages/Checkout';
@@ -19,14 +20,13 @@ function App() {
         </Route>
         <Route exact path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
-        <Route path="/customer/products" component={ Products } />
-        <Route exact path="/checkout" component={ Checkout } />
         <Route exact path="/admin/manage" component={ Administrator } />
         <Route path="/customer">
           <Header />
           <Switch>
-            <Route path="/customer/products" component={ Products } />
-            <Route path="/customer/checkout" component={ Checkout } />
+            <Route exact path="/customer/orders" component={ Orders } />
+            <Route exact path="/customer/products" component={ Products } />
+            <Route exact path="/customer/checkout" component={ Checkout } />
           </Switch>
         </Route>
       </QueryClientProvider>
