@@ -11,6 +11,7 @@ const fetchOrderDetails = async (id, token) => {
 };
 
 export default function OrderDetails() {
+  const DATA_ID_DETAILS = 'customer_order_details';
   const { id } = useParams();
   const [user] = useLocalStorage('user', {});
   console.log(user);
@@ -35,25 +36,27 @@ export default function OrderDetails() {
       <h1>Detalhe do Pedido</h1>
       <div>
         <p
-          data-testid="customer_order_details__element-order-details-label-order-id"
+          data-testid={ `${DATA_ID_DETAILS}__element-order-details-label-order-id` }
         >
           {`PEDIDO ${data.id}`}
 
         </p>
         <p
-          data-testid="customer_order_details__element-order-details-label-seller-name"
+          data-testid={ `${DATA_ID_DETAILS}__element-order-details-label-seller-name` }
         >
           P. Vend: Fulana Pereira
 
         </p>
         <p
-          data-testid="customer_order_details__element-order-details-label-order-date"
+          data-testid={ `${DATA_ID_DETAILS}__element-order-details-label-order-date` }
         >
           {data.saleDate}
 
         </p>
         <p
-          data-testid="customer_order_details__element-order-details-label-delivery-status"
+          data-testid={
+            `${DATA_ID_DETAILS}__element-order-details-label-delivery-status`
+          }
         >
           {data.status}
 
