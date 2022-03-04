@@ -14,6 +14,7 @@ const fetchOrderDetails = async (id, token) => {
 export default function OrderDetails() {
   const { id } = useParams();
   const [user] = useLocalStorage('user', {});
+  console.log(user)
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
   const { data, isLoading, isError } = useQuery(
@@ -22,7 +23,7 @@ export default function OrderDetails() {
 
   const handleStatus = async () => {
     const status = {
-      status: 'entregue',
+      status: 'Entregue',
     };
 
     await updateStatus(id, status, user.token);
@@ -53,17 +54,17 @@ export default function OrderDetails() {
 
         </p>
         <p
-          data-testid="
-            customer_order_details__element-order-details-label-delivery-status"
+          data-testid="customer_order_details__element-order-details-label-delivery-status"
         >
           {data.status}
 
         </p>
-        <Button
-          testid="customer_order_details__button-delivery-check"
-          label="MARCAR COMO ENTREGUE"
+        <button
+          type="button"
+          data-testid="customer_order_details__button-delivery-check"
           onClick={ handleStatus }
-        />
+          disabled={data.status === 'Entregue' || data.status === 'Pendente' || data.status === 'Preparando' ? true: false}
+        >MARCAR COMO ENTREGUE</button>
       </div>
       <Table
         columns={ columns }
@@ -78,7 +79,7 @@ export default function OrderDetails() {
       <p
         data-testid="customer_order_details__element-order-total-price"
       >
-        {`Total: ${data.totalPrice}`}
+        {`Total: ${data.totalPrice.toString().replace('.', ',')}`}
       </p>
     </div>
   );
