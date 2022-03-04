@@ -68,8 +68,9 @@ const getSaleDetailsService = async (id) => {
   await verifySaleId(id);
   const salesAndProducts = await sale.findOne({
     where: { id },
-    include: [{ model: product, as: 'products', through: { attributes: [] } }],
+    include: { model: product, as: 'products', through: { attributes: ['quantity'] }},
   });
+
   return salesAndProducts.dataValues;
 };
 
