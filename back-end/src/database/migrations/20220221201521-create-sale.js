@@ -24,10 +24,9 @@ module.exports = {
         allowNull: false,
       },
       saleDate: {
-        type: Sequelize.DATE,
+        type: Sequelize.STRING,
         field: "sale_date",
         allowNull: false,
-        defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
       },
       status: {
         type: Sequelize.STRING,
