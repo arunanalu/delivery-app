@@ -12,6 +12,7 @@ function Table({
   testIdUnitPrice,
   testIdSubTotal,
   testIdRemove,
+  thereIsButton,
 }) {
   return (
     <table className="items">
@@ -57,11 +58,11 @@ function Table({
                   .replace('.', ',')}
 
               </td>
-              <Button
+              {thereIsButton ? <Button
                 label="Remover"
                 onClick={ () => handleClick(product.id) }
                 testid={ `${testIdRemove}${index}` }
-              />
+              /> : false}
 
             </tr>
           ))}
@@ -73,13 +74,19 @@ function Table({
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
   testIdNumber: PropTypes.string.isRequired,
   testIdName: PropTypes.string.isRequired,
   testIdQuantity: PropTypes.string.isRequired,
   testIdUnitPrice: PropTypes.string.isRequired,
   testIdSubTotal: PropTypes.string.isRequired,
-  testIdRemove: PropTypes.string.isRequired,
+  testIdRemove: PropTypes.string,
+  thereIsButton: PropTypes.bool.isRequired,
+};
+
+Table.defaultProps = {
+  testIdRemove: undefined,
+  handleClick: undefined,
 };
 
 export default Table;
