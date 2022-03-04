@@ -22,7 +22,6 @@ export default function Login() {
     try {
       const response = await login({ email, password });
       await localStorage.setItem('user', JSON.stringify({ ...response.data }));
-      console.log(response);
       switch (response.data.role) {
       case 'seller':
         history.push(`${response.data.role}/orders`);
