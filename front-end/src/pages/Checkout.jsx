@@ -33,9 +33,11 @@ export default function Checkout() {
 
       const idDoUsuario = user.id;
       const date = new Date();
-      const day = date.getDate() <= 9 ? `0${date.getDate()}` : date.getDate();
-      const month = date.getMonth() <= 9 ? `0${date.getMonth() + 1}` : (date.getMonth() + 1);
-      const year = date.getFullYear()
+      const NUMBER_DATE = 9;
+      const day = date.getDate() <= NUMBER_DATE ? `0${date.getDate()}` : date.getDate();
+      const month = date.getMonth() <= NUMBER_DATE
+        ? `0${date.getMonth() + 1}` : (date.getMonth() + 1);
+      const year = date.getFullYear();
       const req = {
         sale: {
           userId: idDoUsuario || 'não veio nada',
@@ -70,7 +72,7 @@ export default function Checkout() {
           testIdUnitPrice="customer_checkout__element-order-table-unit-price-"
           testIdSubTotal="customer_checkout__element-order-table-sub-total-"
           testIdRemove="customer_checkout__element-order-table-remove-"
-          thereIsButton={ true }
+          thereIsButton
         />
         <p
           data-testid="customer_checkout__element-order-total-price"

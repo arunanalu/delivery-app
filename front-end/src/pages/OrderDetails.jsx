@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { getSaleById, updateStatus } from '../services/calls';
 import useLocalStorage from '../hooks/useLocalStorage';
-import Button from '../components/Button';
 import Table from '../components/Table';
 
 const fetchOrderDetails = async (id, token) => {
@@ -14,7 +13,7 @@ const fetchOrderDetails = async (id, token) => {
 export default function OrderDetails() {
   const { id } = useParams();
   const [user] = useLocalStorage('user', {});
-  console.log(user)
+  console.log(user);
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
   const { data, isLoading, isError } = useQuery(
@@ -63,8 +62,15 @@ export default function OrderDetails() {
           type="button"
           data-testid="customer_order_details__button-delivery-check"
           onClick={ handleStatus }
-          disabled={data.status === 'Entregue' || data.status === 'Pendente' || data.status === 'Preparando' ? true: false}
-        >MARCAR COMO ENTREGUE</button>
+          disabled={
+            !!(data.status === 'Entregue'
+            || data.status === 'Pendente'
+            || data.status === 'Preparando')
+          }
+        >
+          MARCAR COMO ENTREGUE
+
+        </button>
       </div>
       <Table
         columns={ columns }
