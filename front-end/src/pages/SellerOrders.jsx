@@ -6,7 +6,8 @@ export default function SellerOrders() {
   useEffect(() => {
     const user = localStorage.getItem('user');
     const userToJs = JSON.parse(user);
-    getUserOrders(userToJs.token, 2).then(({ data }) => setOrders(data));
+    const userId = 3;
+    getUserOrders(userToJs.token, userId).then(({ data }) => setOrders(data));
   }, []);
   return (
     <div>

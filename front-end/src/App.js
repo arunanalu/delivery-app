@@ -24,7 +24,7 @@ function App() {
         <Route exact path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
         <Route exact path="/admin/manage" component={ Administrator } />
-        <Route path="/seller/orders" component={ SellerOrders } />
+        <Route exact path="/seller/orders" component={ SellerOrders } />
         <Route
           exact
           path="/seller/orders/:id"
