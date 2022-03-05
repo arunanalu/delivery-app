@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import { getUserOrders } from '../services/calls';
 
 export default function SellerOrders() {
   const [orders, setOrders] = useState(undefined);
-  const history = useHistory();
   useEffect(() => {
     const user = localStorage.getItem('user');
     const userToJs = JSON.parse(user);
@@ -21,7 +19,7 @@ export default function SellerOrders() {
             status,
             totalPrice,
           }) => (
-            <div key={ id }>
+            <a href={ `/seller/orders/${id}` } key={ id }>
               <p data-testid={ `seller_orders__element-order-id-${id}` }>{id}</p>
               <p
                 data-testid={ `seller_orders__element-delivery-
@@ -47,7 +45,7 @@ export default function SellerOrders() {
               >
                 {totalPrice}
               </p>
-            </div>
+            </a>
           ),
         )}
     </div>
