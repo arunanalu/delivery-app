@@ -20,12 +20,13 @@ export default function OrderDetails() {
     'orderDetails', () => fetchOrderDetails(id, user.token),
   );
 
-  const sale_date = new Date(data?.saleDate);
+  const newSaleDate = data && new Date(data.saleDate);
   const NUMBER_DATE = 9;
-  const day = sale_date?.getDate() <= NUMBER_DATE ? `0${sale_date?.getDate()}` : sale_date?.getDate();
-  const month = sale_date?.getMonth() <= NUMBER_DATE
-        ? `0${sale_date?.getMonth() + 1}` : (sale_date?.getMonth() + 1);
-  const year = sale_date.getFullYear();
+  const day = data && (newSaleDate.getDate() <= NUMBER_DATE
+    ? `0${newSaleDate.getDate()}` : newSaleDate.getDate());
+  const month = data && (newSaleDate.getMonth() <= NUMBER_DATE
+    ? `0${newSaleDate.getMonth() + 1}` : (newSaleDate.getMonth() + 1));
+  const year = data && newSaleDate.getFullYear();
 
   const handleStatus = async () => {
     const status = {
