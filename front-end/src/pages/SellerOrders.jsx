@@ -1,0 +1,55 @@
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { getUserOrders } from '../services/calls';
+
+export default function SellerOrders() {
+  const [orders, setOrders] = useState(undefined);
+  const history = useHistory();
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    const userToJs = JSON.parse(user);
+    getUserOrders(userToJs.token, 2).then(({ data }) => setOrders(data));
+  }, []);
+  return (
+    <div>
+      {orders
+        && orders.map(
+          ({
+            deliveryAddress,
+            id,
+            saleDate,
+            status,
+            totalPrice,
+          }) => (
+            <div key={ id }>
+              <p data-testid={ `seller_orders__element-order-id-${id}` }>{id}</p>
+              <p
+                data-testid={ `seller_orders__element-delivery-
+              status-${id}` }
+              >
+                {status}
+              </p>
+              <p
+                data-testid={ `seller_orders__element-card
+              -address-${id}` }
+              >
+                {deliveryAddress}
+              </p>
+              <p
+                data-testid={ `seller_orders__element-order
+              -date-${id}` }
+              >
+                {saleDate}
+              </p>
+              <p
+                data-testid={ `seller_orders__element-card
+              -price-${id}` }
+              >
+                {totalPrice}
+              </p>
+            </div>
+          ),
+        )}
+    </div>
+  );
+}
