@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { removeFromCart, updateTotal } from '../app/slices/cartSlice';
-// import Button from '../components/Button';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import '../styles/checkout.css';
@@ -32,7 +31,7 @@ export default function Checkout() {
       const products = cart.items.map((item) => (
         { productId: item.id, quantity: item.quantity }));
 
-      const idDoUsuario = user.id; // o erro tá em não conseguir pegar do localstorage
+      const idDoUsuario = user.id;
       const req = {
         sale: {
           userId: idDoUsuario || 'não veio nada',
@@ -66,6 +65,7 @@ export default function Checkout() {
           testIdUnitPrice="customer_checkout__element-order-table-unit-price-"
           testIdSubTotal="customer_checkout__element-order-table-sub-total-"
           testIdRemove="customer_checkout__element-order-table-remove-"
+          thereIsButton
         />
         <p
           data-testid="customer_checkout__element-order-total-price"

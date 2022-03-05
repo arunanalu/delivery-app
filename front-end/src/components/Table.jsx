@@ -12,6 +12,7 @@ function Table({
   testIdUnitPrice,
   testIdSubTotal,
   testIdRemove,
+  thereIsButton,
 }) {
   return (
     <table className="items">
@@ -41,7 +42,7 @@ function Table({
               <td
                 data-testid={ `${testIdQuantity}${index}` }
               >
-                {product.quantity}
+                {product.quantity ? product.quantity : product.salesProduct.quantity}
 
               </td>
               <td
@@ -53,15 +54,17 @@ function Table({
               <td
                 data-testid={ `${testIdSubTotal}${index}` }
               >
-                {(product.quantity * product.price).toFixed(2).toString()
+                {(product.quantity
+                  ? product.quantity * product.price
+                  : product.salesProduct.quantity * product.price).toFixed(2).toString()
                   .replace('.', ',')}
 
               </td>
-              <Button
+              {thereIsButton ? <Button
                 label="Remover"
                 onClick={ () => handleClick(product.id) }
                 testid={ `${testIdRemove}${index}` }
-              />
+              /> : false}
 
             </tr>
           ))}
@@ -73,13 +76,20 @@ function Table({
 Table.propTypes = {
   columns: PropTypes.arrayOf(PropTypes.string).isRequired,
   items: PropTypes.arrayOf(PropTypes.object).isRequired,
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
   testIdNumber: PropTypes.string.isRequired,
   testIdName: PropTypes.string.isRequired,
   testIdQuantity: PropTypes.string.isRequired,
   testIdUnitPrice: PropTypes.string.isRequired,
   testIdSubTotal: PropTypes.string.isRequired,
-  testIdRemove: PropTypes.string.isRequired,
+  testIdRemove: PropTypes.string,
+  thereIsButton: PropTypes.bool,
+};
+
+Table.defaultProps = {
+  testIdRemove: undefined,
+  handleClick: undefined,
+  thereIsButton: undefined,
 };
 
 export default Table;

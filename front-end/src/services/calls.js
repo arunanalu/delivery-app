@@ -98,3 +98,33 @@ export const postUserAdm = async (token, user) => {
       : connectionFailed;
   }
 };
+
+export const getSaleById = async (id, token) => {
+  try {
+    const response = await api.get(`/sale/details/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response
+      ? error.response.data.message
+      : connectionFailed;
+  }
+};
+
+export const updateStatus = async (id, stupdatedStatusaus, token) => {
+  try {
+    const response = await api.put(`/sale/${id}`, stupdatedStatusaus, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response
+      ? error.response.data.message
+      : connectionFailed;
+  }
+};
