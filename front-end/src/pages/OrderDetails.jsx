@@ -14,12 +14,18 @@ export default function OrderDetails() {
   const DATA_ID_DETAILS = 'customer_order_details';
   const { id } = useParams();
   const [user] = useLocalStorage('user', {});
-  console.log(user);
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
   const { data, isLoading, isError } = useQuery(
     'orderDetails', () => fetchOrderDetails(id, user.token),
   );
+
+  const sale_date = new Date(data?.saleDate);
+  const NUMBER_DATE = 9;
+  const day = sale_date?.getDate() <= NUMBER_DATE ? `0${sale_date?.getDate()}` : sale_date?.getDate();
+  const month = sale_date?.getMonth() <= NUMBER_DATE
+        ? `0${sale_date?.getMonth() + 1}` : (sale_date?.getMonth() + 1);
+  const year = sale_date.getFullYear();
 
   const handleStatus = async () => {
     const status = {
@@ -50,7 +56,7 @@ export default function OrderDetails() {
         <p
           data-testid={ `${DATA_ID_DETAILS}__element-order-details-label-order-date` }
         >
-          {data.saleDate}
+          {`${day}/${month}/${year}`}
 
         </p>
         <p

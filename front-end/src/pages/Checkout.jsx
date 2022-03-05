@@ -32,12 +32,6 @@ export default function Checkout() {
         { productId: item.id, quantity: item.quantity }));
 
       const idDoUsuario = user.id;
-      const date = new Date();
-      const NUMBER_DATE = 9;
-      const day = date.getDate() <= NUMBER_DATE ? `0${date.getDate()}` : date.getDate();
-      const month = date.getMonth() <= NUMBER_DATE
-        ? `0${date.getMonth() + 1}` : (date.getMonth() + 1);
-      const year = date.getFullYear();
       const req = {
         sale: {
           userId: idDoUsuario || 'não veio nada',
@@ -45,7 +39,6 @@ export default function Checkout() {
           totalPrice: cart.total,
           deliveryAddress: address,
           deliveryNumber: number,
-          saleDate: `${day}/${month}/${year}`,
         },
         products,
       };
