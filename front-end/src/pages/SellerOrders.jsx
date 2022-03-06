@@ -15,7 +15,7 @@ export default function SellerOrders() {
   const [user] = useLocalStorage('user', {});
   const { data, isLoading, isError } = useQuery('orders', () => fetchOrders(user));
   if (isLoading) return <div>Carregando</div>;
-  if (isError) return <div>Deu ruim</div>;
+  if (isError) return <div>Deu ruimm</div>;
   return (
     <div>
       <Header />
