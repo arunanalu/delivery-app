@@ -2,6 +2,7 @@ const { registerSalesService,
   updateSaleStatusService,
   getSalesByUserIdService,
   getSaleDetailsService,
+  getSaleByIdSellerService,
 } = require('../services/saleService');
 
 const { successUpdate } = require('../utils/dictionaries/messagesDefault');
@@ -49,9 +50,20 @@ const getSalesByUserIdController = async (req, res, next) => {
   }
 };
 
+const getSalesBySellerIdController = async (req, res, next) => {
+  try {
+    const { sellerId } = req.params;
+    const result = await getSaleByIdSellerService(sellerId);
+    res.status(success).json(result);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = { 
   registerSalesController, 
   updateSaleStatusController, 
   getSalesByUserIdController,
   getSaleDetailsController,
+  getSalesBySellerIdController,
 };

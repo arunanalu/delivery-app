@@ -128,3 +128,16 @@ export const updateStatus = async (id, stupdatedStatusaus, token) => {
       : connectionFailed;
   }
 };
+
+export const getSaleBySellerId = async (id, token) => {
+  try {
+    const response = await api.get(`/sale/seller/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response ? error.response.data.message : connectionFailed;
+  }
+};

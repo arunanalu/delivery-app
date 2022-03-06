@@ -74,9 +74,17 @@ const getSaleDetailsService = async (id) => {
   return salesAndProducts.dataValues;
 };
 
+const getSaleByIdSellerService = async (id) => {
+  const sales = await sale.findAll({ where: { sellerId: id } });
+  console.log('🚀 ~ file: saleService.js ~ line 79 ~ getSaleByIdSellerService ~ sales', sales);
+  const salesToReturn = sales.map((element) => element.dataValues);
+  return salesToReturn;
+};
+
 module.exports = {
   registerSalesService,
   updateSaleStatusService,
   getSalesByUserIdService,
   getSaleDetailsService,
+  getSaleByIdSellerService,
 };
