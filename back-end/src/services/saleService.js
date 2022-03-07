@@ -7,7 +7,7 @@ const {
   invalidEntry,
 } = require('../utils/dictionaries/messagesDefault');
 const {
-  registerSaleValidation,
+  /* registerSaleValidation, */
   updateSaleValidation,
   getSalesByUserIdValdiation,
 } = require('../validations/salesValidations');
@@ -17,7 +17,7 @@ const { badRequest } = require('../utils/dictionaries/statusCode');
 const sequelize = new Sequelize(config.development);
 
 const registerSalesService = async (incomingSale, arrayProducts) => {
-  registerSaleValidation(incomingSale, arrayProducts);
+  /* registerSaleValidation(incomingSale, arrayProducts); */
   const t = await sequelize.transaction();
   try {
     const saleCreated = await sale.create({ ...incomingSale }, { transaction: t });
@@ -68,9 +68,17 @@ const getSaleDetailsService = async (id) => {
   await verifySaleId(id);
   const salesAndProducts = await sale.findOne({
     where: { id },
-    include: [{ model: product, as: 'products', through: { attributes: [] } }],
+    include: { model: product, as: 'products', through: { attributes: ['quantity'] } },
   });
+
   return salesAndProducts.dataValues;
+};
+
+const getSaleByIdSellerService = async (id) => {
+  const sales = await sale.findAll({ where: { sellerId: id } });
+  console.log('🚀 ~ file: saleService.js ~ line 79 ~ getSaleByIdSellerService ~ sales', sales);
+  const salesToReturn = sales.map((element) => element.dataValues);
+  return salesToReturn;
 };
 
 module.exports = {
@@ -78,4 +86,5 @@ module.exports = {
   updateSaleStatusService,
   getSalesByUserIdService,
   getSaleDetailsService,
+  getSaleByIdSellerService,
 };

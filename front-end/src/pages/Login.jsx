@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
+import useLocalStorage from '../hooks/useLocalStorage';
 import { login } from '../services/calls';
 import { validLoginForm } from '../utils/validations/schemas';
 // import "./style/Login.scss";
@@ -10,6 +11,7 @@ export default function Login() {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const history = useHistory();
+  const [user] = useLocalStorage('user', false);
 
   const isFormInvalid = () => {
     const { error } = validLoginForm.validate({ email, password });
@@ -20,7 +22,6 @@ export default function Login() {
     try {
       const response = await login({ email, password });
       await localStorage.setItem('user', JSON.stringify({ ...response.data }));
-      console.log(response);
       switch (response.data.role) {
       case 'seller':
         history.push(`${response.data.role}/orders`);
@@ -29,7 +30,7 @@ export default function Login() {
         history.push(`${response.data.role}/products`);
         break;
       case 'administrator':
-        history.push(`${response.data.role}/manage`);
+        history.push('admin/manage');
         break;
       default:
         break;
@@ -39,6 +40,8 @@ export default function Login() {
       setShowErrorMessage(true);
     }
   };
+
+  if (user) return <Redirect to="customer/products" />;
 
   return (
     <main>

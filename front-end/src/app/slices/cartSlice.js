@@ -61,6 +61,7 @@ export const cart = createSlice({
     },
     removeFromCart: (state, action) => {
       const { id } = action.payload;
+      console.log(id);
       const { items } = state;
       const productInCart = items.find((product) => product.id === id);
       if (!productInCart) return;
