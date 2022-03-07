@@ -11,6 +11,8 @@ import Checkout from './pages/Checkout';
 import Administrator from './pages/Administrator';
 import Header from './components/Header';
 import OrderDetails from './pages/OrderDetails';
+import SellerOrders from './pages/SellerOrders';
+import SellerOrdersDetails from './pages/SellerOrdersDetails';
 
 function App() {
   return (
@@ -22,14 +24,19 @@ function App() {
         <Route exact path="/login" component={ Login } />
         <Route path="/register" component={ Register } />
         <Route exact path="/admin/manage" component={ Administrator } />
+        <Route exact path="/seller/orders" component={ SellerOrders } />
+        <Route
+          exact
+          path="/seller/orders/:id"
+          component={ SellerOrdersDetails }
+        />
         <Route path="/customer">
           <Header />
-          <Switch>
-            <Route exact path="/customer/orders" component={ Orders } />
-            <Route exact path="/customer/orders/:id" component={ OrderDetails } />
-            <Route exact path="/customer/products" component={ Products } />
-            <Route exact path="/customer/checkout" component={ Checkout } />
-          </Switch>
+
+          <Route exact path="/customer/orders" component={ Orders } />
+          <Route exact path="/customer/orders/:id" component={ OrderDetails } />
+          <Route exact path="/customer/products" component={ Products } />
+          <Route exact path="/customer/checkout" component={ Checkout } />
         </Route>
       </QueryClientProvider>
     </Switch>
