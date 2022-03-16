@@ -87,25 +87,20 @@ export default function OrderDetails() {
             }
           >
             MARCAR COMO ENTREGUE
-
           </button>
         </div>
         <Table
           columns={ columns }
+          total={ data.totalPrice.toString().replace('.', ',') }
           items={ data.products }
           testIdNumber="customer_order_details__element-order-table-item-number-"
           testIdName="customer_order_details__element-order-table-name-"
           testIdQuantity="customer_order_details__element-order-table-quantity-"
           testIdUnitPrice="customer_order_details__element-order-table-unit-price-"
           testIdSubTotal="customer_order_details__element-order-table-sub-total-"
+          testIdTotal="customer_order_details__element-order-total-price"
           thereIsButton={ false }
         />
-        <p
-          className="order-details__total"
-          data-testid="customer_order_details__element-order-total-price"
-        >
-          {`Total: ${data.totalPrice.toString().replace('.', ',')}`}
-        </p>
       </main>
     </div>
   );

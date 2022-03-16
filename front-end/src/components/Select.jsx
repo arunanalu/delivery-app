@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles/select.css';
 
 function Select({
   onChange, testid, value, options, label,
@@ -10,6 +11,7 @@ function Select({
         {label}
       </label>
       <select
+        className="default-select"
         value={ value }
         data-testid={ testid }
         onChange={ onChange }

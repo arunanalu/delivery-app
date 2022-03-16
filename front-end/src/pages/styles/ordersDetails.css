@@ -1,13 +1,7 @@
 .c-order-details {
-  background-color: red;
-  padding: 0 10vw;
-  height: 80vh;
-}
-
-.c-order-details * {
-  padding: 0;
-  border: none;
-  margin: 0;
+  margin: 0 10vw;
+  padding: 0 10px 10px;
+  min-height: 100%;
 }
 
 .order-details__page-title {
@@ -57,12 +51,3 @@ main {
   background-color: blanchedalmond;
 }
 
-.order-details__total {
-  position: absolute;
-  font-size: 2rem;
-  bottom: 5vw;
-  padding: 0 20px;
-  border-radius: 5px;
-  right: 10vw;
-  background-color: blue;
-}

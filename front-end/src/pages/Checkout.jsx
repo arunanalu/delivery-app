@@ -4,10 +4,10 @@ import { useHistory } from 'react-router-dom';
 import { removeFromCart, updateTotal } from '../app/slices/cartSlice';
 import Input from '../components/Input';
 import Select from '../components/Select';
-import '../styles/checkout.css';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { sale } from '../services/calls';
 import Table from '../components/Table';
+import './styles/checkout.css';
 
 export default function Checkout() {
   const dispatch = useDispatch();
@@ -52,12 +52,13 @@ export default function Checkout() {
   };
 
   return (
-    <div className="container-checkout">
-      <div className="finish-order">
-        <h1>Finalizar Pedido</h1>
+    <div className="c-checkout">
+      <h1>Finalizar Pedido</h1>
+      <div className="checkout__items">
         <Table
           columns={ columns }
           items={ cart.items }
+          total={ cart.total.toString().replace('.', ',') }
           handleClick={ removeItem }
           testIdNumber="customer_checkout__element-order-table-item-number-"
           testIdName="customer_checkout__element-order-table-name-"
@@ -65,51 +66,44 @@ export default function Checkout() {
           testIdUnitPrice="customer_checkout__element-order-table-unit-price-"
           testIdSubTotal="customer_checkout__element-order-table-sub-total-"
           testIdRemove="customer_checkout__element-order-table-remove-"
+          testIdTotal="customer_checkout__element-order-total-price"
           thereIsButton
         />
-        <p
-          data-testid="customer_checkout__element-order-total-price"
+      </div>
+      <h1>Detalhes e Endereços para Entrega</h1>
+      <div className="checkout__details">
+        <Select
+          options={ sellers }
+          testid="customer_checkout__select-seller"
+          value={ seller }
+          onChange={ ({ target }) => setSeller(target.value) }
+          label="P. Vendedora Responsável"
+        />
+        <Input
+          label="Endereço"
+          id="address-input"
+          testid="customer_checkout__input-address"
+          type="text"
+          value={ address }
+          onChange={ ({ target }) => setAddress(target.value) }
+        />
+        <Input
+          label="Número"
+          id="address-number-input"
+          testid="customer_checkout__input-addressNumber"
+          type="number"
+          value={ number }
+          onChange={ ({ target }) => setNumber(target.value) }
+        />
+        <button
+          className="checkout__finish-order-btn"
+          onClick={ handleFinishOrder }
+          data-testid="customer_checkout__button-submit-order"
+          type="button"
         >
-          {cart.total.toString().replace('.', ',')}
-        </p>
+          Finalizar Pedido
+        </button>
       </div>
-      <div className="delivery-checkout">
-        <h2>Detalhes e Endereços para Entrega</h2>
-        <div>
-          <Select
-            options={ sellers }
-            testid="customer_checkout__select-seller"
-            value={ seller }
-            onChange={ ({ target }) => setSeller(target.value) }
-            label="P. Vendedora Responsável"
-          />
-
-          <Input
-            label="Endereço"
-            id="address-input"
-            testid="customer_checkout__input-address"
-            type="text"
-            value={ address }
-            onChange={ ({ target }) => setAddress(target.value) }
-          />
-          <Input
-            label="Número"
-            id="address-number-input"
-            testid="customer_checkout__input-addressNumber"
-            type="number"
-            value={ number }
-            onChange={ ({ target }) => setNumber(target.value) }
-          />
-        </div>
-      </div>
-      <button
-        onClick={ handleFinishOrder }
-        data-testid="customer_checkout__button-submit-order"
-        type="button"
-      >
-        Finalizar Pedido
-
-      </button>
     </div>
   );
 }
