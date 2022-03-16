@@ -33,7 +33,7 @@
   font-size: 1rem;
 }
 
-.order-card :not(.order-card__number-container) {
+.order-card__date-price-container, .order-card__status {
   flex-grow: 1;
 }
 
