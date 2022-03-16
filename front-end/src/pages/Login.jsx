@@ -44,7 +44,7 @@ export default function Login() {
   if (user) return <Redirect to="customer/products" />;
 
   return (
-    <main>
+    <main className="container-login">
       <h1>Group 2</h1>
       <div className="container_login_inputs">
         <label className="login_label" htmlFor="username">
