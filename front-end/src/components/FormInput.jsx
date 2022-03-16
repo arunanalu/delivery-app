@@ -12,11 +12,10 @@ export default function FormInput(props) {
   } = props;
 
   return (
-    <>
-      <label className={ `modal-${page}_label` } htmlFor={ name }>
+    <div>
+      <label className="label-register" htmlFor={ name }>
         { labelText }
       </label>
-      <br />
       <input
         data-testid={ `common_${page}__input-${name}` }
         name={ name }
@@ -26,10 +25,10 @@ export default function FormInput(props) {
         onChange={ (e) => {
           changeHandler(e.target.value);
         } }
-        className={ `input-${page}` }
+        className="input-register-page"
         required
       />
-    </>
+    </div>
   );
 }
 

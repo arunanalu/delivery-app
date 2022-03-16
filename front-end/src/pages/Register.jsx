@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 import FormInput from '../components/FormInput';
 import { registerUser } from '../services/calls';
 import { validRegisterForm } from '../utils/validations/schemas';
+import './styles/register.css';
 
 export default function Register() {
   const [name, setUserInput] = useState('');
@@ -34,8 +35,9 @@ export default function Register() {
   };
 
   return (
-    <main>
-      <form>
+    <main className="container-register">
+      <h1>Cadastro</h1>
+      <form className="form-register">
         <section className="container_register_inputs">
           <FormInput
             labelText="Email"
@@ -72,7 +74,7 @@ export default function Register() {
               !isFormValid() ? 'disable' : 'enable'
             }` }
           >
-            Registrarr
+            CADASTRAR
           </button>
         </section>
       </form>
