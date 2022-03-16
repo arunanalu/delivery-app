@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 import { login } from '../services/calls';
 import { validLoginForm } from '../utils/validations/schemas';
-// import "./style/Login.scss";
+import logo from '../images/BEBIDAS.png';
+import './styles/login.css';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -45,10 +46,17 @@ export default function Login() {
 
   return (
     <main className="container-login">
-      <h1>Group 2</h1>
+      <div className="logo">
+        <img src={ logo } alt="logo bebidas express" width="200px" />
+        {/* <h1>Group 2</h1> */}
+      </div>
       <div className="container_login_inputs">
-        <label className="login_label" htmlFor="username">
-          Login:
+        <div className="inputs">
+          <div>
+            <label className="login_label" htmlFor="username">
+              Login:
+            </label>
+          </div>
           <input
             data-testid="common_login__input-email"
             name="username"
@@ -59,9 +67,13 @@ export default function Login() {
             className="input-login"
             required
           />
-        </label>
-        <label className="modal-login_label" htmlFor="password">
-          Senha:
+        </div>
+        <div className="inputs">
+          <div>
+            <label className="login_label" htmlFor="password">
+              Senha:
+            </label>
+          </div>
           <input
             data-testid="common_login__input-password"
             name="password"
@@ -71,26 +83,27 @@ export default function Login() {
             className="input-login"
             required
           />
-        </label>
-      </div>
-      <div className="modal-login_buttons">
+        </div>
+
         <button
           data-testid="common_login__button-login"
-          className="modal_button"
+          className="modal_button-login"
           type="button"
           disabled={ isFormInvalid() }
           onClick={ handleButtonClick }
         >
           Login
         </button>
-        <Link to="/register">
-          <button
-            data-testid="common_login__button-register"
-            type="button"
-          >
-            Ainda não tenho conta
-          </button>
-        </Link>
+
+        <button
+          data-testid="common_login__button-register"
+          type="button"
+          className="button-register"
+          onClick={ () => history.push('/register') }
+        >
+          Ainda não tenho conta
+        </button>
+
       </div>
       {showErrorMessage && (
         <span data-testid="common_login__element-invalid-email">
