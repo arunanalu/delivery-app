@@ -1,14 +1,14 @@
 .order-card {
   background-color: red;
-  gap: 10px;
-  display: flex;
   border-radius: 2px;
+  box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-basis: 48%;
+  gap: 10px;
+  min-width: 300px;
   overflow: hidden;
   padding-right: 10px;
-  min-width: 300px;
-  flex-basis: 48%;
-  box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.4);
-  transition: 50ms ease-in-out;
+  transition: 100ms ease-in-out;
 }
 
 .order-card:hover {
@@ -21,46 +21,44 @@
 }
 
 .order-card__number-container {
+  align-items: center;
   background-color: cyan;
-  width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  width: 20%;
 }
 
 .order-card__number-container h1 {
   font-size: 1rem;
 }
 
-.order-card__date-price-container,
-.order-card__status {
+.order-card :not(.order-card__number-container) {
   flex-grow: 1;
 }
 
 .order-card__status {
+  background-color: green;
+  border-radius: 5px;
   display: grid;
   margin: 10px 0;
-  border-radius: 5px;
   place-items: center;
-  background-color: green;
   text-align: center;
 }
 
 .order-card__date-price-container {
   display: flex;
-  position: relative;
   flex-direction: column;
   gap: 10px;
-  padding: 10px 0;
   justify-content: space-between;
+  padding: 10px 0;
+  position: relative;
 }
 
-.order-card__price,
-.order-card__date {
+.order-card__price, .order-card__date {
   background-color: aliceblue;
-  width: 100%;
-  padding: 10px 0;
   border-radius: 2px;
+  padding: 10px 0;
   text-align: center;
-} 
+  width: 100%;
+}
