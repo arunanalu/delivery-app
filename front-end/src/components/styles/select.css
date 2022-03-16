@@ -1,12 +1,12 @@
 .label-select {
-    color: white;
+  color: white;
 }
 
-.default-select{
-    background-color: white;
-    height: 30px;
-    border: none;
-    margin: 0;
-    padding-top: 7px;
-    border-radius: 5px;
+.default-select {
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+  height: 30px;
+  margin: 0;
+  padding-top: 7px;
 }

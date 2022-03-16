@@ -31,7 +31,7 @@ function Table({
         </thead>
         {items.length === 0 ? (
           <h1
-            id="empty-cart-message"
+            className="empty-cart-message"
           >
             Seu carrinho está vazio
           </h1>
