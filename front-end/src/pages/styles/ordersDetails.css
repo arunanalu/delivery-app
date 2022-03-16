@@ -1,6 +1,7 @@
 .c-order-details {
   background-color: red;
   padding: 0 10vw;
+  height: 80vh;
 }
 
 .c-order-details * {
@@ -12,6 +13,7 @@
 .order-details__page-title {
   background-color: blue;
   width: 100%;
+  margin-bottom: 50px;
 }
 
 .order-details__header {
@@ -23,6 +25,12 @@
   justify-content: space-between;
   display: flex;
   gap: 30px;
+}
+
+main {
+  border-radius: 2px;
+  overflow: hidden;
+  box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.4);
 }
 
 .order-details__header .order-details__order-id {
@@ -50,7 +58,7 @@
 }
 
 .order-details__total {
-  position: fixed;
+  position: absolute;
   font-size: 2rem;
   bottom: 5vw;
   padding: 0 20px;
