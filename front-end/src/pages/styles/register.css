@@ -2,14 +2,13 @@
   align-items: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
 }
 
-.container-register h1 {
+.cadastro {
   height: 96px;
   position: absolute;
   text-align: center;
-  top: 248px;
+  top: 50px;
   width: 425px;
 }
 
@@ -19,7 +18,7 @@
   flex-direction: column;
   height: 505px;
   position: absolute;
-  top: 344px;
+  top: 150px;
   width: 425px;
 }
 

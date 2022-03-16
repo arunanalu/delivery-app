@@ -36,7 +36,10 @@ export default function Register() {
 
   return (
     <main className="container-register">
-      <h1>Cadastro</h1>
+      <div className="cadastro">
+        <h1>Cadastro</h1>
+
+      </div>
       <form className="form-register">
         <section className="container_register_inputs">
           <FormInput
