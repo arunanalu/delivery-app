@@ -35,12 +35,6 @@ export default function ProductCard({ name, imagePath, price, id }) {
     <div
       className="product-card"
     >
-      <span
-        className="product-card__price"
-        data-testid={ `customer_products__element-card-price-${id}` }
-      >
-        {price.replace('.', ',')}
-      </span>
       <img
         src={ imagePath }
         alt={ `A cold ${name}` }
@@ -52,27 +46,35 @@ export default function ProductCard({ name, imagePath, price, id }) {
       >
         {name}
       </h1>
-      <button
-        type="button"
-        onClick={ handleRemoveProduct }
-        data-testid={ `customer_products__button-card-rm-item-${id}` }
+      <span
+        className="product-card__price"
+        data-testid={ `customer_products__element-card-price-${id}` }
       >
-        -
-      </button>
-      <input
-        type="number"
-        placeholder="0"
-        value={ cartQuantity }
-        onChange={ handleChange }
-        data-testid={ `customer_products__input-card-quantity-${id}` }
-      />
-      <button
-        type="button"
-        onClick={ handleAddProduct }
-        data-testid={ `customer_products__button-card-add-item-${id}` }
-      >
-        +
-      </button>
+        {`R$ ${price.replace('.', ',')}`}
+      </span>
+      <div className="price-container">
+        <button
+          type="button"
+          onClick={ handleRemoveProduct }
+          data-testid={ `customer_products__button-card-rm-item-${id}` }
+        >
+          <p>-</p>
+        </button>
+        <input
+          type="number"
+          placeholder="0"
+          value={ cartQuantity }
+          onChange={ handleChange }
+          data-testid={ `customer_products__input-card-quantity-${id}` }
+        />
+        <button
+          type="button"
+          onClick={ handleAddProduct }
+          data-testid={ `customer_products__button-card-add-item-${id}` }
+        >
+          <p>+</p>
+        </button>
+      </div>
     </div>
   );
 }
