@@ -1,0 +1,38 @@
+.c-checkout {
+  background-color: navy;
+  padding: 15px 10vw;
+}
+
+.c-checkout h1 {
+  color: white;
+}
+
+.checkout__finish-order-btn {
+  background-color: blueviolet;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  transition: 100ms;
+}
+
+.checkout__finish-order-btn:hover {
+  background-color: rgb(48, 11, 83);
+  color: white;
+}
+
+.checkout__details {
+  align-items: center;
+  background-color: red;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  padding: 10px;
+  width: 100%;
+}
+
+.checkout__details :nth-child( -n+3 ) {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+}

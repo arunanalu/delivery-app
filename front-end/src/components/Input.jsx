@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './styles/input.css';
 
 function Input({
   type, onChange, testid, value, label, className,
@@ -10,13 +11,13 @@ function Input({
         {label}
       </label>
       <input
+        className="default-input"
         type={ type }
         value={ value }
         data-testid={ testid }
         onChange={ onChange }
         id={ testid }
       />
-
     </div>
   );
 }

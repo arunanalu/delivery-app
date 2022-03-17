@@ -1,0 +1,106 @@
+.c-table {
+  background-color: brown;
+  border-radius: 2px;
+  padding: 0 10px 50px;
+  position: relative;
+  width: 100%;
+}
+
+.empty-cart-message {
+  bottom: 10px;
+  color: white;
+  font-size: 1.5rem;
+  left: 0;
+  margin: 0;
+  min-width: 100%;
+  position: absolute;
+  text-align: center;
+}
+
+table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  width: 100%;
+}
+
+td {
+  height: 50px;
+}
+
+td:not( :nth-child( 2 ) ) {
+  text-align: center;
+}
+
+/* item */
+td:first-child {
+  background-color: blue;
+  border-radius: 5px 0 0 5px;
+}
+
+/* sub-total */
+td:last-child {
+  border-radius: 0 5px 5px 0;
+}
+
+th:not( :nth-child( 2 ) ) {
+  padding: 0 10px;
+  white-space: nowrap;
+  width: 1%;
+}
+
+/* descricao */
+td:nth-child( 2 ) {
+  background-color: blueviolet;
+}
+
+/* quantidade */
+td:nth-child( 3 ) {
+  background-color: lawngreen;
+}
+
+/* valor unitario */
+td:nth-child( 4 ) {
+  background-color: gold;
+}
+
+/* sub total */
+td:nth-child( 5 ) {
+  background-color: aqua;
+}
+
+/* remover */
+
+/* existe um seletor ESPECIFICAMENTE pro botão no final desse arquivo */
+td:nth-child( 6 ) {
+  background-color: red;
+  transition: 100ms ease-in;
+}
+
+td:nth-child( 6 ):hover {
+  background-color: rgb(153, 7, 7);
+}
+
+tbody tr {
+  height: 50px;
+}
+
+.order-details__total {
+  background-color: blue;
+  border-radius: 5px;
+  bottom: 10px;
+  font-size: 2rem;
+  margin: 0;
+  padding: 0 20px;
+  position: absolute;
+  right: 10px;
+}
+
+td button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  margin: 0;
+  min-height: 100%;
+  min-width: 100%;
+  padding: 0;
+}
