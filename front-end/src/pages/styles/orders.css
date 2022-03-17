@@ -1,0 +1,8 @@
+.orders-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vw;
+  justify-content: space-between;
+  margin-top: 50px;
+  padding: 0 9vw;
+}

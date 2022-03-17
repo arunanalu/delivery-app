@@ -1,0 +1,59 @@
+.nav-bar-header {
+  align-items: center;
+  background: #2fc18c;
+  display: flex;
+  height: 105px;
+  justify-content: space-around;
+  left: 0;
+  top: 0;
+}
+
+.container-nav-bar-products {
+  align-items: center;
+  color: #001813;
+  display: flex;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  height: 105px;
+  line-height: 33px;
+  text-align: center;
+  text-decoration: none;
+  top: 0%;
+}
+
+.container-nav-bar-orders {
+  align-items: center;
+  color: #f2fffc;
+  display: flex;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 33px;
+  text-align: center;
+  text-decoration: none;
+  top: 0%;
+}
+
+.container-nav-bar-user {
+  align-items: center;
+  color: #f2fffc;
+  display: flex;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 42px;
+  text-align: center;
+}
+
+.nav-bar-logout {
+  align-items: center;
+  background: #056cf9;
+  color: #f2fffc;
+  display: flex;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 33px;
+  text-align: center;
+}
