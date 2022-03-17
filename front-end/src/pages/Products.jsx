@@ -28,31 +28,37 @@ export default function Products() {
   if (productsIsFetching) return <p>Estou carregando aaa</p>;
   if (productsFetchFailed) {
     queryClient.cancelQueries('products');
+    localStorage.removeItem('user');
+    // eslint-disable-next-line no-alert
+    alert('You session is closed. Please, login again');
     return <Redirect to="/" />;
   }
   return (
-    <main>
-      {productList.map((product) => (
-        <ProductCard
-          key={ product.id }
-          id={ product.id }
-          name={ product.name }
-          imagePath={ product.url_image }
-          price={ product.price }
-        />
-      ))}
+    <main className="main-products-container">
+      <div className="cards-container">
+        {productList.map((product) => (
+          <ProductCard
+            key={ product.id }
+            id={ product.id }
+            name={ product.name }
+            imagePath={ product.url_image }
+            price={ product.price }
+          />
+        ))}
+      </div>
       <button
         type="button"
         onClick={ () => history.push('checkout') }
         disabled={ cartTotal === 0 }
         id="card-button"
         data-testid="customer_products__button-cart"
+        className="kart-button"
       >
         Ver carrinho:
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          { cartTotal.toFixed(2).toString().replace('.', ',') }
+          { ` R$: ${cartTotal.toFixed(2).toString().replace('.', ',')}` }
         </span>
       </button>
     </main>
