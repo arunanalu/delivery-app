@@ -6,12 +6,11 @@
 
 .nav-bar-header {
   align-items: center;
-  background-color: green;
+  background-color: #004c98;
   display: flex;
-  height: 105px;
+  height: 90px;
   justify-content: space-around;
-  position: absolute;
-  top: 0;
+  min-width: 508px;
   width: 100vw;
 }
 
@@ -19,49 +18,41 @@
   align-items: center;
   display: flex;
   justify-content: space-around;
-  left: 0;
   width: 734px;
 }
 
 .nav-bar-products {
   align-items: center;
-  color: black;
-  display: flex;
-  font-size: 28px;
-  font-weight: 500;
-  height: 105px;
-  line-height: 33px;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
   text-decoration: none;
+
 }
 
 .nav-bar-orders {
   align-items: center;
-  color: black;
-  display: flex;
-  font-size: 28px;
-  font-weight: 500;
-  height: 105px;
-  line-height: 33px;
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
   text-decoration: none;
 }
 
 .nav-bar-user {
   align-items: center;
+  color: #fdad26;
   display: flex;
-  font-size: 36px;
-  font-weight: 500;
-  height: 105px;
-  line-height: 42px;
+  font-size: 25px;
+  font-weight: 700;
   text-decoration: none;
 }
 
 .nav-bar-logout {
-  background-color: green;
+  background-color: #004c98;
   border: none;
-  font-size: 36px;
-  font-weight: 500;
-  height: 105px;
-  line-height: 42px;
+  color: white;
+  font-size: 25px;
+  font-weight: 550;
   text-decoration: none;
 }
 
