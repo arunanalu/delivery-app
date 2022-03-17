@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeFromCart, updateTotal } from '../app/slices/cartSlice';
+import { removeAllFromCart, removeFromCart, updateTotal } from '../app/slices/cartSlice';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import '../styles/checkout.css';
@@ -26,6 +26,11 @@ export default function Checkout() {
     dispatch(updateTotal());
   };
 
+  const removeAllItens = () => {
+    dispatch(removeAllFromCart());
+    dispatch(updateTotal());
+  };
+
   const handleFinishOrder = async () => {
     try {
       const products = cart.items.map((item) => (
@@ -44,7 +49,7 @@ export default function Checkout() {
       };
 
       const response = await sale(req, user.token);
-
+      removeAllItens();
       history.push(`/customer/orders/${response.data.saleId}`);
     } catch (error) {
       console.log(error);

@@ -60,27 +60,27 @@ export default function SellerOrdersDetails() {
           <p
             data-testid={ `seller_order_details__element-order-table-item-number-${i}` }
           >
-            {id}
+            {`id: ${id}`}
           </p>
           <p
             data-testid={ `seller_order_details__element-order-table-name-${i}` }
           >
-            {name}
+            {`name: ${name}`}
           </p>
           <p
             data-testid={ `seller_order_details__element-order-table-quantity-${i} ` }
           >
-            {quantity}
+            {`quantity: ${quantity}`}
           </p>
           <p
             data-testid={ `seller_order_details__element-order-table-unit-price-${i}` }
           >
-            {price}
+            {`price: ${price}`}
           </p>
           <p
             data-testid={ `seller_order_details__element-order-table-sub-total-${i}` }
           >
-            {Number(quantity * price)}
+            {`subtotal: ${Number(quantity * price)}`}
           </p>
         </div>
       ))}

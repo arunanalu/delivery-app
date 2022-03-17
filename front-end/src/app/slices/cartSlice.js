@@ -69,6 +69,17 @@ export const cart = createSlice({
       const productIndex = items.indexOf(productInCart);
       items.splice(productIndex, 1);
     },
+    // eslint-disable-next-line no-unused-vars
+    removeAllFromCart: (state, _action) => {
+      // const { id } = action.payload;
+      // console.log(id);
+      const { items } = state;
+      // const productInCart = items.find((product) => product.id === id);
+      // if (!productInCart) return;
+
+      // const productIndex = items.indexOf(productInCart);
+      items.splice(0, items.length);
+    },
     updateTotal: (state) => {
       const { items } = state;
       const totalCartValue = items.reduce((total, currentItem) => {
@@ -88,6 +99,7 @@ export const {
   decreaseOneFromCart,
   updateTotal,
   setItemQuantity,
+  removeAllFromCart,
 } = cart.actions;
 
 export default cart.reducer;
