@@ -17,7 +17,7 @@ export default function OrderDetails() {
   const [user] = useLocalStorage('user', {});
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
-  const { data, isLoading, isError } = useQuery(
+  const { data, isLoading, isError, refetch } = useQuery(
     'orderDetails', () => fetchOrderDetails(id, user.token),
   );
 
@@ -35,6 +35,7 @@ export default function OrderDetails() {
     };
 
     await updateStatus(id, status, user.token);
+    refetch();
   };
 
   if (isLoading) return <div>Carregando</div>;
@@ -80,11 +81,7 @@ export default function OrderDetails() {
             data-testid="customer_order_details__button-delivery-check"
             onClick={ handleStatus }
             className="order-details__shipped-btn"
-            disabled={
-              !!(data.status === 'Entregue'
-              || data.status === 'Pendente'
-              || data.status === 'Preparando')
-            }
+            disabled={data.status !== "Em trânsito"}
           >
             MARCAR COMO ENTREGUE
           </button>

@@ -1,19 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
-import { getSaleById } from '../services/calls';
+import { getSaleById, updateStatus } from '../services/calls';
+import { useQuery } from 'react-query';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function SellerOrdersDetails() {
-  const [orderDetails, setOrderDetails] = useState(undefined);
   const { id: idParamPage } = useParams();
-  useEffect(() => {
-    const idToNumber = Number(idParamPage);
-    const user = localStorage.getItem('user');
-    const userToJs = JSON.parse(user);
-    getSaleById(idToNumber, userToJs.token).then(({ data }) => setOrderDetails(data));
-  }, [idParamPage]);
-  if (!orderDetails) return <p>não possui produtos</p>;
-  const date = new Date(orderDetails.saleDate);
+  const [user] = useLocalStorage('user', {});
+
+  const { data, refetch } = useQuery('sellerOrderDetails', async () => {
+    const result = await getSaleById(idParamPage, user.token);
+    return result.data;
+  });
+
+  const setShipped = async () => {
+    await updateStatus(idParamPage, {status: "Em trânsito"},user.token )
+    refetch();
+  }
+  
+  const setPreparing = async() => {
+    await updateStatus(idParamPage, {status: "Preparando"},user.token )
+    refetch();
+  }
+  
+  if (!data) return <p>não possui produtos</p>;
+  console.log(data.products[0].salesProduct.quantity)
+  const date = new Date(data.saleDate);
   return (
     <div>
       <Header />
@@ -22,7 +35,7 @@ export default function SellerOrdersDetails() {
         htmlFor="asdsad"
         data-testid="seller_order_details__element-order-details-label-order-id"
       >
-        {orderDetails.id}
+        {data.id}
       </label>
       <div data-testid="seller_order_details__element-order-details-label-order-date">
         {`${date.toLocaleDateString('pt-br', {
@@ -35,27 +48,30 @@ export default function SellerOrdersDetails() {
         htmlFor="sddsf"
         data-testid="seller_order_details__element-order-details-label-delivery-status"
       >
-        {orderDetails.status}
+        {data.status}
       </label>
       <button
+        onClick={setShipped}
         type="button"
         data-testid="seller_order_details__button-dispatch-check"
-        disabled
+        disabled={data.status !== "Preparando"}
       >
         Saiu para entrega
       </button>
       <button
         type="button"
+        onClick={setPreparing}
         data-testid="seller_order_details__button-preparing-check"
+        disabled={data.status !== "Pendente"}
       >
         Preparar pedido
       </button>
 
       <p data-testid="seller_order_details__element-order-total-price">
-        {orderDetails.totalPrice.replace('.', ',')}
+        {data.totalPrice.replace('.', ',')}
       </p>
 
-      {orderDetails.products.map(({ id, name, price, quantity }, i) => (
+      {data.products.map(({ id, name, price, salesProduct }, i) => (
         <div key={ i }>
           <p
             data-testid={ `seller_order_details__element-order-table-item-number-${i}` }
@@ -70,7 +86,7 @@ export default function SellerOrdersDetails() {
           <p
             data-testid={ `seller_order_details__element-order-table-quantity-${i} ` }
           >
-            {`quantity: ${quantity}`}
+            {`quantity: ${salesProduct.quantity}`}
           </p>
           <p
             data-testid={ `seller_order_details__element-order-table-unit-price-${i}` }
@@ -80,7 +96,7 @@ export default function SellerOrdersDetails() {
           <p
             data-testid={ `seller_order_details__element-order-table-sub-total-${i}` }
           >
-            {`subtotal: ${Number(quantity * price)}`}
+            {`subtotal: ${Number(salesProduct.quantity * price).toFixed(2)}`}
           </p>
         </div>
       ))}
