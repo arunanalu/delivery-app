@@ -1,3 +1,6 @@
+/* stylelint-disable comment-empty-line-before */
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+/* stylelint-disable font-family-name-quotes */
 .container-login {
   align-items: center;
   display: flex;
@@ -30,7 +33,7 @@
 
 .input-login {
   align-items: center;
-  background: #fff;
+  background: white;
   border: 1px solid #001813;
   border-radius: 5px;
   box-sizing: border-box;
