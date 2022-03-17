@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
-/* import '../styles/header.css'; */
+import './styles/header.css';
 
 export default function Header() {
   const history = useHistory();
@@ -14,7 +14,7 @@ export default function Header() {
 
   return (
     <nav className="nav-bar-header">
-      <div className="container-nav-bar">
+      <div className="container-nav-bar-products">
         <Link
           data-testid="customer_products__element-navbar-link-products"
           className="nav-bar-products"
@@ -22,16 +22,17 @@ export default function Header() {
         >
           PRODUTOS
         </Link>
+      </div>
+      <div className="container-nav-bar-orders">
         <Link
           data-testid="customer_products__element-navbar-link-orders"
           className="nav-bar-orders"
           to={ `/${user.role}/orders` }
         >
           MEUS PEDIDOS
-
         </Link>
       </div>
-      <div className="container-nav-bar">
+      <div className="container-nav-bar-user">
         <h1
           className="nav-bar-user"
           data-testid="customer_products__element-navbar-user-full-name"
@@ -39,15 +40,15 @@ export default function Header() {
           {user.name}
 
         </h1>
-        <button
-          type="button"
-          data-testid="customer_products__element-navbar-link-logout"
-          className="nav-bar-logout"
-          onClick={ handleLogout }
-        >
-          Sair
-        </button>
       </div>
+      <button
+        type="button"
+        data-testid="customer_products__element-navbar-link-logout"
+        className="nav-bar-logout"
+        onClick={ handleLogout }
+      >
+        Sair
+      </button>
     </nav>
   );
 }
