@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import { getUserOrders } from '../services/calls';
 import useLocalStorage from '../hooks/useLocalStorage';
 import OrderCard from '../components/OrderCard';
+import './styles/orders.css';
 
 const fetchOrders = async (user) => {
   const response = await getUserOrders(user.token, user.id);
@@ -15,7 +16,9 @@ export default function Orders() {
   if (isLoading) return <div>Carregando</div>;
   if (isError) return <div>Deu ruim</div>;
   return (
-    <div>
+    <div
+      className="orders-list-container"
+    >
       {data.map((order) => (
         <OrderCard
           id={ order.id }
