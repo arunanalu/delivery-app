@@ -1,14 +1,15 @@
 .c-checkout {
-  background-color: navy;
   padding: 15px 10vw;
 }
 
 .c-checkout h1 {
-  color: white;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  color: rgb(0, 0, 0);
 }
 
 .checkout__finish-order-btn {
-  background-color: blueviolet;
+  background-color: #fede00;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -16,13 +17,13 @@
 }
 
 .checkout__finish-order-btn:hover {
-  background-color: rgb(48, 11, 83);
-  color: white;
+  background-color: #fdad26;
+  color: black;
 }
 
 .checkout__details {
   align-items: center;
-  background-color: red;
+  background-color: #dfedfc;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -32,6 +33,8 @@
 }
 
 .checkout__details :nth-child( -n+3 ) {
+  color: black;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   min-width: 30%;

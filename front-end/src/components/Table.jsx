@@ -139,7 +139,7 @@ function Table({
         className="order-details__total"
         data-testid={ testIdTotal }
       >
-        {`Total: ${total}`}
+        {`Total: R$ ${total}`}
       </p>
     </div>
   );
