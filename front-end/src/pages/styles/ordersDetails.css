@@ -5,7 +5,6 @@
 }
 
 .order-details__page-title {
-  /* background-color: blue; */
   margin-bottom: 40px;
   margin-top: 40px;
   width: 100%;
@@ -18,15 +17,14 @@
   gap: 30px;
   height: 50px;
   justify-content: space-between;
-  width: 100%;
   padding: 15px;
+  width: 100%;
 }
 
 main {
-  border-radius: 2px;
+  border-radius: 5px;
   box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.4);
   overflow: hidden;
-  border-radius: 5px;
 }
 
 .order-details__header .order-details__order-id {
@@ -44,11 +42,11 @@ main {
 
 .order-details__shipped-btn {
   background-color: black;
-  color: white;
+  border: 1px solid black;
   border-radius: 5px;
+  color: white;
   flex-grow: 1;
   padding: 5px 20px;
-  border: 1px solid black;
 }
 
 .order-details__shipped-btn:disabled {

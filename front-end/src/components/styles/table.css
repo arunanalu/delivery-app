@@ -34,8 +34,8 @@ td:not( :nth-child( 2 ) ) {
 /* item */
 td:first-child {
   background-color: white;
-  border-radius: 5px 0 0 5px;
   border: 1px solid rgba(0, 0, 0, 0.137);
+  border-radius: 5px 0 0 5px;
 }
 
 /* sub-total */
@@ -52,8 +52,8 @@ th:not( :nth-child( 2 ) ) {
 /* descricao */
 td:nth-child( 2 ) {
   background-color: white;
-  padding-left: 6px;
   border: 1px solid rgba(0, 0, 0, 0.137);
+  padding-left: 6px;
 }
 
 /* quantidade */
@@ -91,10 +91,10 @@ tbody tr {
 }
 
 .order-details__total {
-  box-sizing: border-box;
   background-color: #fede00;
   border-radius: 5px;
   bottom: 10px;
+  box-sizing: border-box;
   font-size: 1.7rem;
   margin: 0;
   padding: 5px 20px;

@@ -5,11 +5,11 @@
   display: flex;
   flex-basis: 48%;
   gap: 10px;
+  margin-bottom: 10px;
   min-width: 300px;
   overflow: hidden;
   padding-right: 10px;
   transition: 100ms ease-in-out;
-  margin-bottom: 10px;
 }
 
 .order-card:hover {
@@ -41,8 +41,8 @@
 .order-card__status {
   background-color: #647994;
   border-radius: 5px;
-  display: grid;
   color: white;
+  display: grid;
   margin: 10px 0;
   place-items: center;
   text-align: center;
@@ -59,10 +59,8 @@
 
 .order-card__price, .order-card__date {
   background-color: rgb(246, 249, 255);
-  border-radius: 2px;
+  border-radius: 5px;
   padding: 10px 0;
   text-align: center;
   width: 100%;
-  border-radius: 5px;
-  /* color: white; */
 }

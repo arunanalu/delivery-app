@@ -1,58 +1,45 @@
 .container-register {
   align-items: center;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-  height: 100vh;
-  background-size: cover;
+  background-image: url('../../images//texture-wide.jpg');
   background-position: 40% 30%;
   background-repeat: no-repeat;
-  background-image: url('../../images//texture-wide.jpg');
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
 }
 
 .cadastro {
   height: 96px;
-  /* position: absolute; */
-  text-align: center;
-  /* top: 50px; */
-  width: 425px;
   margin-top: 40px;
+  text-align: center;
+  width: 425px;
 }
 
 .form-register {
-  /* align-items: center;
-  display: flex;
-  flex-direction: column; */
-  /* height: 505px; */
-  /* position: absolute; */
-  /* top: 150px; */
-  /* width: 425px; */
   background: #1a1919;
-  color: white;
-  /* border: 1px solid #b1c2be; */
-  /* bottom: 12.5%; */
+  border-radius: 5px;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
+  color: white;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 5px;
-  padding: 15px;
   margin-top: -15px;
-
+  padding: 15px;
 }
 
 
 .label-register {
   align-items: center;
-  color: #ffffff;
+  color: white;
   display: flex;
   font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
-  /* text-indent: 19px; */
   margin-bottom: 10px;
   margin-top: 5px;
 }
@@ -74,7 +61,7 @@
 
 .registrar-btn {
   border-radius: 8px;
-  color: #000000;
+  color: black;
   display: flex;
   font-size: 18px;
   font-style: normal;
@@ -82,8 +69,8 @@
   line-height: 33px;
   margin: auto;
   margin-top: 30px;
-  text-align: center;
   padding: 5px;
+  text-align: center;
 
 }
 

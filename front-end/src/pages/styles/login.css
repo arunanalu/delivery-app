@@ -2,22 +2,22 @@
 /* stylelint-disable font-family-no-missing-generic-family-keyword */
 /* stylelint-disable font-family-name-quotes */
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 
 .container-login {
   align-items: center;
   background-color: #fede00;
+  background-image: url('../../images//texture-wide.jpg');
+  background-position: 40% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
   height: 100vh;
   /* background-image: url('../../images/transparent-beer-foam-drink-beers-foamed-background-liquid-white-foaming-vector-texture-sea-beach-laundry-foamy-217663184-removebg.png'); */
-  background-size: cover;
-  background-position: 40% 30%;
-  background-repeat: no-repeat;
-  background-image: url('../../images//texture-wide.jpg');
   /* background-repeat: repeat-x; */
   /* background-size: 900px; */
   justify-content: center;
@@ -28,23 +28,23 @@
   /* height: 249px; */
   /* width: 249px; */
   /* width: 10px; */
-  padding-left: 10px;
-  margin-top: 90px;
-  transform: scale(1.3);
   margin-bottom: 10px;
+  margin-top: 90px;
+  padding-left: 10px;
+  transform: scale(1.3);
 }
 
 .container_login_inputs {
   background: #1a1919;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
   color: white;
   /* border: 1px solid #b1c2be; */
   /* bottom: 12.5%; */
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border-radius: 5px;
   padding: 10px;
 }
 
@@ -56,8 +56,8 @@
 
 .login_label {
   height: 42px;
-  width: 318px;
   margin-bottom: -10px;
+  width: 318px;
 }
 
 .input-login {
@@ -78,7 +78,9 @@
 
 .modal_button-login {
   align-items: center;
-  color: #000000;
+  border-radius: 4px;
+  color: black;
+  cursor: pointer;
   display: flex;
   font-size: 18px;
   font-style: normal;
@@ -86,20 +88,19 @@
   justify-content: center;
   line-height: 33px;
   margin: 10px;
-  text-align: center;
-  cursor: pointer;
   margin-top: 20px;
-  border-radius: 4px;
+  text-align: center;
 }
 
 .modal_button-login:disabled {
-  color: #999999;
+  color: #999;
   cursor: default;
 }
 
 .button-register {
   align-items: center;
-  color: #000000;
+  border-radius: 4px;
+  color: black;
   display: flex;
   font-size: 18px;
   font-style: normal;
@@ -107,6 +108,5 @@
   justify-content: center;
   line-height: 33px;
   margin: 10px;
-  border-radius: 4px;
 
 }
