@@ -7,9 +7,13 @@ import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
 import './styles/products.css';
+import Loading from '../components/Loading';
+
+// const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // coloquei aqui fora por causa do linter
 const fetchProducts = async (user) => {
+  // await sleep(100000);
   const response = await getAllProducts(user.token);
   return response.data;
 };
@@ -25,7 +29,7 @@ export default function Products() {
     isLoading: productsIsFetching,
   } = useQuery('products', () => fetchProducts(user));
 
-  if (productsIsFetching) return <p>Estou carregando aaa</p>;
+  if (productsIsFetching) return <Loading />;
   if (productsFetchFailed) {
     queryClient.cancelQueries('products');
     localStorage.removeItem('user');
