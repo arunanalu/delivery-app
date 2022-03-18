@@ -56,7 +56,12 @@ const verifyUserId = async (id) => {
 const getSalesByUserIdService = async (id) => {
   await verifyUserId(id);
   getSalesByUserIdValdiation(id);
-  const sales = await sale.findAll({ where: { userId: id } });
+  const sales = await sale.findAll({
+    where: { userId: id },
+    order: [
+      ['id', 'DESC'],
+    ],
+  });
   const salesToReturn = sales.map((element) => element.dataValues);
   return salesToReturn;
 };
