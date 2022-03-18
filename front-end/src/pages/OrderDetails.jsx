@@ -5,6 +5,7 @@ import { getSaleById, updateStatus } from '../services/calls';
 import useLocalStorage from '../hooks/useLocalStorage';
 import Table from '../components/Table';
 import './styles/ordersDetails.css';
+import Loading from '../components/Loading';
 
 const fetchOrderDetails = async (id, token) => {
   const response = await getSaleById(id, token);
@@ -38,14 +39,14 @@ export default function OrderDetails() {
     refetch();
   };
 
-  if (isLoading) return <div>Carregando</div>;
+  if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
   return (
     <div
       className="c-order-details"
     >
       <h1 className="order-details__page-title">Detalhe do Pedido</h1>
-      <main>
+      <main className="main-order-details">
         <div
           className="order-details__header"
         >

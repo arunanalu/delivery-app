@@ -4,6 +4,7 @@ import { getUserOrders } from '../services/calls';
 import useLocalStorage from '../hooks/useLocalStorage';
 import OrderCard from '../components/OrderCard';
 import './styles/orders.css';
+import Loading from '../components/Loading';
 
 const fetchOrders = async (user) => {
   const response = await getUserOrders(user.token, user.id);
@@ -13,7 +14,7 @@ export default function Orders() {
   const [user] = useLocalStorage('user', {});
   const { data, isLoading, isError } = useQuery('orders', () => fetchOrders(user));
 
-  if (isLoading) return <div>Carregando</div>;
+  if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
   return (
     <div
