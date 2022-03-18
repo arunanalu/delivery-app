@@ -1,10 +1,11 @@
 .order-card {
-  background-color: red;
+  background-color: rgb(246, 249, 255);
   border-radius: 2px;
   box-shadow: 2px 1px 2px 1px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-basis: 48%;
   gap: 10px;
+  margin-bottom: 10px;
   min-width: 300px;
   overflow: hidden;
   padding-right: 10px;
@@ -22,7 +23,7 @@
 
 .order-card__number-container {
   align-items: center;
-  background-color: cyan;
+  background-color: #fede00;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,8 +39,9 @@
 }
 
 .order-card__status {
-  background-color: green;
+  background-color: #647994;
   border-radius: 5px;
+  color: white;
   display: grid;
   margin: 10px 0;
   place-items: center;
@@ -56,8 +58,8 @@
 }
 
 .order-card__price, .order-card__date {
-  background-color: aliceblue;
-  border-radius: 2px;
+  background-color: rgb(246, 249, 255);
+  border-radius: 5px;
   padding: 10px 0;
   text-align: center;
   width: 100%;

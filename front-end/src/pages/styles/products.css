@@ -1,18 +1,10 @@
-/* main {
-  display: flex;
-  flex-wrap: wrap;
-  max-height: 100vh;
-  width: 100%;
-} */
-
 .main-products-container {
   align-items: center;
   display: flex;
   flex-direction: column;
   height: max-content;
   justify-content: center;
-  min-width: 508px;
-  width: 100%;
+  max-width: 100vw;
 }
 
 .cards-container {
@@ -39,10 +31,11 @@
 } */
 
 .kart-button {
-  background-color: #fdad26;
+  overflow: hidden;
+  background-color: #fede00;
   border: 0;
   bottom: 0;
-  color: white;
+  color: black;
   font-weight: 600;
   height: 50px;
   position: fixed;

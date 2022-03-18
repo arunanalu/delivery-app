@@ -1,37 +1,47 @@
 .container-register {
   align-items: center;
+  background-image: url('../../images//texture-wide.jpg');
+  background-position: 40% 30%;
+  background-repeat: no-repeat;
+  background-size: cover;
   display: flex;
   flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  width: 100vw;
 }
 
 .cadastro {
   height: 96px;
-  position: absolute;
+  margin-top: 40px;
   text-align: center;
-  top: 50px;
   width: 425px;
 }
 
 .form-register {
-  align-items: center;
+  background: #1a1919;
+  border-radius: 5px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  color: white;
   display: flex;
   flex-direction: column;
-  height: 505px;
-  position: absolute;
-  top: 150px;
-  width: 425px;
+  justify-content: center;
+  margin-top: -15px;
+  padding: 15px;
 }
 
 
 .label-register {
   align-items: center;
-  color: #001813;
+  color: white;
   display: flex;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
-  text-indent: 19px;
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 .input-register-page {
@@ -50,17 +60,18 @@
 }
 
 .registrar-btn {
-  align-items: center;
-  background: #036b52;
-  border-radius: 10px;
-  color: #f2fffc;
+  border-radius: 8px;
+  color: black;
   display: flex;
-  font-size: 28px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 33px;
-  margin-top: 10px;
+  margin: auto;
+  margin-top: 30px;
+  padding: 5px;
   text-align: center;
+
 }
 
 .registrar-btn:disabled {

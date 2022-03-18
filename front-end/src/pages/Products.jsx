@@ -8,9 +8,12 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
 import './styles/products.css';
 import { setInitialCart } from '../app/slices/cartSlice';
+import Loading from '../components/Loading';
 
-// coloquei aqui fora por causa do linter
+// const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
 const fetchProducts = async (user) => {
+  // await sleep(100000);
   const response = await getAllProducts(user.token);
   return response.data;
 };
@@ -39,8 +42,8 @@ export default function Products() {
       setLocalStorageCart(cart);
     }
   }, [cart]);
-
-  if (productsIsFetching) return <p>Estou carregando aaa</p>;
+  
+  if (productsIsFetching) return <Loading />;
   if (productsFetchFailed) {
     queryClient.cancelQueries('products');
     localStorage.removeItem('user');

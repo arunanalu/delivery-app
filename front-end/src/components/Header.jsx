@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
-import '../styles/header.css';
+import './styles/header.css';
 
 export default function Header() {
   const history = useHistory();

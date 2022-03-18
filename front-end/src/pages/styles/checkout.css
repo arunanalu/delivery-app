@@ -1,14 +1,15 @@
 .c-checkout {
-  background-color: navy;
   padding: 15px 10vw;
 }
 
 .c-checkout h1 {
-  color: white;
+  color: black;
+  margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .checkout__finish-order-btn {
-  background-color: blueviolet;
+  background-color: #fede00;
   border: none;
   border-radius: 5px;
   padding: 10px;
@@ -16,13 +17,23 @@
 }
 
 .checkout__finish-order-btn:hover {
-  background-color: rgb(48, 11, 83);
-  color: white;
+  background-color: #fdad26;
+  color: black;
+}
+
+.checkout__finish-order-btn:disabled {
+  cursor: default;
+  background-color: #ffef88;
+  color: gray;
+}
+
+.checkout__finish-order-btn:disabled:hover {
+  background-color: #ffef88;
 }
 
 .checkout__details {
   align-items: center;
-  background-color: red;
+  background-color: #dfedfc;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -32,7 +43,9 @@
 }
 
 .checkout__details :nth-child( -n+3 ) {
+  color: black;
   display: flex;
   flex-direction: column;
+  margin-bottom: 10px;
   min-width: 30%;
 }

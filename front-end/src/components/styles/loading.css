@@ -1,0 +1,40 @@
+/* stylelint-disable comment-empty-line-before */
+/* stylelint-disable at-rule-no-vendor-prefix */
+/* stylelint-disable property-no-vendor-prefix */
+
+@-webkit-keyframes spin {
+
+  0% { -webkit-transform: rotate(0deg); }
+
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+
+  0% { transform: rotate(0deg); }
+
+  100% { transform: rotate(360deg); }
+}
+
+.loading-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 180px;
+}
+
+.loading-container p {
+  font-weight: 400;
+  margin-bottom: 26px;
+}
+
+.loading {
+  -webkit-animation: spin 1.2s linear infinite;
+  animation: spin 1.2s linear infinite;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #004c98;
+  height: 100px;
+  width: 100px;
+}

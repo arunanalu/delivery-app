@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeAllFromCart, removeFromCart, updateTotal } from '../app/slices/cartSlice';
+import { removeAllFromCart, removeFromCart, setInitialCart, updateTotal } from '../app/slices/cartSlice';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -10,6 +10,7 @@ import Table from '../components/Table';
 import './styles/checkout.css';
 
 export default function Checkout() {
+  console.log('renderizei')
   const dispatch = useDispatch();
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover Item'];
@@ -19,16 +20,32 @@ export default function Checkout() {
   const [seller, setSeller] = useState('');
   const sellers = ['Fulana Pereira'];
   const [user] = useLocalStorage('user', {});
+  const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart');
   const history = useHistory();
 
-  const removeItem = (id) => {
+  const removeItem = async (id) => {
     dispatch(removeFromCart({ id }));
     dispatch(updateTotal());
   };
 
+  useEffect(() => {
+    if(localStorageCart.total !== cart.total) {
+      setLocalStorageCart(cart);
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    dispatch(setInitialCart(localStorageCart));
+  }, []);
+
   const removeAllItens = () => {
     dispatch(removeAllFromCart());
     dispatch(updateTotal());
+  };
+
+  const setDisable = (items) => {
+    if (items.length === 0) return 'true';
+    return false;
   };
 
   const handleFinishOrder = async () => {
@@ -63,7 +80,7 @@ export default function Checkout() {
         <Table
           columns={ columns }
           items={ cart.items }
-          total={ cart.total.toString().replace('.', ',') }
+          total={ cart.total }
           handleClick={ removeItem }
           testIdNumber="customer_checkout__element-order-table-item-number-"
           testIdName="customer_checkout__element-order-table-name-"
@@ -105,6 +122,7 @@ export default function Checkout() {
           onClick={ handleFinishOrder }
           data-testid="customer_checkout__button-submit-order"
           type="button"
+          disabled={ setDisable(cart.items) }
         >
           Finalizar Pedido
         </button>

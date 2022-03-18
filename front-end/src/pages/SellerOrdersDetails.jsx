@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import Header from '../components/Header';
 import { getSaleById, updateStatus } from '../services/calls';
-import { useQuery } from 'react-query';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export default function SellerOrdersDetails() {
@@ -15,17 +15,17 @@ export default function SellerOrdersDetails() {
   });
 
   const setShipped = async () => {
-    await updateStatus(idParamPage, {status: "Em trânsito"},user.token )
+    await updateStatus(idParamPage, { status: 'Em trânsito' }, user.token);
     refetch();
-  }
-  
-  const setPreparing = async() => {
-    await updateStatus(idParamPage, {status: "Preparando"},user.token )
+  };
+
+  const setPreparing = async () => {
+    await updateStatus(idParamPage, { status: 'Preparando' }, user.token);
     refetch();
-  }
-  
+  };
+
   if (!data) return <p>não possui produtos</p>;
-  console.log(data.products[0].salesProduct.quantity)
+  console.log(data.products[0].salesProduct.quantity);
   const date = new Date(data.saleDate);
   return (
     <div>
@@ -51,18 +51,18 @@ export default function SellerOrdersDetails() {
         {data.status}
       </label>
       <button
-        onClick={setShipped}
+        onClick={ setShipped }
         type="button"
         data-testid="seller_order_details__button-dispatch-check"
-        disabled={data.status !== "Preparando"}
+        disabled={ data.status !== 'Preparando' }
       >
         Saiu para entrega
       </button>
       <button
         type="button"
-        onClick={setPreparing}
+        onClick={ setPreparing }
         data-testid="seller_order_details__button-preparing-check"
-        disabled={data.status !== "Pendente"}
+        disabled={ data.status !== 'Pendente' }
       >
         Preparar pedido
       </button>

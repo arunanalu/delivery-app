@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -52,9 +53,9 @@ export default function Login() {
       </div>
       <div className="container_login_inputs">
         <div className="inputs">
-          <div>
-            <label className="login_label" htmlFor="username">
-              Login:
+          <div className="login_label">
+            <label htmlFor="username">
+              Login
             </label>
           </div>
           <input
@@ -69,9 +70,9 @@ export default function Login() {
           />
         </div>
         <div className="inputs">
-          <div>
-            <label className="login_label" htmlFor="password">
-              Senha:
+          <div className="login_label">
+            <label htmlFor="password">
+              Senha
             </label>
           </div>
           <input
