@@ -81,7 +81,7 @@ export default function OrderDetails() {
             data-testid="customer_order_details__button-delivery-check"
             onClick={ handleStatus }
             className="order-details__shipped-btn"
-            disabled={data.status !== "Em trânsito"}
+            disabled={ data.status !== 'Em trânsito' }
           >
             MARCAR COMO ENTREGUE
           </button>

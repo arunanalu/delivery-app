@@ -5,6 +5,24 @@ import './styles/orderCard.css';
 
 export default function OrderCard({ id, status, saleDate, totalPrice }) {
   const history = useHistory();
+  const statusColor = (statusOfOrder) => {
+    let color = '';
+    switch (statusOfOrder) {
+    case 'Entregue':
+      color = 'black';
+      break;
+    case 'Pendente':
+      color = '#b96f62';
+      break;
+    case 'Em trânsito':
+      color = '#fdad26';
+      break;
+    default:
+      color = '';
+      break;
+    }
+    return { backgroundColor: color };
+  };
   return (
     <div
       onClick={ () => history.push(`orders/${id}`) }
@@ -22,6 +40,7 @@ export default function OrderCard({ id, status, saleDate, totalPrice }) {
       <h3
         className="order-card__status"
         data-testid={ `customer_orders__element-delivery-status-${id}` }
+        style={ statusColor(status) }
       >
         {status}
       </h3>
