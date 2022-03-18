@@ -1,37 +1,60 @@
 .container-register {
   align-items: center;
+  justify-content: center;
   display: flex;
   flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: 40% 30%;
+  background-repeat: no-repeat;
+  background-image: url('../../images//texture-wide.jpg');
 }
 
 .cadastro {
   height: 96px;
-  position: absolute;
+  /* position: absolute; */
   text-align: center;
-  top: 50px;
+  /* top: 50px; */
   width: 425px;
+  margin-top: 40px;
 }
 
 .form-register {
-  align-items: center;
+  /* align-items: center;
+  display: flex;
+  flex-direction: column; */
+  /* height: 505px; */
+  /* position: absolute; */
+  /* top: 150px; */
+  /* width: 425px; */
+  background: #1a1919;
+  color: white;
+  /* border: 1px solid #b1c2be; */
+  /* bottom: 12.5%; */
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  height: 505px;
-  position: absolute;
-  top: 150px;
-  width: 425px;
+  justify-content: center;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: -15px;
+
 }
 
 
 .label-register {
   align-items: center;
-  color: #001813;
+  color: #ffffff;
   display: flex;
-  font-size: 24px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 28px;
-  text-indent: 19px;
+  /* text-indent: 19px; */
+  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
 .input-register-page {
@@ -50,17 +73,18 @@
 }
 
 .registrar-btn {
-  align-items: center;
-  background: #036b52;
-  border-radius: 10px;
-  color: #f2fffc;
+  border-radius: 8px;
+  color: #000000;
   display: flex;
-  font-size: 28px;
+  font-size: 18px;
   font-style: normal;
   font-weight: 400;
   line-height: 33px;
-  margin-top: 10px;
+  margin: auto;
+  margin-top: 30px;
   text-align: center;
+  padding: 5px;
+
 }
 
 .registrar-btn:disabled {
