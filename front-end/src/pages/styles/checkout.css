@@ -21,6 +21,15 @@
   color: black;
 }
 
+.checkout__finish-order-btn:disabled {
+  background-color: #ffef88;
+  color: gray;
+}
+
+.checkout__finish-order-btn:disabled:hover {
+  background-color: #ffef88;
+}
+
 .checkout__details {
   align-items: center;
   background-color: #dfedfc;

@@ -31,6 +31,11 @@ export default function Checkout() {
     dispatch(updateTotal());
   };
 
+  const setDisable = (items) => {
+    if (items.length === 0) return 'true';
+    return false;
+  };
+
   const handleFinishOrder = async () => {
     try {
       const products = cart.items.map((item) => (
@@ -105,6 +110,7 @@ export default function Checkout() {
           onClick={ handleFinishOrder }
           data-testid="customer_checkout__button-submit-order"
           type="button"
+          disabled={ setDisable(cart.items) }
         >
           Finalizar Pedido
         </button>
