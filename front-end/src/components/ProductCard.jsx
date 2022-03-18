@@ -21,11 +21,6 @@ export default function ProductCard({ name, imagePath, price, id }) {
     dispatch(updateTotal());
   };
 
-  const handleChange = (e) => {
-    dispatch(setItemQuantity({ id, name, price, quantity: Number(e.target.value) }));
-    dispatch(updateTotal());
-  };
-
   const handleRemoveProduct = () => {
     dispatch(decreaseOneFromCart({ id }));
     dispatch(updateTotal());
@@ -64,7 +59,7 @@ export default function ProductCard({ name, imagePath, price, id }) {
           type="number"
           placeholder="0"
           value={ cartQuantity }
-          onChange={ handleChange }
+          readOnly
           data-testid={ `customer_products__input-card-quantity-${id}` }
         />
         <button

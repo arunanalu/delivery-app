@@ -7,6 +7,11 @@ export const cart = createSlice({
     total: 0,
   },
   reducers: {
+    setInitialCart: (state, action) => {
+      const { total, items } = action.payload;
+      state.total = total;
+      state.items = [...items];
+    },
     addOneToCart: (state, action) => {
       const { items } = state;
       const { id, name, price } = action.payload;
@@ -38,30 +43,8 @@ export const cart = createSlice({
         }
       }
     },
-    setItemQuantity: (state, action) => {
-      const { items } = state;
-      const { id, name, price, quantity } = action.payload;
-      const productInCart = items.find((product) => product.id === id);
-      if (!productInCart) {
-        const newProduct = {
-          name,
-          price,
-          id,
-          quantity,
-        };
-        items.push(newProduct);
-      } else {
-        const productIndex = items.indexOf(productInCart);
-        if (quantity === 0) {
-          items.splice(productIndex, 1);
-        } else {
-          items[productIndex].quantity = quantity;
-        }
-      }
-    },
     removeFromCart: (state, action) => {
       const { id } = action.payload;
-      console.log(id);
       const { items } = state;
       const productInCart = items.find((product) => product.id === id);
       if (!productInCart) return;
@@ -69,15 +52,8 @@ export const cart = createSlice({
       const productIndex = items.indexOf(productInCart);
       items.splice(productIndex, 1);
     },
-    // eslint-disable-next-line no-unused-vars
-    removeAllFromCart: (state, _action) => {
-      // const { id } = action.payload;
-      // console.log(id);
+    removeAllFromCart: (state) => {
       const { items } = state;
-      // const productInCart = items.find((product) => product.id === id);
-      // if (!productInCart) return;
-
-      // const productIndex = items.indexOf(productInCart);
       items.splice(0, items.length);
     },
     updateTotal: (state) => {
@@ -85,10 +61,10 @@ export const cart = createSlice({
       const totalCartValue = items.reduce((total, currentItem) => {
         const itemPrice = parseFloat(currentItem.price);
         const totalItemPrice = currentItem.quantity * itemPrice;
-        total += Math.round(totalItemPrice * 100) / 100;
-        return Math.round(total * 100) / 100;
+        total += totalItemPrice ;
+        return total;
       }, 0);
-      state.total = totalCartValue;
+      state.total = totalCartValue * 100 / 100;
     },
   },
 });
@@ -100,6 +76,7 @@ export const {
   updateTotal,
   setItemQuantity,
   removeAllFromCart,
+  setInitialCart,
 } = cart.actions;
 
 export default cart.reducer;

@@ -22,6 +22,7 @@
 }
 
 .checkout__finish-order-btn:disabled {
+  cursor: default;
   background-color: #ffef88;
   color: gray;
 }

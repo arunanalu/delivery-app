@@ -85,61 +85,12 @@ function Table({
             ))}
           </tbody>
         )}
-        {/* <tbody>
-          {items.length === 0 ? 'Seu carrinho está vazio'
-            : items.map((product, index) => (
-              <tr key={ product.id }>
-                <td
-                  data-testid={ `${testIdNumber}${index}` }
-                >
-                  {index + 1}
-
-                </td>
-                <td
-                  data-testid={ `${testIdName}${index}` }
-                >
-                  {product.name}
-
-                </td>
-                <td
-                  data-testid={ `${testIdQuantity}${index}` }
-                >
-                  {product.quantity ? product.quantity : product.salesProduct.quantity}
-
-                </td>
-                <td
-                  data-testid={ `${testIdUnitPrice}${index}` }
-                >
-                  {product.price.toString().replace('.', ',')}
-
-                </td>
-                <td
-                  data-testid={ `${testIdSubTotal}${index}` }
-                >
-                  {(product.quantity
-                    ? product.quantity * product.price
-                    : product.salesProduct.quantity * product.price).toFixed(2).toString()
-                    .replace('.', ',')}
-
-                </td>
-                {thereIsButton && (
-                  <td>
-                    <Button
-                      label="Remover"
-                      onClick={ () => handleClick(product.id) }
-                      testid={ `${testIdRemove}${index}` }
-                    />
-                  </td>
-                )}
-              </tr>
-            ))}
-        </tbody> */}
       </table>
       <p
         className="order-details__total"
         data-testid={ testIdTotal }
       >
-        {`Total: R$ ${total}`}
+        {`Total: R$ ${total.toFixed(2)}`}
       </p>
     </div>
   );

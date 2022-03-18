@@ -2,7 +2,6 @@ import React from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import Register from './pages/Register';
-import './App.css';
 import Products from './pages/Products';
 import Orders from './pages/Orders';
 import queryClient from './react-query/queryClient';
@@ -32,7 +31,6 @@ function App() {
         />
         <Route path="/customer">
           <Header />
-
           <Route exact path="/customer/orders" component={ Orders } />
           <Route exact path="/customer/orders/:id" component={ OrderDetails } />
           <Route exact path="/customer/products" component={ Products } />

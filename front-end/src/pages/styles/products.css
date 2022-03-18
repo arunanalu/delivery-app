@@ -4,8 +4,7 @@
   flex-direction: column;
   height: max-content;
   justify-content: center;
-  min-width: 508px;
-  width: 100vw;
+  max-width: 100vw;
 }
 
 .cards-container {
@@ -32,6 +31,7 @@
 } */
 
 .kart-button {
+  overflow: hidden;
   background-color: #fede00;
   border: 0;
   bottom: 0;

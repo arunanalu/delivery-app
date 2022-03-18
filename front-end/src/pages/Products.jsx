@@ -1,17 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useHistory, Redirect } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getAllProducts } from '../services/calls';
 import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
 import './styles/products.css';
+import { setInitialCart } from '../app/slices/cartSlice';
 import Loading from '../components/Loading';
 
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-// coloquei aqui fora por causa do linter
 const fetchProducts = async (user) => {
   // await sleep(100000);
   const response = await getAllProducts(user.token);
@@ -19,8 +19,10 @@ const fetchProducts = async (user) => {
 };
 
 export default function Products() {
-  const [user] = useLocalStorage('user', {});
-  const cartTotal = useSelector((state) => state.cart.total);
+  const [user] = useLocalStorage('user');
+  const [localStorageCart, setLocalStorageCart] = useLocalStorage('cart', false);
+  const cart = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const history = useHistory();
 
   const {
@@ -29,6 +31,18 @@ export default function Products() {
     isLoading: productsIsFetching,
   } = useQuery('products', () => fetchProducts(user));
 
+  useEffect(() => {
+    if(localStorageCart) {
+      dispatch(setInitialCart(localStorageCart))
+    }
+  }, []);
+  
+  useEffect(() => {
+    if(cart.items.length){
+      setLocalStorageCart(cart);
+    }
+  }, [cart]);
+  
   if (productsIsFetching) return <Loading />;
   if (productsFetchFailed) {
     queryClient.cancelQueries('products');
@@ -53,7 +67,7 @@ export default function Products() {
       <button
         type="button"
         onClick={ () => history.push('checkout') }
-        disabled={ cartTotal === 0 }
+        disabled={ cart.total === 0 }
         id="card-button"
         data-testid="customer_products__button-cart"
         className="kart-button"
@@ -62,7 +76,7 @@ export default function Products() {
         <span
           data-testid="customer_products__checkout-bottom-value"
         >
-          { ` R$: ${cartTotal.toFixed(2).toString().replace('.', ',')}` }
+          { ` R$: ${cart.total.toFixed(2).toString().replace('.', ',')}` }
         </span>
       </button>
     </main>
