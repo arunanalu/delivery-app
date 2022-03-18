@@ -40,7 +40,7 @@ export default function OrderCard({ id, status, saleDate, totalPrice }) {
           data-testid={ `customer_orders__element-card-price-${id}` }
           className="order-card__price"
         >
-          {totalPrice.replace('.', ',')}
+          {`R$ ${totalPrice.replace('.', ',')}`}
         </h3>
       </div>
     </div>
