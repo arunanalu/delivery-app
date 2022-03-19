@@ -41,6 +41,7 @@ export default function OrderDetails() {
 
   if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
+
   return (
     <div
       className="c-order-details"

@@ -25,6 +25,7 @@
   border-radius: 5px;
   box-shadow: 3px 2px 3px 1px rgba(0, 0, 0, 0.4);
   overflow: hidden;
+  padding-right: 20px;
 }
 
 .order-details__header .order-details__order-id {
@@ -46,10 +47,24 @@
   border-radius: 5px;
   color: white;
   flex-grow: 1;
+  margin-right: 10px;
   padding: 5px 20px;
 }
 
 .order-details__shipped-btn:disabled {
   background-color: rgb(218, 218, 218);
   border: 1px solid rgba(0, 0, 0, 0.205);
+}
+
+.order-details__address {
+  background-color: #fede00;
+  display: flex;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  width: 100vw;
+}
+
+.order-details__address p:nth-child( 1 ) {
+  font-weight: 600;
+  margin-right: 16px;
 }
