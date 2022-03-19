@@ -25,6 +25,7 @@
 }
 
 .loading-container p {
+  font-size: 18px;
   font-weight: 400;
   margin-bottom: 26px;
 }
@@ -35,6 +36,6 @@
   border: 16px solid #f3f3f3;
   border-radius: 50%;
   border-top: 16px solid #004c98;
-  height: 100px;
-  width: 100px;
+  height: 70px;
+  width: 70px;
 }
