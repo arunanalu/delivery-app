@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeAllFromCart, removeFromCart, setInitialCart, updateTotal } from '../app/slices/cartSlice';
+import {
+  removeAllFromCart,
+  removeFromCart, setInitialCart, updateTotal } from '../app/slices/cartSlice';
 import Input from '../components/Input';
 import Select from '../components/Select';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -10,7 +13,7 @@ import Table from '../components/Table';
 import './styles/checkout.css';
 
 export default function Checkout() {
-  console.log('renderizei')
+  console.log('renderizei');
   const dispatch = useDispatch();
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover Item'];
@@ -29,7 +32,7 @@ export default function Checkout() {
   };
 
   useEffect(() => {
-    if(localStorageCart.total !== cart.total) {
+    if (localStorageCart.total !== cart.total) {
       setLocalStorageCart(cart);
     }
   }, [cart]);
