@@ -31,13 +31,13 @@
 } */
 
 .kart-button {
-  overflow: hidden;
   background-color: #fede00;
   border: 0;
   bottom: 0;
   color: black;
   font-weight: 600;
   height: 50px;
+  overflow: hidden;
   position: fixed;
   width: 100vw;
 }

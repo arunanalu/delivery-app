@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useHistory, Redirect } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import ProductCard from '../components/ProductCard';
 import useLocalStorage from '../hooks/useLocalStorage';
 import queryClient from '../react-query/queryClient';
 import './styles/products.css';
-import { setInitialCart } from '../app/slices/cartSlice';
+import { removeAllFromCart, setInitialCart, updateTotal } from '../app/slices/cartSlice';
 import Loading from '../components/Loading';
 
 // const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
@@ -32,21 +33,24 @@ export default function Products() {
   } = useQuery('products', () => fetchProducts(user));
 
   useEffect(() => {
-    if(localStorageCart) {
-      dispatch(setInitialCart(localStorageCart))
+    if (localStorageCart) {
+      dispatch(setInitialCart(localStorageCart));
     }
   }, []);
-  
+
   useEffect(() => {
-    if(cart.items.length){
+    if (cart.items.length) {
       setLocalStorageCart(cart);
     }
   }, [cart]);
-  
+
   if (productsIsFetching) return <Loading />;
   if (productsFetchFailed) {
     queryClient.cancelQueries('products');
     localStorage.removeItem('user');
+    localStorage.removeItem('cart');
+    dispatch(removeAllFromCart());
+    dispatch(updateTotal());
     // eslint-disable-next-line no-alert
     alert('You session is closed. Please, login again');
     return <Redirect to="/" />;
