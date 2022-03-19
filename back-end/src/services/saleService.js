@@ -80,7 +80,12 @@ const getSaleDetailsService = async (id) => {
 };
 
 const getSaleByIdSellerService = async (id) => {
-  const sales = await sale.findAll({ where: { sellerId: id } });
+  const sales = await sale.findAll({
+    where: { sellerId: id },
+    order: [
+      ['id', 'DESC'],
+    ],
+  });
   console.log('🚀 ~ file: saleService.js ~ line 79 ~ getSaleByIdSellerService ~ sales', sales);
   const salesToReturn = sales.map((element) => element.dataValues);
   return salesToReturn;

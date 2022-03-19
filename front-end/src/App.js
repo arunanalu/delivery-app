@@ -12,6 +12,7 @@ import Header from './components/Header';
 import OrderDetails from './pages/OrderDetails';
 import SellerOrders from './pages/SellerOrders';
 import SellerOrdersDetails from './pages/SellerOrdersDetails';
+// import './index.css';
 
 function App() {
   return (

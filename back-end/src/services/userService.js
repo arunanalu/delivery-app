@@ -56,7 +56,7 @@ const verifyUserId = async (id) => {
 
 const deleteUserService = async (id, loggedUser) => {
   await verifyUserId(id);
-  console.log(loggedUser);
+  // console.log(loggedUser);
   await adminValidation(loggedUser.role);
   await user.destroy({ where: { id } });
 };
