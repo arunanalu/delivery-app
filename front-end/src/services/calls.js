@@ -141,3 +141,16 @@ export const getSaleBySellerId = async (id, token) => {
     throw error.response ? error.response.data.message : connectionFailed;
   }
 };
+
+export const deleteUser = async (id, token) => {
+  try {
+    const response = await api.delete(`/user/${id}`, {
+      headers: {
+        authorization: token,
+      },
+    });
+    return response;
+  } catch (error) {
+    throw error.response ? error.response.data.message : connectionFailed;
+  }
+};
