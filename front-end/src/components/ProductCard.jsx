@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addOneToCart,
   decreaseOneFromCart,
   updateTotal,
-  setItemQuantity,
 } from '../app/slices/cartSlice';
 import './styles/productCard.css';
 
