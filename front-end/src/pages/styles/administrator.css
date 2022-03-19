@@ -1,0 +1,53 @@
+.main-admin-ct {
+  background-color: white;
+  height: max-content;
+  margin-top: 60px;
+}
+
+.register-user {
+  align-items: center;
+  background-color: rgb(246, 249, 255);
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.247);
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  margin: 0 auto;
+  min-width: 900px;
+  overflow: hidden;
+  padding: 20px 20px 0;
+  width: 90%;
+
+}
+
+.inputs-admin-ct {
+  display: flex;
+  justify-content: center;
+}
+
+.inputs-admin-ct input {
+  margin: 0 15px;
+}
+
+.register-user button {
+  background-color: #fede00;
+  border: none;
+  color: black;
+  height: 50px;
+  margin-top: 30px;
+  min-width: 1000px;
+  width: 100vw;
+}
+
+.register-user button:disabled {
+  color: rgb(173, 173, 173);
+}
+
+.main-admin-ct h2 {
+  margin-bottom: 30px;
+  margin-left: 80px;
+}
+
+.main-admin-ct h2:nth-child( 4 ) {
+  margin-top: 50px;
+}

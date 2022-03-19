@@ -1,0 +1,41 @@
+.users-main-ct {
+  background-color: rgb(246, 249, 255);
+  border-collapse: separate;
+  border-radius: 5px;
+  border-spacing: 0 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.247);
+  margin: auto;
+  margin-bottom: 60px;
+  padding: 10px;
+  width: 90%;
+}
+
+.users-titles th {
+  padding: 10px 0;
+}
+
+.users-lines td {
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.users-lines td:not( :nth-child( 5 ) ) {
+  border: 1px dotted rgb(148, 148, 148);
+  border-radius: 2px;
+  padding: 10px 8px;
+  text-align: center;
+}
+
+.delete-user-ct-btn button {
+  background-color: red;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  height: 30px;
+  transition: 100ms ease-in;
+  width: 100%;
+}
+
+.delete-user-ct-btn button:hover {
+  background-color: rgb(153, 7, 7);
+}
