@@ -1,12 +1,12 @@
 .label {
-  color: white;
+  color: black;
 }
 
 .default-input {
-  background-color: white;
-  border: none;
+  border: 1px solid silver;
   border-radius: 5px;
   height: 30px;
   margin: 0;
   padding: 0;
+  padding-left: 8px;
 }

@@ -1,7 +1,7 @@
 .c-table {
   background-color: #dfedfc;
   border-radius: 2px;
-  padding: 0 10px 60px;
+  padding: 10px 10px 60px;
   position: relative;
   width: 100%;
 }
@@ -17,59 +17,59 @@
   text-align: center;
 }
 
-table {
+.items table {
   border-collapse: separate;
   border-spacing: 0 10px;
   width: 100%;
 }
 
-td {
+.items td {
   height: 50px;
 }
 
-td:not( :nth-child( 2 ) ) {
+.items td:not( :nth-child( 2 ) ) {
   text-align: center;
 }
 
 /* item */
-td:first-child {
+.items td:first-child {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.137);
   border-radius: 5px 0 0 5px;
 }
 
 /* sub-total */
-td:last-child {
+.items td:last-child {
   border-radius: 0 5px 5px 0;
 }
 
-th:not( :nth-child( 2 ) ) {
+.items th:not( :nth-child( 2 ) ) {
   padding: 0 10px;
   white-space: nowrap;
   width: 1%;
 }
 
 /* descricao */
-td:nth-child( 2 ) {
+.items td:nth-child( 2 ) {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.137);
   padding-left: 6px;
 }
 
 /* quantidade */
-td:nth-child( 3 ) {
+.items td:nth-child( 3 ) {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.137);
 }
 
 /* valor unitario */
-td:nth-child( 4 ) {
+.items td:nth-child( 4 ) {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.137);
 }
 
 /* sub total */
-td:nth-child( 5 ) {
+.items td:nth-child( 5 ) {
   background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.137);
 }
@@ -77,16 +77,16 @@ td:nth-child( 5 ) {
 /* remover */
 
 /* existe um seletor ESPECIFICAMENTE pro botão no final desse arquivo */
-td:nth-child( 6 ) {
+.items td:nth-child( 6 ) {
   background-color: red;
   transition: 100ms ease-in;
 }
 
-td:nth-child( 6 ):hover {
+.items td:nth-child( 6 ):hover {
   background-color: rgb(153, 7, 7);
 }
 
-tbody tr {
+.items tbody tr {
   height: 50px;
 }
 
@@ -102,7 +102,7 @@ tbody tr {
   right: 10px;
 }
 
-td button {
+.items td button {
   background-color: transparent;
   border: none;
   color: white;

@@ -90,7 +90,7 @@ function Table({
         className="order-details__total"
         data-testid={ testIdTotal }
       >
-        {`Total: R$ ${total.toFixed(2)}`}
+        {`Total: R$ ${total}`}
       </p>
     </div>
   );
