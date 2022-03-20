@@ -4,16 +4,16 @@ const { badRequest } = require('../utils/dictionaries/statusCode');
 const { errorConstructor } = require('../utils/functions');
 
 const incomingSaleSchema = Joi.object({
-  userId: Joi.number().integer().required(),
-  sellerId: Joi.number().integer().required(),
+  userId: Joi.required(),
+  sellerId: Joi.required(),
   totalPrice: Joi.string().required(),
-  deliveryAddress: Joi.string().max(100).required(),
-  deliveryNumber: Joi.number().max(50).required(),
+  deliveryAddress: Joi.string().required(),
+  deliveryNumber: Joi.string().required(),
 });
 
 const arrayProductsSchema = Joi.object({
-  productId: Joi.number().required(),
-  quantity: Joi.number().required(),
+  productId: Joi.required(),
+  quantity: Joi.required(),
 });
 
 const updateSaleSchema = Joi.object({
