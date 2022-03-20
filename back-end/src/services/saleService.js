@@ -60,10 +60,10 @@ const getSaleDetailsService = async (id) => {
   const result = await SalesProduct.find({ saleId: id }).populate('productId').lean();
   const products = result.map((element) => {
     const { productId, quantity } = element;
-    return { ...productId, quantity };
+    return { ...productId, salesProduct: { quantity } };
   });
   const resultSale = await Sale.findOne({ id }).lean();
-  const saleAndProducts = { sale: { ...resultSale }, products: [...products] };
+  const saleAndProducts = { ...resultSale, products: [...products] };
   return saleAndProducts;
 };
 
