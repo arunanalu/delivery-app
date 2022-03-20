@@ -11,7 +11,7 @@
     "with-env": "SKIP_PREFLIGHT_CHECK=true",
     "start": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts --openssl-legacy-provider start",
     "start:build": "PORT=3000 ./node_modules/.bin/serve -s build",
-    "build": "npm run with-env react-scripts build",
+    "build": "cross-env SKIP_PREFLIGHT_CHECK=true react-scripts --openssl-legacy-provider build",
     "test": "npm run with-env react-scripts test -- --runInBand --detectOpenHandles --verbose",
     "test:coverage": "npm run with-env react-scripts test -- --coverage",
     "test:coverage:json": "npm run with-env react-scripts test -- --coverage --coverageReporters=\"json-summary\" --watchAll=false --testFailureExitCode=0 --detectOpenHandles --runInBand --forceExit",

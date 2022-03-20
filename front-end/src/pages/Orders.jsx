@@ -16,7 +16,7 @@ export default function Orders() {
 
   if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
-  const indexes = data.map((_el, index) => index )
+  const indexes = data.map((_el, index) => index);
   indexes.reverse();
   return (
     <div

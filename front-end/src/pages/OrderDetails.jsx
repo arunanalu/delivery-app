@@ -1,3 +1,4 @@
+/* eslint-disable prefer-destructuring */
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useQuery } from 'react-query';
@@ -16,9 +17,9 @@ export default function OrderDetails() {
   let fakeId;
   const DATA_ID_DETAILS = 'customer_order_details';
   const { realAndFakeId } = useParams();
-  const id = realAndFakeId.split('&')[0]
-  fakeId = realAndFakeId.split('&')[1]
-  if (fakeId === undefined) { fakeId = ''} ;
+  const id = realAndFakeId.split('&')[0];
+  fakeId = realAndFakeId.split('&')[1];
+  if (fakeId === undefined) { fakeId = ''; }
   const [user] = useLocalStorage('user', {});
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
@@ -46,7 +47,7 @@ export default function OrderDetails() {
   if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
 
-  console.log(data)
+  console.log(data);
 
   return (
     <div

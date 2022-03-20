@@ -25,7 +25,7 @@ export default function Products() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const history = useHistory();
-  const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
+  // const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
   const {
     data: productList,
@@ -65,7 +65,7 @@ export default function Products() {
             key={ product.id }
             id={ product.id }
             name={ product.name }
-            imagePath={ `${baseURL}/${product.url_image}` }
+            imagePath={ product.url_image }
             price={ product.price }
           />
         ))}

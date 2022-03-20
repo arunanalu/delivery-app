@@ -61,10 +61,10 @@ export const cart = createSlice({
       const totalCartValue = items.reduce((total, currentItem) => {
         const itemPrice = parseFloat(currentItem.price);
         const totalItemPrice = currentItem.quantity * itemPrice;
-        total += totalItemPrice ;
+        total += totalItemPrice;
         return total;
       }, 0);
-      state.total = totalCartValue * 100 / 100;
+      state.total = (totalCartValue * 100) / 100;
     },
   },
 });
