@@ -1,11 +1,11 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-const errorMiddleware = require('./src/middlewares/errorMiddleware');
-const loginRoute = require('./src/routes/loginRoute');
-const userRouter = require('./src/routes/userRoute');
-const productRouter = require('./src/routes/productRouter');
-const salesRoute = require('./src/routes/salesRoute');
+const errorMiddleware = require('../middlewares/errorMiddleware');
+const loginRoute = require('../routes/loginRoute');
+const userRouter = require('../routes/userRoute');
+const productRouter = require('../routes/productRouter');
+const salesRoute = require('../routes/salesRoute');
 require('dotenv').config();
 
 const app = express();

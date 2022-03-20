@@ -11,7 +11,7 @@
   "scripts": {
     "db:reset": "node ./src/models/seeders/resetDb.js",
     "db:seed": "node ./src/models/seeders/index.js",
-    "start": "node ./index.js",
+    "start": "node ./src/api/index.js",
     "dev": "nodemon .",
     "test": "mocha src/tests/**/*$NAME*.test.js --exit",
     "test:coverage": "nyc --all npm run test",
