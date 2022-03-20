@@ -1,4 +1,4 @@
-const Product = require('./productSchema');
+const Product = require('../productSchema');
 
 const products = [
   {
@@ -77,7 +77,4 @@ const productsSeeders = async () => {
   }
 };
 
-productsSeeders().then(() => {
-  console.log('Products seeders succsess !');
-  process.exit();
-});
+module.exports = productsSeeders;
