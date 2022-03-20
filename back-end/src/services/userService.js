@@ -1,5 +1,4 @@
 const { cryptHashMd5, errorConstructor } = require('../utils/functions');
-const { user } = require('../database/models');
 const { userAlreadyRegistered, 
   invalidId } = require('../utils/dictionaries/messagesDefault');
 const { conflict, badRequest } = require('../utils/dictionaries/statusCode');
@@ -7,22 +6,21 @@ const { userValidation,
   registerUserWithRoleValidation, 
   adminValidation } = require('../validations/registerUserValidations');
 const { generateToken } = require('../auth/authService');
+const User = require('../models/userSchema');
 
 const registerUserService = async (bodyRequest) => {
   const { name, email, password } = bodyRequest;
   userValidation(name, email, password);
   const passwordEncrypted = cryptHashMd5(password);
-  const [userRegister, created] = await user.findOrCreate({
-    where: { email },
-    defaults: { name, email, password: passwordEncrypted, role: 'customer' },
-  });
-  if (!created) throw errorConstructor(conflict, userAlreadyRegistered);
-  const { dataValues: { id } } = userRegister;
-  const token = generateToken({ id, name, role: 'customer' });
+  const userAlreadyExists = await User.findOne({ email });
+  if (userAlreadyExists) throw errorConstructor(conflict, userAlreadyRegistered);
+  const { id, role } = await User.create({
+    name, email, password: passwordEncrypted, role: 'customer' });
+  const token = generateToken({ id, name, role });
   return {
-    id: userRegister.id,
-    name: userRegister.name,
-    role: 'customer',
+    id,
+    name,
+    role,
     token,
   };
 };
@@ -32,33 +30,33 @@ const registerUserWithRoleService = async (bodyRequest, loggedUser) => {
   const { name, email, password, role } = bodyRequest;
   userValidation(name, email, password);
   const passwordEncrypted = cryptHashMd5(password);
-  const [userRegister, created] = await user.findOrCreate({
-    where: { email, name },
-    defaults: { name, email, password: passwordEncrypted, role },
-  });
-  if (!created) throw errorConstructor(conflict, userAlreadyRegistered);
+  const userAlreadyExists = await User.findOne({ email });
+  if (userAlreadyExists) throw errorConstructor(conflict, userAlreadyRegistered);
+  const { id } = await User.create({
+    name, email, password: passwordEncrypted, role });
+  const token = generateToken({ id, name, role });
   return {
-    id: userRegister.id,
-    name: userRegister.name,
+    id,
+    name,
     role,
+    token,
   };
 };
 
 const getAllUsersService = async () => {
-  const users = await user.findAll({});
+  const users = await User.find();
   return users;
 };
 
 const verifyUserId = async (id) => {
-  const shouldExist = await user.findAll({ where: { id } });
+  const shouldExist = await User.findOne({ id });
   if (!shouldExist) throw errorConstructor(badRequest, invalidId);
 };
 
 const deleteUserService = async (id, loggedUser) => {
   await verifyUserId(id);
-  // console.log(loggedUser);
   await adminValidation(loggedUser.role);
-  await user.destroy({ where: { id } });
+  await User.deleteOne({ id });
 };
 
 module.exports = {
