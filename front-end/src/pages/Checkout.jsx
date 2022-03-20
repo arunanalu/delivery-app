@@ -56,7 +56,7 @@ export default function Checkout() {
       const products = cart.items.map((item) => (
         { productId: item.id, quantity: item.quantity }));
 
-      console.log(user)
+      console.log(user);
       const idDoUsuario = user.id;
       const req = {
         sale: {
