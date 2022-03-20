@@ -55,6 +55,7 @@ export default function Products() {
     alert('You session is closed. Please, login again');
     return <Redirect to="/" />;
   }
+  // productList.map((product) => console.log(product._id))
   return (
     <main className="main-products-container">
       <div className="cards-container">

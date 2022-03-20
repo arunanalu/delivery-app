@@ -17,9 +17,9 @@ const loginService = async (requestUser) => {
   if (!foundUser || encryptedPassword !== foundUser.password) {
     throw errorConstructor(notFound, incorrectData);
   }
-  const { name, email, role } = foundUser;
-  const token = generateToken({ name, email, role });
-  return { token, name, email, role };
+  const { name, email, role, id } = foundUser;
+  const token = generateToken({ name, email, role, id });
+  return { token, name, email, role, id };
 };
 
 module.exports = loginService;

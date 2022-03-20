@@ -1,5 +1,7 @@
 const User = require('../userSchema');
 
+var mongoose = require('mongoose');
+
 const users = [
   {
     id: 1,

@@ -17,7 +17,8 @@ const User = require('../models/userSchema');
 
 const registerSalesService = async (incomingSale, arrayProducts) => {
   registerSaleValidation(incomingSale, arrayProducts);
-  const saleCreated = await Sale.create({ ...incomingSale });
+  const { id } = await User.findOne({ name: 'Fulana Pereira' })
+  const saleCreated = await Sale.create({ ...incomingSale, sellerId: id });
   const newArrayProducts = arrayProducts.map((element) => ({
         saleId: saleCreated.id,
         ...element,
@@ -62,7 +63,7 @@ const getSaleDetailsService = async (id) => {
     const { productId, quantity } = element;
     return { ...productId, salesProduct: { quantity } };
   });
-  const resultSale = await Sale.findOne({ id }).lean();
+  const resultSale = await Sale.findOne({ _id: id }).lean();
   const saleAndProducts = { ...resultSale, products: [...products] };
   return saleAndProducts;
 };

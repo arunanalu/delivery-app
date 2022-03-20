@@ -12,7 +12,7 @@ module.exports = {
           role: "administrator",
         },
         {
-          id: 2,
+          _id: 2,
           name: "Fulana Pereira",
           email: "fulana@deliveryapp.com",
           password: "3c28d2b0881bf46457a853e0b07531c6",

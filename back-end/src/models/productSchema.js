@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable camelcase */
 const { default: mongoose } = require('mongoose');
 const connection = require('./mongooseConnection');
@@ -9,6 +10,14 @@ const productSchema = new mongoose.Schema({
     type: String,
     alias: 'urlImage',
   },
+});
+
+productSchema.virtual('id').get(function transform() {
+  return this._id.toHexString();
+});
+
+productSchema.set('toJSON', {
+  virtuals: true,
 });
 
 const Product = connection.model('Product', productSchema);

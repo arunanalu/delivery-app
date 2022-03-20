@@ -13,7 +13,7 @@ import Table from '../components/Table';
 import './styles/checkout.css';
 
 export default function Checkout() {
-  console.log('renderizei');
+  // console.log('renderizei');
   const dispatch = useDispatch();
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total', 'Remover Item'];
@@ -56,11 +56,12 @@ export default function Checkout() {
       const products = cart.items.map((item) => (
         { productId: item.id, quantity: item.quantity }));
 
+      console.log(user)
       const idDoUsuario = user.id;
       const req = {
         sale: {
           userId: idDoUsuario || 'não veio nada',
-          sellerId: 2,
+          // sellerId: 2,
           totalPrice: cart.total,
           deliveryAddress: address,
           deliveryNumber: number,

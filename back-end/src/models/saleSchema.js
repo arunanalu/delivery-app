@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 const { default: mongoose } = require('mongoose');
 const connection = require('./mongooseConnection');
 
@@ -12,7 +13,7 @@ const saleScheema = new mongoose.Schema({
     type: Schema.Types.ObjectId,
     ref: 'User',
   },
-  totalPrice: 'String',
+  totalPrice: 'Number',
   deliveryAddress: 'String',
   deliveryNumber: 'String',
   saleDate: {
@@ -21,8 +22,16 @@ const saleScheema = new mongoose.Schema({
   },
   status: {
     type: 'String',
-    default: 'pendente',
+    default: 'Pendente',
   },
+});
+
+saleScheema.virtual('id').get(function transform() {
+  return this._id.toHexString();
+});
+
+saleScheema.set('toJSON', {
+  virtuals: true,
 });
 
 const Sale = connection.model('Sale', saleScheema);
