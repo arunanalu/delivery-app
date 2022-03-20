@@ -49,14 +49,14 @@ const getAllUsersService = async () => {
 };
 
 const verifyUserId = async (id) => {
-  const shouldExist = await User.findOne({ id });
+  const shouldExist = await User.findOne({ _id: id });
   if (!shouldExist) throw errorConstructor(badRequest, invalidId);
 };
 
 const deleteUserService = async (id, loggedUser) => {
   await verifyUserId(id);
   await adminValidation(loggedUser.role);
-  await User.deleteOne({ id });
+  await User.deleteOne({ _id: id });
 };
 
 module.exports = {
