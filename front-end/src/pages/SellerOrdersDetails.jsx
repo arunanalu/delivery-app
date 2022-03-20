@@ -8,8 +8,8 @@ import Table from '../components/Table';
 
 export default function SellerOrdersDetails() {
   const { id } = useParams();
-  const idParamPage = id.split('&')[0]
-  const fakeId = id.split('&')[1]
+  const idParamPage = id.split('&')[0];
+  const fakeId = id.split('&')[1];
   const [user] = useLocalStorage('user', {});
 
   const { data, refetch } = useQuery('sellerOrderDetails', async () => {

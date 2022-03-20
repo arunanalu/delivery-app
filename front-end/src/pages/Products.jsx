@@ -25,7 +25,7 @@ export default function Products() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   const history = useHistory();
-  const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001'
+  const baseURL = process.env.REACT_APP_API_URL || 'http://localhost:3001';
 
   const {
     data: productList,
@@ -56,7 +56,7 @@ export default function Products() {
     alert('You session is closed. Please, login again');
     return <Redirect to="/" />;
   }
-  productList.map((product) => console.log(product.url_image))
+  productList.map((product) => console.log(product.url_image));
   return (
     <main className="main-products-container">
       <div className="cards-container">

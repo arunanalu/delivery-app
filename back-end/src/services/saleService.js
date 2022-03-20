@@ -17,7 +17,7 @@ const User = require('../models/userSchema');
 
 const registerSalesService = async (incomingSale, arrayProducts) => {
   registerSaleValidation(incomingSale, arrayProducts);
-  const { id } = await User.findOne({ name: 'Fulana Pereira' })
+  const { id } = await User.findOne({ name: 'Fulana Pereira' });
   const saleCreated = await Sale.create({ ...incomingSale, sellerId: id });
   const newArrayProducts = arrayProducts.map((element) => ({
         saleId: saleCreated.id,

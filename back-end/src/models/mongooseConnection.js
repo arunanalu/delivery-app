@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const {CONNECT_STRING} = process.env;
+const { CONNECT_STRING } = process.env;
 
 const mongoose = require('mongoose');
 
