@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './styles/orderCard.css';
 
-export default function OrderCard({ id, status, saleDate, totalPrice }) {
+export default function OrderCard({ id, status, saleDate, totalPrice, realId }) {
   const history = useHistory();
   const statusColor = (statusOfOrder) => {
     let color = '';
@@ -25,7 +25,7 @@ export default function OrderCard({ id, status, saleDate, totalPrice }) {
   };
   return (
     <div
-      onClick={ () => history.push(`orders/${id}`) }
+      onClick={ () => history.push(`orders/${realId}&${id}`) }
       className="order-card"
       aria-hidden="true"
     >
@@ -71,4 +71,5 @@ OrderCard.propTypes = {
   status: PropTypes.string,
   totalPrice: PropTypes.string,
   saleDate: PropTypes.instanceOf(Date),
+  realId: PropTypes.string,
 }.isRequired;

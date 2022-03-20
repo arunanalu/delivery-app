@@ -17,6 +17,8 @@ export default function SellerOrders() {
   const { data, isLoading, isError } = useQuery('orders', () => fetchOrders(user));
   if (isLoading) return <div>Carregando</div>;
   if (isError) return <div>Deu ruimm</div>;
+  const indexes = data.map((_el, index) => index )
+  indexes.reverse();
   return (
     <>
       <Header isSeller />
@@ -55,12 +57,13 @@ export default function SellerOrders() {
           </button>
         ),
       )} */}
-        {data.map((order) => (
+        {data.map((order, index) => (
           <OrderCard
-            id={ order.id }
+            id={ indexes[index] }
+            realId = { order.id }
             status={ order.status }
             saleDate={ new Date(order.saleDate) }
-            key={ order.id }
+            key={ indexes[index] }
             totalPrice={ order.totalPrice.toString() }
           />
         ))}

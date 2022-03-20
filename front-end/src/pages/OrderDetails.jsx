@@ -13,8 +13,12 @@ const fetchOrderDetails = async (id, token) => {
 };
 
 export default function OrderDetails() {
+  let fakeId;
   const DATA_ID_DETAILS = 'customer_order_details';
-  const { id } = useParams();
+  const { realAndFakeId } = useParams();
+  const id = realAndFakeId.split('&')[0]
+  fakeId = realAndFakeId.split('&')[1]
+  if (fakeId === undefined) { fakeId = ''} ;
   const [user] = useLocalStorage('user', {});
   const columns = [
     'Item', 'Descrição', 'Quantidade', 'Valor Unitário', 'Sub-total'];
@@ -42,6 +46,8 @@ export default function OrderDetails() {
   if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
 
+  console.log(data)
+
   return (
     <div
       className="c-order-details"
@@ -55,7 +61,7 @@ export default function OrderDetails() {
             data-testid={ `${DATA_ID_DETAILS}__element-order-details-label-order-id` }
             className="order-details__order-id"
           >
-            {`PEDIDO ${data.id}`}
+            {`PEDIDO ${fakeId}`}
           </p>
           <p
             data-testid={ `${DATA_ID_DETAILS}__element-order-details-label-seller-name` }

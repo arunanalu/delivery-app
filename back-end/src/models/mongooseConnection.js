@@ -1,10 +1,9 @@
-const databaseName = 'deliveryApp';
+require('dotenv').config();
 
-// eslint-disable-next-line max-len
-const connectionString = `mongodb+srv://deliveryapp:rxzbsaiFlgSyjE79@cluster0.ufu9e.mongodb.net/${databaseName}?retryWrites=true&w=majority`;
+const {CONNECT_STRING} = process.env;
 
 const mongoose = require('mongoose');
 
-const connection = mongoose.createConnection(connectionString);
+const connection = mongoose.createConnection(CONNECT_STRING);
 
 module.exports = connection;

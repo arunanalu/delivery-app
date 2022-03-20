@@ -16,16 +16,19 @@ export default function Orders() {
 
   if (isLoading) return <Loading />;
   if (isError) return <div>Deu ruim</div>;
+  const indexes = data.map((_el, index) => index )
+  indexes.reverse();
   return (
     <div
       className="orders-list-container"
     >
-      {data.map((order) => (
+      {data.map((order, index) => (
         <OrderCard
-          id={ order.id }
+          id={ indexes[index] }
+          realId={ order.id }
           status={ order.status }
           saleDate={ new Date(order.saleDate) }
-          key={ order.id }
+          key={ indexes[index] }
           totalPrice={ order.totalPrice.toString() }
         />
       ))}

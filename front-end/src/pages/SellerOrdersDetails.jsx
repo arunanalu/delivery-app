@@ -7,7 +7,9 @@ import useLocalStorage from '../hooks/useLocalStorage';
 import Table from '../components/Table';
 
 export default function SellerOrdersDetails() {
-  const { id: idParamPage } = useParams();
+  const { id } = useParams();
+  const idParamPage = id.split('&')[0]
+  const fakeId = id.split('&')[1]
   const [user] = useLocalStorage('user', {});
 
   const { data, refetch } = useQuery('sellerOrderDetails', async () => {
@@ -125,7 +127,7 @@ export default function SellerOrdersDetails() {
             <p
               className="order-details__order-id"
             >
-              {`PEDIDO ${data.id}`}
+              {`PEDIDO ${fakeId}`}
             </p>
             <p>
               P. Vend: Fulana Pereira
