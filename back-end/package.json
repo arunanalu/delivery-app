@@ -11,7 +11,9 @@
   "scripts": {
     "db:reset": "node ./src/models/seeders/resetDb.js",
     "db:seed": "node ./src/models/seeders/index.js",
-    "start": "node .",
+    "start": "pm2-runtime start ecosystem.config.yml",
+    "start:dev": "pm2-runtime start index.js --watch",
+    "heroku-postbuild": "npm install pm2",
     "dev": "nodemon .",
     "test": "mocha src/tests/**/*$NAME*.test.js --exit",
     "test:coverage": "nyc --all npm run test",
@@ -30,7 +32,8 @@
     "jsonwebtoken": "8.5.1",
     "md5": "2.3.0",
     "mongoose": "^6.2.7",
-    "multer": "1.4.2"
+    "multer": "1.4.2",
+    "pm2": "^5.2.0"
   },
   "devDependencies": {
     "chai": "4.3.4",
