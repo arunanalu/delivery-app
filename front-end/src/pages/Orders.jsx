@@ -24,7 +24,7 @@ export default function Orders() {
     >
       {data.map((order, index) => (
         <OrderCard
-          id={ indexes[index] }
+          id={ indexes[index] + 1 }
           realId={ order.id }
           status={ order.status }
           saleDate={ new Date(order.saleDate) }

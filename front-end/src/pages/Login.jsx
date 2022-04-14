@@ -55,7 +55,7 @@ export default function Login() {
         <div className="inputs">
           <div className="login_label">
             <label htmlFor="username">
-              Login
+              Email
             </label>
           </div>
           <input
