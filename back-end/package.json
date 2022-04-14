@@ -9,14 +9,15 @@
   "engineStrict": true,
   "private": true,
   "scripts": {
-    "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-    "db:reset-test": "cross-env NODE_ENV=test npx sequelize-cli db:drop && cross-env NODE_ENV=test npx sequelize-cli db:create && cross-env NODE_ENV=test npx sequelize-cli db:migrate && cross-env NODE_ENV=test npx sequelize-cli db:seed:all",
+    "db:reset": "node ./src/models/seeders/resetDb.js",
+    "db:reset-test": "cross-env NODE_ENV=TEST node ./src/models/seeders/resetDb.js",
+    "db:seed": "node ./src/models/seeders/index.js",
     "start": "pm2-runtime start ecosystem.config.yml",
     "start:dev": "pm2-runtime start index.js --watch",
     "heroku-postbuild": "npm install pm2",
     "dev": "nodemon .",
-    "dev:test": "cross-env NODE_ENV=test nodemon .",
-    "test": "cross-env NODE_ENV=test mocha src/tests/**/*$NAME*.test.js --timeout 50000 --exit",
+    "dev:test": "cross-env NODE_ENV=TEST nodemon .",
+    "test": "cross-env NODE_ENV=TEST mocha src/tests/**/*$NAME*.test.js --timeout 50000 --exit",
     "test:dev:watch": "cross-env NODE_ENV=development mocha src/tests/**/*$NAME*.test.js --timeout 50000 --watch",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
@@ -28,6 +29,7 @@
     "@types/express": "4.17.11",
     "body-parser": "1.19.0",
     "cors": "2.8.5",
+    "cross-env": "^7.0.3",
     "dotenv": "8.2.0",
     "express": "4.17.1",
     "express-rescue": "1.1.26",
@@ -35,7 +37,8 @@
     "md5": "2.3.0",
     "mongoose": "^6.2.7",
     "multer": "1.4.2",
-    "pm2": "^5.2.0"
+    "pm2": "^5.2.0",
+    "shelljs": "^0.8.5"
   },
   "devDependencies": {
     "chai": "4.3.4",

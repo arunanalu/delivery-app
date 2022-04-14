@@ -1,4 +1,4 @@
-const app = require('../../api/app')
+const app = require('../../../index.js')
 const chai = require('chai');
 const { expect } = chai;
 const { stub } = require('sinon');

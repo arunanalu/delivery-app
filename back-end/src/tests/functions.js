@@ -1,9 +1,9 @@
-const { user } = require('../database/models');
 const { cryptHashMd5 } = require('../utils/functions');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
-const app = require('../api/app')
+const app = require('../../index.js');
+const User = require('../models/userSchema');
 
 
 const randomString = () => {
@@ -16,7 +16,7 @@ const randomString = () => {
 
 const createUser = async (name, password = '123456') => {
   const passwordEncrypted = cryptHashMd5(password)
-  await user.create({ name: name, email: `${name}@gmail.com`, password: passwordEncrypted, role: 'customer'});
+  await User.create({ name: name, email: `${name}@gmail.com`, password: passwordEncrypted, role: 'customer' })
 };
 
 const loginRequest = async (string, password = '123456') => {

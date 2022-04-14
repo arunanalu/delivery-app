@@ -1,13 +1,10 @@
 const shell = require('shelljs');
 require('dotenv').config()
 
-const environment = process.env.NODE_ENV || "test";
+const environment = process.env.NODE_ENV || 'TEST';
 
-if (environment === 'test') {
+if (environment === 'TEST') {
   before(async () => {
-    shell.exec(`cross-env NODE_ENV=${environment} npx sequelize-cli db:drop`);
-    shell.exec(`cross-env NODE_ENV=${environment} npx sequelize-cli db:create`);
-    shell.exec(`cross-env NODE_ENV=${environment} npx sequelize-cli db:migrate`);
-    shell.exec(`cross-env NODE_ENV=${environment} npx sequelize-cli db:seed:all $`)
+    shell.exec(`cross-env NODE_ENV=${environment} node ./src/models/seeders/resetDb.js`);
   });
 }
