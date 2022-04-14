@@ -7,12 +7,14 @@
     "node": ">=14.0.0"
   },
   "engineStrict": true,
-  "private": true,
-  "scripts": {
+  "private": true,  "scripts": {
     "db:reset": "npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
+    "db:reset-test": "cross-env NODE_ENV=test npx sequelize-cli db:drop && cross-env NODE_ENV=test npx sequelize-cli db:create && cross-env NODE_ENV=test npx sequelize-cli db:migrate && cross-env NODE_ENV=test npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon .",
-    "test": "mocha src/tests/**/*$NAME*.test.js --exit",
+    "dev:test": "cross-env NODE_ENV=test nodemon .",
+    "test": "cross-env NODE_ENV=test mocha src/tests/**/*$NAME*.test.js --timeout 50000 --exit",
+    "test:dev:watch": "cross-env NODE_ENV=development mocha src/tests/**/*$NAME*.test.js --timeout 50000 --watch",
     "test:coverage": "nyc --all npm run test",
     "test:coverage:json": "nyc --all --reporter=json-summary npm run test",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json ."
